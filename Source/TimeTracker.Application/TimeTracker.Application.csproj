@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
+    <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
