@@ -58,30 +58,6 @@
             <inheritdoc/>
             <param name="task">Nullable parameter.</param>
         </member>
-        <member name="T:TimeTracker.Application.Commands.GetGroupsQuery">
-            <summary>
-            Get the list of available groups.
-            </summary>
-        </member>
-        <member name="M:TimeTracker.Application.Commands.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
-            <summary>
-            Execute the command.
-            </summary>
-            <param name="queryOptions">Search query options.</param>
-            <returns>List of available groups.</returns>
-        </member>
-        <member name="T:TimeTracker.Application.Commands.GetTasksQuery">
-            <summary>
-            Get the list of available tasks.
-            </summary>
-        </member>
-        <member name="M:TimeTracker.Application.Commands.GetTasksQuery.Run(TimeTracker.Domain.Task)">
-            <summary>
-            Execute the command.
-            </summary>
-            <param name="queryOptions">Search query options.</param>
-            <returns>List of available tasks.</returns>
-        </member>
         <member name="T:TimeTracker.Application.TrackWorkTimeCommand">
             <summary>
             Track work time for selected task.
@@ -119,6 +95,30 @@
             </summary>
             <param name="param">Nullable parameter.</param>
             <returns><typeparamref name="TB"/></returns>
+        </member>
+        <member name="T:TimeTracker.Application.Query.GetGroupsQuery">
+            <summary>
+            Get the list of available groups.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Query.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="queryOptions">Search query options.</param>
+            <returns>List of available groups.</returns>
+        </member>
+        <member name="T:TimeTracker.Application.Query.GetTasksQuery">
+            <summary>
+            Get the list of available tasks.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Query.GetTasksQuery.Run(TimeTracker.Domain.Task)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="queryOptions">Search query options.</param>
+            <returns>List of available tasks.</returns>
         </member>
     </members>
 </doc>
