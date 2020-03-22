@@ -7,18 +7,18 @@ namespace TimeTracker.Application.UnitTests
     [TestClass]
     public class NijectShould
     {
-        private IKernel _sut;
+        private IKernel _Sut;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _sut = new StandardKernel(new TestModule());
+            _Sut = new StandardKernel(new TestModule());
         }
 
         [TestMethod]
         public void GetGroupsQuery()
         {
-            var result = _sut.Get<GetGroupsQuery>();
+            var result = _Sut.Get<GetGroupsQuery>();
 
             Assert.IsInstanceOfType(result, typeof(GetGroupsQuery));
         }
@@ -26,7 +26,7 @@ namespace TimeTracker.Application.UnitTests
         [TestMethod]
         public void GetTasksQuery()
         {
-            var result = _sut.Get<GetTasksQuery>();
+            var result = _Sut.Get<GetTasksQuery>();
 
             Assert.IsInstanceOfType(result, typeof(GetTasksQuery));
         }
