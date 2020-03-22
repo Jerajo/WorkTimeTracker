@@ -191,9 +191,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TimeTracker.Application\TimeTracker.Application.csproj">
       <Project>{d9981be2-4c97-48fb-a576-98d6707e6b7f}</Project>
       <Name>TimeTracker.Application</Name>
