@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TimeTracker.Application.Contracts;
 
-namespace TimeTracker.Application.Commands
+namespace TimeTracker.Application.Query
 {
     /// <summary>
     /// Get the list of available groups.
