@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TimeTracker.Domain
+namespace TimeTracker.Domain.Contracts
 {
     /// <summary>
     /// Represents a group of task or a user story.

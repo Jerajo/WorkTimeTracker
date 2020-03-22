@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TimeTracker.Domain.Contracts;
 using TimeTracker.Domain.ValueObjects;
 
 namespace TimeTracker.Domain
