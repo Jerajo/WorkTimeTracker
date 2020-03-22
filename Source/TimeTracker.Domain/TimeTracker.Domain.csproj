@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -8,7 +8,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Optimize>true</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>C:\Users\Jesse\source\repos\TEXOIDER\WorkTimeTracker\Source\TimeTracker.Domain\TimeTracker.Domain.xml</DocumentationFile>
+    <DocumentationFile>.\WorkTimeTracker\Source\TimeTracker.Domain\TimeTracker.Domain.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
