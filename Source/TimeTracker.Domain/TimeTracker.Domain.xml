@@ -4,6 +4,111 @@
         <name>TimeTracker.Domain</name>
     </assembly>
     <members>
+        <member name="T:TimeTracker.Domain.Contracts.IDescription">
+            <summary>
+            Represents the template to be use when the schedule is exported.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.IDescription.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.IDescription.Template">
+            <summary>
+            Template to be use in the Excel document.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Domain.Contracts.IGroup">
+            <summary>
+            Represents a group of task or a user story.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.IGroup.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.IGroup.Code">
+            <summary>
+            Code use in to identify the user story.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.IGroup.Name">
+            <summary>
+            Name of the group.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.IGroup.Tasks">
+            <summary>
+            Related tasks of the group.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Domain.Contracts.ISchedule">
+            <summary>
+            Represents a day of work.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ISchedule.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ISchedule.ScheduleDate">
+            <summary>
+            Day of work.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ISchedule.Tasks">
+            <summary>
+            Related tasks of the schedule.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Domain.Contracts.ITask">
+            <summary>
+            Represents a task of work.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.Code">
+            <summary>
+            Code use in to identify the user story.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.Name">
+            <summary>
+            Name of the group.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.DescriptionId">
+            <summary>
+            Id for the task description.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.Description">
+            <summary>
+            Related description for the task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.GroupId">
+            <summary>
+            Id for the task group.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.Group">
+            <summary>
+            Related group for the task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITask.Schedules">
+            <summary>
+            Relates schedules of the task.
+            </summary>
+        </member>
         <member name="T:TimeTracker.Domain.Group">
             <summary>
             Represents a group of task or a user story.
@@ -20,96 +125,6 @@
         </member>
         <member name="P:TimeTracker.Domain.Group.Tasks">
             <inheritdoc/>
-        </member>
-        <member name="T:TimeTracker.Domain.IGroup">
-            <summary>
-            Represents a group of task or a user story.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.IGroup.Id">
-            <summary>
-            Unique identifier.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.IGroup.Code">
-            <summary>
-            Code use in to identify the user story.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.IGroup.Name">
-            <summary>
-            Name of the group.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.IGroup.Tasks">
-            <summary>
-            Related tasks of the group.
-            </summary>
-        </member>
-        <member name="T:TimeTracker.Domain.ISchedule">
-            <summary>
-            Represents a day of work.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ISchedule.Id">
-            <summary>
-            Unique identifier.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ISchedule.ScheduleDate">
-            <summary>
-            Day of work.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ISchedule.Tasks">
-            <summary>
-            Related tasks of the schedule.
-            </summary>
-        </member>
-        <member name="T:TimeTracker.Domain.ITask">
-            <summary>
-            Represents a task of work.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.Id">
-            <summary>
-            Unique identifier.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.Code">
-            <summary>
-            Code use in to identify the user story.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.Name">
-            <summary>
-            Name of the group.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.DescriptionId">
-            <summary>
-            Id for the task description.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.Description">
-            <summary>
-            Related description for the task.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.GroupId">
-            <summary>
-            Id for the task group.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.Group">
-            <summary>
-            Related group for the task.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ITask.Schedules">
-            <summary>
-            Relates schedules of the task.
-            </summary>
         </member>
         <member name="T:TimeTracker.Domain.Schedule">
             <summary>
@@ -164,21 +179,6 @@
         </member>
         <member name="P:TimeTracker.Domain.ValueObjects.Description.Template">
             <inheritdoc/>
-        </member>
-        <member name="T:TimeTracker.Domain.ValueObjects.IDescription">
-            <summary>
-            Represents the template to be use when the schedule is exported.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ValueObjects.IDescription.Id">
-            <summary>
-            Unique identifier.
-            </summary>
-        </member>
-        <member name="P:TimeTracker.Domain.ValueObjects.IDescription.Template">
-            <summary>
-            Template to be use in the Excel document.
-            </summary>
         </member>
     </members>
 </doc>

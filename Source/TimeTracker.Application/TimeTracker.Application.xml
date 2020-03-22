@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TimeTracker.Application</name>
+    </assembly>
+    <members>
+        <member name="T:TimeTracker.Application.Commands.GetGroupsCommand">
+            <summary>
+            Get the list of available groups.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.GetGroupsCommand.Run(System.Int32)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="page">Page index.</param>
+            <returns>List of available groups.</returns>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.GetTasksCommand">
+            <summary>
+            Get the list of available tasks.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.GetTasksCommand.Run(System.Int32)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="page">Page index.</param>
+            <returns>List of available tasks.</returns>
+        </member>
+        <member name="T:TimeTracker.Application.TrackWorkTimeCommand">
+            <summary>
+            Track work time for selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.TrackWorkTimeCommand.Run(TimeTracker.Domain.Task)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="selectedTask">Selected task.</param>
+        </member>
+    </members>
+</doc>
