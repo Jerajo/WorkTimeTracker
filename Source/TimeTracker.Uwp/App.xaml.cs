@@ -1,5 +1,7 @@
 ﻿using Ninject;
 using System;
+using TimeTracker.Infrastructure;
+using TimeTracker.Infrastructure.Entities;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -13,7 +15,7 @@ namespace TimeTracker.Uwp
     /// </summary>
     sealed partial class App
     {
-        private readonly IKernel _Kernel;
+        private IKernel _Kernel;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -22,19 +24,24 @@ namespace TimeTracker.Uwp
         public App()
         {
             this.InitializeComponent();
-
-            _Kernel = new StandardKernel(new DependenciesConfiguration());
-
-            this.ConfigApplication();
             this.Suspending += OnSuspending;
+            this.ConfigApplication();
         }
 
         /// <summary>
         /// Configure the application.
         /// </summary>
-        private void ConfigApplication()
+        private async void ConfigApplication()
         {
+            _Kernel = new StandardKernel(new DependenciesConfiguration());
 
+            var dbContext = new WorkTimeTracker();
+            var dbHandler = new DataBaseHandler(dbContext);
+
+            if(!dbHandler.DataBaseExist)
+            {
+                await dbHandler.CreateDataBase().ConfigureAwait(false);
+            }
         }
 
         /// <summary>
