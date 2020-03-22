@@ -3,23 +3,16 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="using:TimeTracker.Uwp"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
 	mc:Ignorable="d">
 
-	<Grid Background="Red">
+	<Grid>
 		<TextBlock
-			HorizontalAlignment="Right"
-			VerticalAlignment="Bottom"
-			FontSize="30"
-			FontWeight="Black"
-			Text="Hola Jeffrey!" />
-        <TextBlock
-			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			FontSize="30"
-			FontWeight="Black"
-			Text="Hola Jesse!" />
-    </Grid>
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			FontSize="40"
+			FontWeight="Bold"
+			Text="Hola Mundo! 2" />
+	</Grid>
 </Page>
