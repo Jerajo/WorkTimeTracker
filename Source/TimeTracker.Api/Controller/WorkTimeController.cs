@@ -15,7 +15,7 @@ namespace TimeTracker.Api.Controller
         [HttpGet("setTimeNow")]
         public void SetWorkTimeNow()
         {
-            var workTime = new WorkTime();
+            var workTime = new Task();
             var trackWorkTimeCommand = new TrackWorkTimeCommand();
 
             trackWorkTimeCommand.Run(workTime);

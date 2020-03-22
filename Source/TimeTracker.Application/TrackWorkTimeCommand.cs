@@ -5,9 +5,10 @@ namespace TimeTracker.Application
 {
     public class TrackWorkTimeCommand
     {
-        public void Run(WorkTime workTime)
+        public void Run(Task workTime)
         {
-            workTime.Time = DateTimeOffset.Now;
+            throw new NotImplementedException();
+            //workTime.Time = DateTimeOffset.Now;
         }
     }
 }
