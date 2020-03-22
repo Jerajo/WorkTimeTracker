@@ -10,10 +10,16 @@
 
 	<Grid Background="Red">
 		<TextBlock
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
 			FontSize="30"
 			FontWeight="Black"
 			Text="Hola Jeffrey!" />
-	</Grid>
+        <TextBlock
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			FontSize="30"
+			FontWeight="Black"
+			Text="Hola Jesse!" />
+    </Grid>
 </Page>
