@@ -3,9 +3,8 @@ using Migration.Entities;
 
 namespace TimeTracker.Infrastructure.Entities
 {
-    public partial class WorkTimeTracker : DbContext
+    public partial class WorkTimeTracker : DbContext, IDbContext
     {
-
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TimeSchedule> TimeSchedules { get; set; }
@@ -43,5 +42,10 @@ namespace TimeTracker.Infrastructure.Entities
                 .Property(e => e.Name)
                 .IsUnicode(false);
         }
+    }
+
+    internal interface IDbContext
+    {
+        int SaveChanges();
     }
 }

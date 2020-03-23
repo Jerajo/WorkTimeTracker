@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TimeTracker.Infrastructure.Entities;
 
 namespace TimeTracker.Infrastructure.IntegrationTests
@@ -16,6 +12,7 @@ namespace TimeTracker.Infrastructure.IntegrationTests
         public void TestInitialize()
         {
             _Sut = new WorkTimeTracker();
+            _Sut.Database.EnsureCreated();
         }
 
         [TestMethod]

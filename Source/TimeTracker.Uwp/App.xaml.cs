@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Ninject;
+using System;
+using TimeTracker.Infrastructure;
+using TimeTracker.Infrastructure.Entities;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -12,6 +15,8 @@ namespace TimeTracker.Uwp
     /// </summary>
     sealed partial class App
     {
+        private IKernel _Kernel;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -20,6 +25,23 @@ namespace TimeTracker.Uwp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.ConfigApplication();
+        }
+
+        /// <summary>
+        /// Configure the application.
+        /// </summary>
+        private async void ConfigApplication()
+        {
+            _Kernel = new StandardKernel(new DependenciesConfiguration());
+
+            var dbContext = new WorkTimeTracker();
+            var dbHandler = new DataBaseHandler(dbContext);
+
+            if(!dbHandler.DataBaseExist)
+            {
+                await dbHandler.CreateDataBase().ConfigureAwait(false);
+            }
         }
 
         /// <summary>
