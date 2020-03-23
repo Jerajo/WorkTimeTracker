@@ -1,7 +1,7 @@
 ﻿using Ninject.Modules;
 using System.Collections.Generic;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Application.Query;
+using TimeTracker.Application.Queries;
 
 namespace TimeTracker.Uwp
 {

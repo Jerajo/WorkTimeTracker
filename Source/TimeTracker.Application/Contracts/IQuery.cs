@@ -3,7 +3,7 @@
 namespace TimeTracker.Application.Contracts
 {
     /// <summary>
-    /// Represents a async query.
+    /// Represents an async query.
     /// </summary>
     /// <typeparam name="TA">Query options.</typeparam>
     /// <typeparam name="TB">Query result.</typeparam>

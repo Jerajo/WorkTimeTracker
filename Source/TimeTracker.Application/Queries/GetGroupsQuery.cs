@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TimeTracker.Application.Contracts;
 
-namespace TimeTracker.Application.Query
+namespace TimeTracker.Application.Queries
 {
     /// <summary>
-    /// Get the list of available tasks.
+    /// Get the list of available groups.
     /// </summary>
-    public class GetTasksQuery : IQuery<Domain.Task, List<Domain.Task>>
+    public class GetGroupsQuery : IQuery<Domain.Group, List<Domain.Group>>
     {
         /// <summary>
         /// Execute the command.
         /// </summary>
         /// <param name="queryOptions">Search query options.</param>
-        /// <returns>List of available tasks.</returns>
-        public Task<List<Domain.Task>> Run(Domain.Task queryOptions)
+        /// <returns>List of available groups.</returns>
+        public Task<List<Domain.Group>> Run(Domain.Group queryOptions)
         {
             throw new NotImplementedException();
-            //return Task.FromResult(new List<Domain.Task>());
+            //return Task.FromResult(new List<Domain.Group>());
         }
     }
 }

@@ -82,9 +82,20 @@
             <param name="param">Nullable parameter.</param>
             <returns><code>System.IAsyncResult</code></returns>
         </member>
+        <member name="T:TimeTracker.Application.Contracts.ICommandFactory`1">
+            <summary>
+            Create an instance of an async command..
+            </summary>
+            <typeparam name="T">Query options.</typeparam>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.ICommandFactory`1.GetInstance">
+            <summary>
+            Get an instance of an async command.
+            </summary>
+        </member>
         <member name="T:TimeTracker.Application.Contracts.IQuery`2">
             <summary>
-            Represents a async query.
+            Represents an async query.
             </summary>
             <typeparam name="TA">Query options.</typeparam>
             <typeparam name="TB">Query result.</typeparam>
@@ -96,24 +107,53 @@
             <param name="param">Nullable parameter.</param>
             <returns><typeparamref name="TB"/></returns>
         </member>
-        <member name="T:TimeTracker.Application.Query.GetGroupsQuery">
+        <member name="T:TimeTracker.Application.Contracts.IQueryFactory`1">
+            <summary>
+            Create an instance of an async query.
+            </summary>
+            <typeparam name="T">Query type.</typeparam>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.IQueryFactory`1.GetInstance">
+            <summary>
+            Get an instance of an async query.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Factories.CommandFactory`1">
+            <summary>
+            Create an instance of an async command..
+            </summary>
+            <typeparam name="T">Query options.</typeparam>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.CommandFactory`1.GetInstance">
+            <inheritdoc/>
+        </member>
+        <member name="T:TimeTracker.Application.Factories.QueryFactory`1">
+            <summary>
+            Create an instance of an async query.
+            </summary>
+            <typeparam name="T">Query type.</typeparam>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.QueryFactory`1.GetInstance">
+            <inheritdoc/>
+        </member>
+        <member name="T:TimeTracker.Application.Queries.GetGroupsQuery">
             <summary>
             Get the list of available groups.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Query.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
+        <member name="M:TimeTracker.Application.Queries.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
             <summary>
             Execute the command.
             </summary>
             <param name="queryOptions">Search query options.</param>
             <returns>List of available groups.</returns>
         </member>
-        <member name="T:TimeTracker.Application.Query.GetTasksQuery">
+        <member name="T:TimeTracker.Application.Queries.GetTasksQuery">
             <summary>
             Get the list of available tasks.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Query.GetTasksQuery.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.Run(TimeTracker.Domain.Task)">
             <summary>
             Execute the command.
             </summary>
