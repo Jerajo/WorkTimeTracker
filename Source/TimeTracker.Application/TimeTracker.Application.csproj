@@ -5,6 +5,15 @@
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DocumentationFile>./TimeTracker.Application.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ninject" Version="3.3.4" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
     <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />

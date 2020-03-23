@@ -1,17 +1,20 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
+﻿using Ninject;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace TimeTracker.Uwp
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Microsoft.UI.Xaml.Application
+    sealed partial class App
     {
+        private IKernel _Kernel;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -20,6 +23,15 @@ namespace TimeTracker.Uwp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.ConfigApplication();
+        }
+
+        /// <summary>
+        /// Configure the application.
+        /// </summary>
+        private void ConfigApplication()
+        {
+            _Kernel = new StandardKernel(new DependenciesConfiguration());
         }
 
         /// <summary>
@@ -29,6 +41,9 @@ namespace TimeTracker.Uwp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            if(e is null)
+                throw new ArgumentNullException(nameof(e));
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

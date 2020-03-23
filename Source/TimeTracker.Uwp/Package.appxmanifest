@@ -7,20 +7,20 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="6c45fea1-c7bb-40d8-945c-015e839b415e"
+    Name="e6d4737c-aea2-4378-8de6-b599188e8b15"
     Publisher="CN=Jesse"
-    Version="1.0.0.0" />
+    Version="0.0.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="6c45fea1-c7bb-40d8-945c-015e839b415e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="e6d4737c-aea2-4378-8de6-b599188e8b15" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>TimeTracker.Uwp</DisplayName>
+    <DisplayName>WorkTimeTracker</DisplayName>
     <PublisherDisplayName>Jesse</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17134.0" MaxVersionTested="10.0.17134.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
 
   <Resources>
@@ -32,13 +32,15 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="TimeTracker.Uwp.App">
       <uap:VisualElements
-        DisplayName="TimeTracker.Uwp"
+        DisplayName="Work Time Tracker"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="TimeTracker.Uwp"
+        Description="Toma el tiempo invertido en tareas durante el día y exporta a un documento Excel."
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
