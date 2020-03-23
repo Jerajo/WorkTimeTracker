@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using TimeTracker.Application.Query;
+using TimeTracker.Application.Queries;
+using TimeTracker.Tests.Common.Helpers;
 
 namespace TimeTracker.Application.UnitTests
 {
     [TestClass]
-    public class NijectShould
+    public class NinjectShould
     {
         private IKernel _Sut;
 

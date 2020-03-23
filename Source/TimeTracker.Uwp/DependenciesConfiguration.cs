@@ -1,12 +1,13 @@
 ﻿using Ninject.Modules;
 using System.Collections.Generic;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Application.Query;
+using TimeTracker.Application.Factories;
+using TimeTracker.Application.Queries;
 
 namespace TimeTracker.Uwp
 {
     /// <summary>
-    /// Represents the aplication dependencies configuration.
+    /// Represents the application dependencies configuration.
     /// </summary>
     public class DependenciesConfiguration : NinjectModule
     {
@@ -17,6 +18,9 @@ namespace TimeTracker.Uwp
         {
             Bind<IQuery<Domain.Group, List<Domain.Group>>>().To<GetGroupsQuery>();
             Bind<IQuery<Domain.Task, List<Domain.Task>>>().To<GetTasksQuery>();
+
+            Bind<IQueryFactory>().To<QueryFactory>();
+            Bind<ICommandFactory>().To<CommandFactory>();
         }
     }
 }

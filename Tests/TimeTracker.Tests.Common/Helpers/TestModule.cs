@@ -1,16 +1,20 @@
 ﻿using Ninject.Modules;
 using System.Collections.Generic;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Application.Query;
+using TimeTracker.Application.Factories;
+using TimeTracker.Application.Queries;
 
-namespace TimeTracker.Application.UnitTests
+namespace TimeTracker.Tests.Common.Helpers
 {
-    internal class TestModule : NinjectModule
+    public class TestModule : NinjectModule
     {
         public override void Load()
         {
             Bind<IQuery<Domain.Group, List<Domain.Group>>>().To<GetGroupsQuery>();
             Bind<IQuery<Domain.Task, List<Domain.Task>>>().To<GetTasksQuery>();
+
+            Bind<IQueryFactory>().To<QueryFactory>();
+            Bind<ICommandFactory>().To<CommandFactory>();
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using Ninject;
 using System;
-using TimeTracker.Infrastructure;
-using TimeTracker.Infrastructure.Entities;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -31,17 +29,9 @@ namespace TimeTracker.Uwp
         /// <summary>
         /// Configure the application.
         /// </summary>
-        private async void ConfigApplication()
+        private void ConfigApplication()
         {
             _Kernel = new StandardKernel(new DependenciesConfiguration());
-
-            var dbContext = new WorkTimeTracker();
-            var dbHandler = new DataBaseHandler(dbContext);
-
-            if(!dbHandler.DataBaseExist)
-            {
-                await dbHandler.CreateDataBase().ConfigureAwait(false);
-            }
         }
 
         /// <summary>

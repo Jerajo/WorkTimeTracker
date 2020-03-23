@@ -16,7 +16,7 @@ namespace TimeTracker.Infrastructure.IntegrationTests
         }
 
         [TestMethod]
-        public void ConnetToSQLiteDB()
+        public void ConnectToSQLiteDB()
         {
             Assert.IsTrue(_Sut.Database.CanConnect());
         }

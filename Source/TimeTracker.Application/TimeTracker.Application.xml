@@ -82,38 +82,98 @@
             <param name="param">Nullable parameter.</param>
             <returns><code>System.IAsyncResult</code></returns>
         </member>
+        <member name="T:TimeTracker.Application.Contracts.ICommand">
+            <summary>
+            Represents a command object.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Contracts.ICommandFactory">
+            <summary>
+            Create an instance of an async command..
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.ICommandFactory.GetInstance``1">
+            <summary>
+            Get an instance of an async command.
+            </summary>
+            <typeparam name="T">Command type.</typeparam>
+        </member>
         <member name="T:TimeTracker.Application.Contracts.IQuery`2">
             <summary>
-            Represents a async query.
+            Represents an async query.
             </summary>
-            <typeparam name="TA">Query options.</typeparam>
-            <typeparam name="TB">Query result.</typeparam>
+            <typeparam name="TOptions">Query options.</typeparam>
+            <typeparam name="TResult">Query result.</typeparam>
         </member>
         <member name="M:TimeTracker.Application.Contracts.IQuery`2.Run(`0)">
             <summary>
             Execute the command.
             </summary>
             <param name="param">Nullable parameter.</param>
-            <returns><typeparamref name="TB"/></returns>
+            <returns><typeparamref name="TResult"/></returns>
         </member>
-        <member name="T:TimeTracker.Application.Query.GetGroupsQuery">
+        <member name="T:TimeTracker.Application.Contracts.IQuery">
+            <summary>
+            Represent a query object
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Contracts.IQueryFactory">
+            <summary>
+            Create an instance of an async query.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.IQueryFactory.GetInstance``1">
+            <summary>
+            Get an instance of an async query.
+            </summary>
+            <typeparam name="T">Query type.</typeparam>
+        </member>
+        <member name="T:TimeTracker.Application.Factories.CommandFactory">
+            <summary>
+            Create an instance of an async command..
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.CommandFactory.#ctor(Ninject.IKernel)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="kernel">DI container.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.CommandFactory.GetInstance``1">
+            <inheritdoc/>
+        </member>
+        <member name="T:TimeTracker.Application.Factories.QueryFactory">
+            <summary>
+            Create an instance of an async query.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.QueryFactory.#ctor(Ninject.IKernel)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="kernel">DI container.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.QueryFactory.GetInstance``1">
+            <inheritdoc/>
+        </member>
+        <member name="T:TimeTracker.Application.Queries.GetGroupsQuery">
             <summary>
             Get the list of available groups.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Query.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
+        <member name="M:TimeTracker.Application.Queries.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
             <summary>
             Execute the command.
             </summary>
             <param name="queryOptions">Search query options.</param>
             <returns>List of available groups.</returns>
         </member>
-        <member name="T:TimeTracker.Application.Query.GetTasksQuery">
+        <member name="T:TimeTracker.Application.Queries.GetTasksQuery">
             <summary>
             Get the list of available tasks.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Query.GetTasksQuery.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.Run(TimeTracker.Domain.Task)">
             <summary>
             Execute the command.
             </summary>

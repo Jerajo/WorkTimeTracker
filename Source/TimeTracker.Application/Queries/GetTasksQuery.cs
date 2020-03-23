@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TimeTracker.Application.Contracts;
+using TimeTracker.Domain.BaseClasses;
 
-namespace TimeTracker.Application.Query
+namespace TimeTracker.Application.Queries
 {
     /// <summary>
     /// Get the list of available tasks.
     /// </summary>
-    public class GetTasksQuery : IQuery<Domain.Task, List<Domain.Task>>
+    public class GetTasksQuery : DisposableBase, IQuery<Domain.Task, List<Domain.Task>>
     {
         /// <summary>
         /// Execute the command.

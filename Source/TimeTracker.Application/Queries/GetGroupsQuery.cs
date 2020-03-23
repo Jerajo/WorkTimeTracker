@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TimeTracker.Application.Contracts;
+using TimeTracker.Domain.BaseClasses;
 
-namespace TimeTracker.Application.Query
+namespace TimeTracker.Application.Queries
 {
     /// <summary>
     /// Get the list of available groups.
     /// </summary>
-    public class GetGroupsQuery : IQuery<Domain.Group, List<Domain.Group>>
+    public class GetGroupsQuery : DisposableBase, IQuery<Domain.Group, List<Domain.Group>>
     {
         /// <summary>
         /// Execute the command.

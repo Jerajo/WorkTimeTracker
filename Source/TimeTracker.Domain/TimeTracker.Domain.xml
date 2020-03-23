@@ -4,6 +4,20 @@
         <name>TimeTracker.Domain</name>
     </assembly>
     <members>
+        <member name="T:TimeTracker.Domain.BaseClasses.DisposableBase">
+            <summary>
+            Disposable abstract class.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Domain.BaseClasses.DisposableBase.Dispose(System.Boolean)">
+            <summary>
+            Overridable dispose operation. Override this method and call base.Dispose(isDisposing).
+            </summary>
+            <param name="isDisposing">Indicates whether or not is disposing.</param>
+        </member>
+        <member name="M:TimeTracker.Domain.BaseClasses.DisposableBase.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="T:TimeTracker.Domain.Contracts.IDescription">
             <summary>
             Represents the template to be use when the schedule is exported.
