@@ -5,8 +5,6 @@ namespace TimeTracker.Infrastructure.Entities
 {
     public partial class WorkTimeTracker : DbContext
     {
-        public WorkTimeTracker(DbContextOptions options)
-            : base(options) { }
 
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
