@@ -1,12 +1,13 @@
 ﻿using System;
 using TimeTracker.Application.Contracts;
+using TimeTracker.Domain.BaseClasses;
 
 namespace TimeTracker.Application.Commands
 {
     /// <summary>
     /// Create a new task.
     /// </summary>
-    public class CreateGroupCommand : ICommand<Domain.Group>
+    public class CreateGroupCommand : DisposableBase, ICommand<Domain.Group>
     {
         /// <inheritdoc/>
         /// <param name="group">Nullable parameter.</param>

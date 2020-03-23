@@ -3,12 +3,12 @@
     /// <summary>
     /// Create an instance of an async command..
     /// </summary>
-    /// <typeparam name="T">Query options.</typeparam>
-    public interface ICommandFactory<in T> where T : class
+    public interface ICommandFactory
     {
         /// <summary>
         /// Get an instance of an async command.
         /// </summary>
-        ICommand<T> GetInstance();
+        /// <typeparam name="T">Command type.</typeparam>
+        T GetInstance<T>() where T : ICommand;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using TimeTracker.Application.Queries;
-using TimeTracker.Application.UnitTests.Helpers;
+using TimeTracker.Tests.Common.Helpers;
 
 namespace TimeTracker.Application.UnitTests
 {

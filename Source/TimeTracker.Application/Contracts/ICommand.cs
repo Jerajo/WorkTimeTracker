@@ -6,7 +6,7 @@ namespace TimeTracker.Application.Contracts
     /// Represents a async command.
     /// </summary>
     /// <typeparam name="T">Parameter type.</typeparam>
-    public interface ICommand<in T> where T : class
+    public interface ICommand<in T> : ICommand where T : class
     {
         /// <summary>
         /// Execute the command.
@@ -15,4 +15,10 @@ namespace TimeTracker.Application.Contracts
         /// <returns><code>System.IAsyncResult</code></returns>
         IAsyncResult Run(T param);
     }
+
+    /// <summary>
+    /// Represents a command object.
+    /// </summary>
+    public interface ICommand : IDisposable { }
+
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Ninject;
 using TimeTracker.Application.Contracts;
 
 namespace TimeTracker.Application.Factories
@@ -6,13 +6,23 @@ namespace TimeTracker.Application.Factories
     /// <summary>
     /// Create an instance of an async query.
     /// </summary>
-    /// <typeparam name="T">Query type.</typeparam>
-    public class QueryFactory<T> : IQueryFactory<T> where T : class
+    public class QueryFactory : IQueryFactory
     {
-        /// <inheritdoc/>
-        public T GetInstance()
+        private readonly IKernel _Kernel;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="kernel">DI container.</param>
+        public QueryFactory(IKernel kernel)
         {
-            throw new NotImplementedException();
+            _Kernel = kernel;
+        }
+
+        /// <inheritdoc/>
+        public T GetInstance<T>() where T : IQuery
+        {
+            return _Kernel.Get<T>();
         }
     }
 }
