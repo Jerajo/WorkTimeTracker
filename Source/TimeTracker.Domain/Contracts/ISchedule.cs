@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TimeTracker.Domain
+namespace TimeTracker.Domain.Contracts
 {
     /// <summary>
     /// Represents a day of work.

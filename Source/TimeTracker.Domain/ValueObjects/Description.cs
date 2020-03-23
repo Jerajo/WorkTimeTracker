@@ -1,4 +1,6 @@
-﻿namespace TimeTracker.Domain.ValueObjects
+﻿using TimeTracker.Domain.Contracts;
+
+namespace TimeTracker.Domain.ValueObjects
 {
     /// <summary>
     /// Represents the template to be use when the schedule is exported.

@@ -5,6 +5,11 @@
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DocumentationFile>./TimeTracker.Application.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
     <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />

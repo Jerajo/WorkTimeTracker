@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TimeTracker.Application</name>
+    </assembly>
+    <members>
+        <member name="T:TimeTracker.Application.Commands.CreateGroupCommand">
+            <summary>
+            Create a new task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateGroupCommand.Run(TimeTracker.Domain.Group)">
+            <inheritdoc/>
+            <param name="group">Nullable parameter.</param>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.CreateTaskCommand">
+            <summary>
+            Create a new task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateTaskCommand.Run(TimeTracker.Domain.Task)">
+            <inheritdoc/>
+            <param name="task">Nullable parameter.</param>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.DeleteGroupCommand">
+            <summary>
+            Delete the selected group.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteGroupCommand.Run(TimeTracker.Domain.Group)">
+            <inheritdoc/>
+            <param name="group">Nullable parameter.</param>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.DeleteTaskCommand">
+            <summary>
+            Delete the selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteTaskCommand.Run(TimeTracker.Domain.Task)">
+            <inheritdoc/>
+            <param name="task">Nullable parameter.</param>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.UpdateGroupCommand">
+            <summary>
+            Update the selected group.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateGroupCommand.Run(TimeTracker.Domain.Group)">
+            <inheritdoc/>
+            <param name="group">Nullable parameter.</param>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.UpdateTaskCommand">
+            <summary>
+            Update the selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateTaskCommand.Run(TimeTracker.Domain.Task)">
+            <inheritdoc/>
+            <param name="task">Nullable parameter.</param>
+        </member>
+        <member name="T:TimeTracker.Application.TrackWorkTimeCommand">
+            <summary>
+            Track work time for selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.TrackWorkTimeCommand.Run(TimeTracker.Domain.Task)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="selectedTask">Selected task.</param>
+        </member>
+        <member name="T:TimeTracker.Application.Contracts.ICommand`1">
+            <summary>
+            Represents a async command.
+            </summary>
+            <typeparam name="T">Parameter type.</typeparam>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.ICommand`1.Run(`0)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="param">Nullable parameter.</param>
+            <returns><code>System.IAsyncResult</code></returns>
+        </member>
+        <member name="T:TimeTracker.Application.Contracts.IQuery`2">
+            <summary>
+            Represents a async query.
+            </summary>
+            <typeparam name="TA">Query options.</typeparam>
+            <typeparam name="TB">Query result.</typeparam>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.IQuery`2.Run(`0)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="param">Nullable parameter.</param>
+            <returns><typeparamref name="TB"/></returns>
+        </member>
+        <member name="T:TimeTracker.Application.Query.GetGroupsQuery">
+            <summary>
+            Get the list of available groups.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Query.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="queryOptions">Search query options.</param>
+            <returns>List of available groups.</returns>
+        </member>
+        <member name="T:TimeTracker.Application.Query.GetTasksQuery">
+            <summary>
+            Get the list of available tasks.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Query.GetTasksQuery.Run(TimeTracker.Domain.Task)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="queryOptions">Search query options.</param>
+            <returns>List of available tasks.</returns>
+        </member>
+    </members>
+</doc>

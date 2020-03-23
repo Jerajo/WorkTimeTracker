@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TimeTracker.Domain.ValueObjects;
 
-namespace TimeTracker.Domain
+namespace TimeTracker.Domain.Contracts
 {
     /// <summary>
     /// Represents a task of work.

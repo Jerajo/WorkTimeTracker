@@ -8,7 +8,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Optimize>true</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>.\WorkTimeTracker\Source\TimeTracker.Domain\TimeTracker.Domain.xml</DocumentationFile>
+    <DocumentationFile>./TimeTracker.Domain.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
