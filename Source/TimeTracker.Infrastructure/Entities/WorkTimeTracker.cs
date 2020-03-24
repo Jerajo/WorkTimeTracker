@@ -5,9 +5,12 @@ namespace TimeTracker.Infrastructure.Entities
 {
     public partial class WorkTimeTracker : DbContext, IDbContext
     {
+        public WorkTimeTracker() { }
+
+        public WorkTimeTracker(DbContextOptions<WorkTimeTracker> options) : base(options) { }
+
         #region Entities
 
-        public virtual DbSet<Description> Descriptions { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TimeSchedule> TimeSchedules { get; set; }
@@ -50,6 +53,8 @@ namespace TimeTracker.Infrastructure.Entities
                 .IsUnicode(false);
         }
 
-        #endregion
+    public interface IDbContext
+    {
+        int SaveChanges();
     }
 }

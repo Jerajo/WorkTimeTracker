@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using TimeTracker.Application.Queries;
+using TimeTracker.Tests.Common.Configuration;
 
 namespace TimeTracker.Application.UnitTests
 {
@@ -12,7 +15,8 @@ namespace TimeTracker.Application.UnitTests
         [TestInitialize]
         public void TextInitialize()
         {
-            _Sut = new GetTasksQuery();
+            var factory = AssemblyConfiguration.QFactory;
+            _Sut = factory.GetInstance<GetTasksQuery>();
         }
 
         [TestMethod]
@@ -31,7 +35,7 @@ namespace TimeTracker.Application.UnitTests
                 Code = "100",
                 Name = "Task test"
             });
-
+            
             var result = task_run.Result;
 
             Assert.IsInstanceOfType(result, typeof(List<Domain.Task>));
