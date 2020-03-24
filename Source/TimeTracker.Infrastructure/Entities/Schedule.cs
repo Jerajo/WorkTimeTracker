@@ -1,4 +1,4 @@
-using Migration.Entities;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +7,7 @@ namespace TimeTracker.Infrastructure.Entities
 {
 
     [Table("Schedule")]
+    [AutoMap(typeof(Domain.Schedule))]
     public partial class Schedule
     {
         public Schedule()

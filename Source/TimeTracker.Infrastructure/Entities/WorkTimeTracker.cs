@@ -5,10 +5,17 @@ namespace TimeTracker.Infrastructure.Entities
 {
     public partial class WorkTimeTracker : DbContext, IDbContext
     {
+        #region Entities
+
+        public virtual DbSet<Description> Descriptions { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TimeSchedule> TimeSchedules { get; set; }
         public virtual DbSet<UserStory> UserStories { get; set; }
+
+        #endregion
+
+        #region Configuration
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,10 +49,7 @@ namespace TimeTracker.Infrastructure.Entities
                 .Property(e => e.Name)
                 .IsUnicode(false);
         }
-    }
 
-    internal interface IDbContext
-    {
-        int SaveChanges();
+        #endregion
     }
 }

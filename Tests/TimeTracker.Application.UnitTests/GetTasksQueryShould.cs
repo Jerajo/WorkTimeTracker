@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using TimeTracker.Application.Query;
 
 namespace TimeTracker.Application.UnitTests
 {
@@ -33,7 +31,7 @@ namespace TimeTracker.Application.UnitTests
                 Code = "100",
                 Name = "Task test"
             });
-            
+
             var result = task_run.Result;
 
             Assert.IsInstanceOfType(result, typeof(List<Domain.Task>));
