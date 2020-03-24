@@ -5,6 +5,10 @@ namespace TimeTracker.Infrastructure.Entities
 {
     public partial class WorkTimeTracker : DbContext, IDbContext
     {
+        public WorkTimeTracker() { }
+
+        public WorkTimeTracker(DbContextOptions<WorkTimeTracker> options) : base(options) { }
+
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TimeSchedule> TimeSchedules { get; set; }
@@ -44,7 +48,7 @@ namespace TimeTracker.Infrastructure.Entities
         }
     }
 
-    internal interface IDbContext
+    public interface IDbContext
     {
         int SaveChanges();
     }

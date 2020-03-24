@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TimeTracker.Application.Query;
+using TimeTracker.Application.Queries;
+using TimeTracker.Tests.Common.Configuration;
 
 namespace TimeTracker.Application.UnitTests
 {
@@ -14,7 +15,8 @@ namespace TimeTracker.Application.UnitTests
         [TestInitialize]
         public void TextInitialize()
         {
-            _Sut = new GetTasksQuery();
+            var factory = AssemblyConfiguration.QFactory;
+            _Sut = factory.GetInstance<GetTasksQuery>();
         }
 
         [TestMethod]
