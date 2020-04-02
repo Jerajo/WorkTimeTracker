@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TimeTracker.DataAccess.Contracts;
 using TimeTracker.Domain.BaseClasses;
-using TimeTracker.Infrastructure.Entities;
+using TimeTracker.Domain.Contracts;
 using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Infrastructure.Services
@@ -17,6 +17,11 @@ namespace TimeTracker.Infrastructure.Services
         public DataRepository(WorkTimeTracker workTimeTracker)
         {
             _WorkTimeTracker = workTimeTracker;
+        }
+
+        public IUnitOfWork GetTransaction()
+        {
+            return new UnitOfWork(_WorkTimeTracker);
         }
 
         #region Queries

@@ -40,6 +40,17 @@
             <inheritdoc/>
             <param name="task">Nullable parameter.</param>
         </member>
+        <member name="T:TimeTracker.Application.Commands.TrackWorkTimeCommand">
+            <summary>
+            Track work time for selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.TrackWorkTimeCommand.Run(TimeTracker.Domain.Task)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="selectedTask">Selected task.</param>
+        </member>
         <member name="T:TimeTracker.Application.Commands.UpdateGroupCommand">
             <summary>
             Update the selected group.
@@ -57,17 +68,6 @@
         <member name="M:TimeTracker.Application.Commands.UpdateTaskCommand.Run(TimeTracker.Domain.Task)">
             <inheritdoc/>
             <param name="task">Nullable parameter.</param>
-        </member>
-        <member name="T:TimeTracker.Application.TrackWorkTimeCommand">
-            <summary>
-            Track work time for selected task.
-            </summary>
-        </member>
-        <member name="M:TimeTracker.Application.TrackWorkTimeCommand.Run(TimeTracker.Domain.Task)">
-            <summary>
-            Execute the command.
-            </summary>
-            <param name="selectedTask">Selected task.</param>
         </member>
         <member name="T:TimeTracker.Application.Contracts.ICommand`1">
             <summary>
@@ -172,6 +172,13 @@
             <summary>
             Get the list of available tasks.
             </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.#ctor(TimeTracker.DataAccess.Contracts.IDataRepository,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="dataRepository">Handles data base operations.</param>
+            <param name="mapper">Map objects.</param>
         </member>
         <member name="M:TimeTracker.Application.Queries.GetTasksQuery.Run(TimeTracker.Domain.Task)">
             <summary>

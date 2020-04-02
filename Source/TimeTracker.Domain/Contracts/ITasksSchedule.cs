@@ -5,12 +5,8 @@ namespace TimeTracker.Domain.Contracts
     /// <summary>
     /// Represent a schedule for a task.
     /// </summary>
-    public interface ITasksSchedule
+    public interface ITasksSchedule : IEntity
     {
-        /// <summary>
-        /// Unique identifier.
-        /// </summary>
-        int Id { get; set; }
         /// <summary>
         /// Id for the task schedule.
         /// </summary>

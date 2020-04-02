@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TimeTracker.Domain.BaseClasses;
 using TimeTracker.Domain.Contracts;
 using TimeTracker.Domain.ValueObjects;
 
@@ -7,10 +8,8 @@ namespace TimeTracker.Domain
     /// <summary>
     /// Represents a task of work.
     /// </summary>
-    public class Task : ITask
+    public class Task : EntityBase, ITask
     {
-        /// <inheritdoc/>
-        public int Id { get; set; }
         /// <inheritdoc/>
         public string Code { get; set; }
         /// <inheritdoc/>
@@ -24,6 +23,6 @@ namespace TimeTracker.Domain
         /// <inheritdoc/>
         public Group Group { get; set; }
         /// <inheritdoc/>
-        public ICollection<Schedule> Schedules { get; } = new List<Schedule>();
+        public ICollection<TasksSchedule> TasksSchedules { get; } = new List<TasksSchedule>();
     }
 }

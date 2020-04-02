@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using TimeTracker.Domain.Contracts;
 
 namespace TimeTracker.DataAccess.Contracts
 {
-    public interface IDataRepository<T> : IDisposable where T : class, IEntity
+    public interface IDataRepository<T> : IDisposable
+        where T : class, IEntity
     {
+        IUnitOfWork GetTransaction();
+
+        #region GET
+
         T Get(Func<T, bool> query);
         Task<T> GetAsync(Func<T, bool> query);
         IQueryable<T> GetAll();
@@ -20,31 +26,33 @@ namespace TimeTracker.DataAccess.Contracts
         bool Any();
         Task<bool> AnyAsync();
 
+        #endregion
+
+        #region POST
+
         void Add(T entity);
         Task AddAsync(T entity);
         void AddGroup(IEnumerable<T> entities);
         Task AddGroupAsync(IEnumerable<T> entities);
+
+        #endregion
+
+        #region PUT/PATCH
 
         void Update(T entity);
         Task UpdateAsync(T entity);
         void UpdateGroup(T entity, Func<T, bool> query);
         Task UpdateGroupAsync(T entity, Func<T, bool> query);
 
+        #endregion
+
+        #region DELETE
+
         void Delete(T entity);
         Task DeleteAsync(T entity);
         void DeleteGroup(Func<T, bool> query);
         Task DeleteGroupAsync(Func<T, bool> query);
-    }
 
-    public interface IUnitOfWork : IDisposable
-    {
-        IDataRepository<T> GetRepository<T>() where T : class, IEntity;
-        void Commit();
-        Task CommitAsync();
-    }
-
-    public interface IEntity
-    {
-        int Id { get; set; }
+        #endregion
     }
 }

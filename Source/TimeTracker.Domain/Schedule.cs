@@ -14,6 +14,6 @@ namespace TimeTracker.Domain
         /// <inheritdoc/>
         public DateTimeOffset ScheduleDate { get; set; }
         /// <inheritdoc/>
-        public ICollection<Task> Tasks { get; } = new List<Task>();
+        public ICollection<TasksSchedule> TasksSchedules { get; } = new List<TasksSchedule>();
     }
 }

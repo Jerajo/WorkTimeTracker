@@ -1,4 +1,5 @@
 ﻿using System;
+using TimeTracker.Domain.BaseClasses;
 using TimeTracker.Domain.Contracts;
 
 namespace TimeTracker.Domain
@@ -6,10 +7,8 @@ namespace TimeTracker.Domain
     /// <summary>
     /// Represent a schedule for a task.
     /// </summary>
-    public class TasksSchedule : ITasksSchedule
+    public class TasksSchedule : EntityBase, ITasksSchedule
     {
-        /// <inheritdoc/>
-        public int Id { get; set; }
         /// <inheritdoc/>
         public TimeSpan TimeStart { get; set; }
         /// <inheritdoc/>

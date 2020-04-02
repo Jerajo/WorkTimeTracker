@@ -5,12 +5,8 @@ namespace TimeTracker.Domain.Contracts
     /// <summary>
     /// Represents a group of task or a user story.
     /// </summary>
-    public interface IGroup
+    public interface IGroup : IEntity
     {
-        /// <summary>
-        /// Unique identifier.
-        /// </summary>
-        int Id { get; set; }
         /// <summary>
         /// Code use in to identify the user story.
         /// </summary>

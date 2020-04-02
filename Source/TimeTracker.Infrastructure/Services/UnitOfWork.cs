@@ -1,6 +1,5 @@
 ﻿using TimeTracker.DataAccess.Contracts;
 using TimeTracker.Domain.BaseClasses;
-using TimeTracker.Infrastructure.Entities;
 using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Infrastructure.Services

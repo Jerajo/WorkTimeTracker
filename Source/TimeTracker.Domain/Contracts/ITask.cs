@@ -6,12 +6,8 @@ namespace TimeTracker.Domain.Contracts
     /// <summary>
     /// Represents a task of work.
     /// </summary>
-    public interface ITask
+    public interface ITask : IEntity
     {
-        /// <summary>
-        /// Unique identifier.
-        /// </summary>
-        int Id { get; set; }
         /// <summary>
         /// Code use in to identify the user story.
         /// </summary>
@@ -39,6 +35,6 @@ namespace TimeTracker.Domain.Contracts
         /// <summary>
         /// Relates schedules of the task.
         /// </summary>
-        ICollection<Schedule> Schedules { get; }
+        ICollection<TasksSchedule> TasksSchedules { get; }
     }
 }

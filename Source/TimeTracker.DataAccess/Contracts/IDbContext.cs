@@ -1,6 +1,7 @@
 ﻿namespace TimeTracker.DataAccess.Contracts
 {
-    public interface ITask : IEntity
+    public interface IDbContext
     {
+        int SaveChanges();
     }
 }

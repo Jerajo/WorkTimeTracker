@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TimeTracker.Application.Commands;
-using TimeTracker.Tests.Common.Configuration;
+using TimeTracker.Application.Factories;
 
 namespace TimeTracker.Application.UnitTests.Commands
 {
@@ -14,7 +13,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestInitialize]
         public void TestInitialize()
         {
-            var factory = AssemblyConfiguration.CFactory;
+            var factory = AssemblyConfiguration.Kernel.Get<CommandFactory>();
             _Sut = factory.GetInstance<CreateTaskCommand>();
         }
 

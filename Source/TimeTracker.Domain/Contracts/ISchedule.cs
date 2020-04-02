@@ -6,12 +6,8 @@ namespace TimeTracker.Domain.Contracts
     /// <summary>
     /// Represents a day of work.
     /// </summary>
-    public interface ISchedule
+    public interface ISchedule : IEntity
     {
-        /// <summary>
-        /// Unique identifier.
-        /// </summary>
-        int Id { get; set; }
         /// <summary>
         /// Day of work.
         /// </summary>
@@ -19,6 +15,6 @@ namespace TimeTracker.Domain.Contracts
         /// <summary>
         /// Related tasks of the schedule.
         /// </summary>
-        ICollection<Task> Tasks { get; }
+        ICollection<TasksSchedule> TasksSchedules { get; }
     }
 }
