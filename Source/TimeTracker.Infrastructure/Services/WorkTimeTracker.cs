@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Migration.Entities;
+using TimeTracker.DataAccess.Contracts;
+using TimeTracker.Domain;
 
-namespace TimeTracker.Infrastructure.Entities
+namespace TimeTracker.Infrastructure.Services
 {
-    public partial class WorkTimeTracker : DbContext, IDbContext
+    public class WorkTimeTracker : DbContext, IDbContext
     {
         public WorkTimeTracker() { }
 
@@ -11,10 +12,13 @@ namespace TimeTracker.Infrastructure.Entities
 
         #region Entities
 
-        public virtual DbSet<Schedule> Schedules { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+
         public virtual DbSet<Task> Tasks { get; set; }
-        public virtual DbSet<TimeSchedule> TimeSchedules { get; set; }
-        public virtual DbSet<UserStory> UserStories { get; set; }
+
+        public virtual DbSet<TasksSchedule> TasksSchedules { get; set; }
+
+        public virtual DbSet<Schedule> Schedules { get; set; }
 
         #endregion
 
@@ -35,26 +39,24 @@ namespace TimeTracker.Infrastructure.Entities
         {
 
             modelBuilder.Entity<Schedule>()
-                .HasMany(e => e.TimeSchedules)
+                .HasMany(e => e.TasksSchedules)
                 .WithOne(e => e.Schedule)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Task>()
                 .Property(e => e.Name)
-                .IsUnicode(false);
+                .IsUnicode();
 
             modelBuilder.Entity<Task>()
-                .HasMany(e => e.TimeSchedules)
+                .HasMany(e => e.TasksSchedules)
                 .WithOne(e => e.Task)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<UserStory>()
+            modelBuilder.Entity<Group>()
                 .Property(e => e.Name)
-                .IsUnicode(false);
+                .IsUnicode();
         }
 
-    public interface IDbContext
-    {
-        int SaveChanges();
+        #endregion
     }
 }
