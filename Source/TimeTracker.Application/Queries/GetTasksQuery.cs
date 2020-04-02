@@ -2,10 +2,10 @@
 using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TimeTracker.Application.Contracts;
-using TimeTracker.DataAccess;
-using TimeTracker.Domain.BaseClasses;
+using TimeTracker.Core.BaseClasses;
+using TimeTracker.Core.Contracts;
+using Async = System.Threading.Tasks;
 
 namespace TimeTracker.Application.Queries
 {
@@ -34,16 +34,16 @@ namespace TimeTracker.Application.Queries
         /// </summary>
         /// <param name="queryOptions">Search query options.</param>
         /// <returns>List of available tasks.</returns>
-        public Task<List<Domain.Task>> Run(Domain.Task queryOptions)
+        public Async.Task<List<Domain.Task>> Run(Domain.Task queryOptions)
         {
             Guard.Against.Null(queryOptions, nameof(queryOptions));
 
-            var repository = _RepositoryFactory.GetRepository<Domain.Task>();
+            var repository = _RepositoryFactory.GetRepository<Core.Task>();
             var taskEntities = repository.GetAll().ToList();
 
             var result = _Mapper.Map<List<Domain.Task>>(taskEntities);
 
-            return Task.FromResult(result);
+            return Async.Task.FromResult(result);
         }
     }
 }

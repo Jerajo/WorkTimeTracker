@@ -43,7 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
     <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />
   </ItemGroup>
 

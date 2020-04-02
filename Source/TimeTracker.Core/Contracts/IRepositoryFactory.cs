@@ -1,7 +1,4 @@
-﻿using TimeTracker.DataAccess.Contracts;
-using TimeTracker.Domain.Contracts;
-
-namespace TimeTracker.DataAccess
+﻿namespace TimeTracker.Core.Contracts
 {
     public interface IRepositoryFactory
     {

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using TimeTracker.Domain.Contracts;
+using Async = System.Threading.Tasks;
 
-namespace TimeTracker.DataAccess.Contracts
+namespace TimeTracker.Core.Contracts
 {
     public interface IDataRepository<T> : IDisposable
         where T : class, IEntity
@@ -15,43 +14,43 @@ namespace TimeTracker.DataAccess.Contracts
         #region GET
 
         T Get(Func<T, bool> query);
-        Task<T> GetAsync(Func<T, bool> query);
+        Async.Task<T> GetAsync(Func<T, bool> query);
         IQueryable<T> GetAll();
-        Task<IQueryable<T>> GetAllAsync();
+        Async.Task<IQueryable<T>> GetAllAsync();
         List<T> Query(Func<T, bool> query);
-        Task<List<T>> QueryAsync(Func<T, bool> query);
+        Async.Task<List<T>> QueryAsync(Func<T, bool> query);
         List<TB> QuerySelect<TB>(Expression<Func<T, TB>> selector, Func<TB, bool> query);
-        Task<List<TB>> QuerySelectAsync<TB>(Expression<Func<T, TB>> selector, Func<TB, bool> query);
+        Async.Task<List<TB>> QuerySelectAsync<TB>(Expression<Func<T, TB>> selector, Func<TB, bool> query);
 
         bool Any();
-        Task<bool> AnyAsync();
+        Async.Task<bool> AnyAsync();
 
         #endregion
 
         #region POST
 
         void Add(T entity);
-        Task AddAsync(T entity);
+        Async.Task AddAsync(T entity);
         void AddGroup(IEnumerable<T> entities);
-        Task AddGroupAsync(IEnumerable<T> entities);
+        Async.Task AddGroupAsync(IEnumerable<T> entities);
 
         #endregion
 
         #region PUT/PATCH
 
         void Update(T entity);
-        Task UpdateAsync(T entity);
+        Async.Task UpdateAsync(T entity);
         void UpdateGroup(T entity, Func<T, bool> query);
-        Task UpdateGroupAsync(T entity, Func<T, bool> query);
+        Async.Task UpdateGroupAsync(T entity, Func<T, bool> query);
 
         #endregion
 
         #region DELETE
 
         void Delete(T entity);
-        Task DeleteAsync(T entity);
+        Async.Task DeleteAsync(T entity);
         void DeleteGroup(Func<T, bool> query);
-        Task DeleteGroupAsync(Func<T, bool> query);
+        Async.Task DeleteGroupAsync(Func<T, bool> query);
 
         #endregion
     }

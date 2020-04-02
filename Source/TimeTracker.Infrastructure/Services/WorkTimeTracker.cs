@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using TimeTracker.DataAccess.Contracts;
-using TimeTracker.Domain;
+using TimeTracker.Core;
+using TimeTracker.Core.Contracts;
 
 namespace TimeTracker.Infrastructure.Services
 {

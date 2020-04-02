@@ -220,9 +220,9 @@
       <Project>{d9981be2-4c97-48fb-a576-98d6707e6b7f}</Project>
       <Name>TimeTracker.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj">
-      <Project>{b840371e-fd54-438c-b920-b8647657b129}</Project>
-      <Name>TimeTracker.DataAccess</Name>
+    <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj">
+      <Project>{7d004a62-c2e3-4111-a6a9-1541ad59a1bc}</Project>
+      <Name>TimeTracker.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj">
       <Project>{1a3f6c6e-a85c-407d-a602-336248f05416}</Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Domain.BaseClasses;
+using TimeTracker.Core.BaseClasses;
 using AsyncOperation = System.Threading.Tasks.Task;
 
 

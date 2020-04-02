@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using TimeTracker.DataAccess.Contracts;
-using TimeTracker.Domain.BaseClasses;
-using TimeTracker.Domain.Contracts;
+using TimeTracker.Core.BaseClasses;
+using TimeTracker.Core.Contracts;
 using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Infrastructure.Services

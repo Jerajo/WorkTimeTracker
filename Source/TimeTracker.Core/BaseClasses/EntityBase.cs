@@ -1,6 +1,6 @@
-﻿using TimeTracker.Domain.Contracts;
+﻿using TimeTracker.Core.Contracts;
 
-namespace TimeTracker.Domain.BaseClasses
+namespace TimeTracker.Core.BaseClasses
 {
     /// <summary>
     /// Represents a entity from the data base.

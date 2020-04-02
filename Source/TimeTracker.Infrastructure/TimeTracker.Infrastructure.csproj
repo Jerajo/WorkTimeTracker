@@ -32,8 +32,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
-    <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />
+    <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

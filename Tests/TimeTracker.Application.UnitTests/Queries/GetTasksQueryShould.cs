@@ -2,9 +2,10 @@
 using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using TimeTracker.Application.Factories;
 using TimeTracker.Application.Queries;
+using TimeTracker.Domain;
+using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Application.UnitTests.Queries
 {
@@ -28,12 +29,12 @@ namespace TimeTracker.Application.UnitTests.Queries
         }
 
         [TestMethod]
-        public async Task ReturnEmptyListOrAListOfTasks()
+        public async AsyncOperation ReturnEmptyListOrAListOfTasks()
         {
-            var emptyList = new List<Domain.Task>();
-            var result = await _Sut.Run(new Domain.Task());
+            var emptyList = new List<Task>();
+            var result = await _Sut.Run(new Task());
 
-            Assert.IsInstanceOfType(result, typeof(List<Domain.Task>));
+            Assert.IsInstanceOfType((object)result, typeof(List<Task>));
             CollectionAssert.AreEqual(result, emptyList);
         }
     }

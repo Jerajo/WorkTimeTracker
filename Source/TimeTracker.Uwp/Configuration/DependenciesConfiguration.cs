@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Ninject;
 using Ninject.Modules;
-using System.Collections.Generic;
 using TimeTracker.Application.Commands;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Factories;
 using TimeTracker.Application.Queries;
-using TimeTracker.DataAccess.Contracts;
+using TimeTracker.Core.Contracts;
+using TimeTracker.Core.ValueObjects;
 using TimeTracker.Infrastructure.Services;
 
 namespace TimeTracker.Uwp.Configuration
@@ -22,8 +22,11 @@ namespace TimeTracker.Uwp.Configuration
         public override void Load()
         {
             // --------------- // MODELS // --------------- //
-            Bind<IQuery<Domain.Group, List<Domain.Group>>>().To<GetGroupsQuery>();
-            Bind<IQuery<Domain.Task, List<Domain.Task>>>().To<GetTasksQuery>();
+            Bind<ITask>().To<Domain.Task>();
+            Bind<ISchedule>().To<Domain.Schedule>();
+            Bind<IDescription>().To<Description>();
+            Bind<ITasksSchedule>().To<Domain.TasksSchedule>();
+            Bind<IGroup>().To<Domain.Group>();
 
             // --------------- // QUERIES // --------------- //
             Bind<IQuery>().To<GetTasksQuery>();

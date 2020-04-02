@@ -1,4 +1,4 @@
-﻿namespace TimeTracker.Domain.Contracts
+﻿namespace TimeTracker.Core.Contracts
 {
     /// <summary>
     /// Represents a entity of the data base.

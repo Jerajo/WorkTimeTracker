@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TimeTracker.Domain.Contracts
+namespace TimeTracker.Core.Contracts
 {
     /// <summary>
     /// Represent a schedule for a task.

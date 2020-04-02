@@ -3,7 +3,7 @@ using Ninject;
 using TimeTracker.Infrastructure.Services;
 using TimeTracker.Tests.Common.Helpers;
 
-namespace TimeTracker.Domain.UnitTests
+namespace TimeTracker.Core.UnitTests
 {
     [TestClass]
     public static class AssemblyConfiguration

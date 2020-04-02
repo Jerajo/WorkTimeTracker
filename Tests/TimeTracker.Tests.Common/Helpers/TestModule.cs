@@ -6,11 +6,9 @@ using TimeTracker.Application.Commands;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Factories;
 using TimeTracker.Application.Queries;
+using TimeTracker.Core.Contracts;
+using TimeTracker.Core.ValueObjects;
 using TimeTracker.DataAccess;
-using TimeTracker.DataAccess.Contracts;
-using TimeTracker.Domain;
-using TimeTracker.Domain.Contracts;
-using TimeTracker.Domain.ValueObjects;
 using TimeTracker.Infrastructure.Services;
 
 namespace TimeTracker.Tests.Common.Helpers
@@ -26,11 +24,11 @@ namespace TimeTracker.Tests.Common.Helpers
         public override void Load()
         {
             // --------------- // MODELS // --------------- //
-            Bind<ITask>().To<Task>();
-            Bind<ISchedule>().To<Schedule>();
+            Bind<ITask>().To<Domain.Task>();
+            Bind<ISchedule>().To<Domain.Schedule>();
             Bind<IDescription>().To<Description>();
-            Bind<ITasksSchedule>().To<TasksSchedule>();
-            Bind<IGroup>().To<Group>();
+            Bind<ITasksSchedule>().To<Domain.TasksSchedule>();
+            Bind<IGroup>().To<Domain.Group>();
 
             // --------------- // QUERIES // --------------- //
             Bind<IQuery>().To<GetTasksQuery>();

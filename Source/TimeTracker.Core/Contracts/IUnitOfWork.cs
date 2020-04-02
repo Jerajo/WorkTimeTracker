@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
-using TimeTracker.Domain.Contracts;
+using AsyncOperation = System.Threading.Tasks.Task;
 
-namespace TimeTracker.DataAccess.Contracts
+namespace TimeTracker.Core.Contracts
 {
     public interface IUnitOfWork : IDisposable
     {
         IDataRepository<T> GetRepository<T>() where T : class, IEntity;
         void Commit();
-        Task CommitAsync();
+        AsyncOperation CommitAsync();
     }
 }

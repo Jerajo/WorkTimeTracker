@@ -39,7 +39,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Source\TimeTracker.Application\TimeTracker.Application.csproj" />
-    <ProjectReference Include="..\..\Source\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
     <ProjectReference Include="..\..\Source\TimeTracker.Domain\TimeTracker.Domain.csproj" />
     <ProjectReference Include="..\..\Source\TimeTracker.Infrastructure\TimeTracker.Infrastructure.csproj" />
   </ItemGroup>

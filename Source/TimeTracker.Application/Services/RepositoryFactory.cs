@@ -1,6 +1,5 @@
 ﻿using Ninject;
-using TimeTracker.DataAccess.Contracts;
-using TimeTracker.Domain.Contracts;
+using TimeTracker.Core.Contracts;
 
 namespace TimeTracker.DataAccess
 {

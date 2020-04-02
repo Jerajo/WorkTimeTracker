@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TimeTracker.Domain.BaseClasses
+namespace TimeTracker.Core.BaseClasses
 {
     /// <summary>
     /// Disposable abstract class.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Domain.BaseClasses;
+using TimeTracker.Core.BaseClasses;
 
 namespace TimeTracker.Application.Queries
 {

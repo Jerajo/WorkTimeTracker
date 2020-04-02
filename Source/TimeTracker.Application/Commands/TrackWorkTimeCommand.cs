@@ -1,7 +1,6 @@
 ﻿using System;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Domain;
-using TimeTracker.Domain.BaseClasses;
+using TimeTracker.Core.BaseClasses;
 using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Application.Commands
@@ -15,7 +14,7 @@ namespace TimeTracker.Application.Commands
         /// Execute the command.
         /// </summary>
         /// <param name="selectedTask">Selected task.</param>
-        public AsyncOperation Run(Task selectedTask)
+        public AsyncOperation Run(Domain.Task selectedTask)
         {
             throw new NotImplementedException();
         }
