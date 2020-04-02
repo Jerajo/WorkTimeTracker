@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TimeTracker.Infrastructure.Entities;
+using TimeTracker.Infrastructure.Services;
 
 namespace TimeTracker.Infrastructure.IntegrationTests
 {
