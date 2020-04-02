@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using TimeTracker.Application.Factories;
 using TimeTracker.Application.Queries;
-using TimeTracker.Tests.Common.Configuration;
 
-namespace TimeTracker.Application.UnitTests
+namespace TimeTracker.Application.UnitTests.Queries
 {
     [TestClass]
     public class GetTasksQueryShould
@@ -15,31 +16,25 @@ namespace TimeTracker.Application.UnitTests
         [TestInitialize]
         public void TextInitialize()
         {
-            var factory = AssemblyConfiguration.QFactory;
+            var factory = AssemblyConfiguration.Kernel.Get<QueryFactory>();
+
             _Sut = factory.GetInstance<GetTasksQuery>();
         }
 
         [TestMethod]
-        public void GualdAgainstNullArguments()
+        public void GuardAgainstNullArguments()
         {
             Assert.ThrowsException<ArgumentNullException>(() => _Sut.Run(null));
         }
 
         [TestMethod]
-        public void ReturnEmptyListOrAListOfTasks()
+        public async Task ReturnEmptyListOrAListOfTasks()
         {
-            List<Domain.Task> emptyList = new List<Domain.Task>();
-            var task_run = _Sut.Run(new Domain.Task()
-            {
-                Id = 1,
-                Code = "100",
-                Name = "Task test"
-            });
-            
-            var result = task_run.Result;
+            var emptyList = new List<Domain.Task>();
+            var result = await _Sut.Run(new Domain.Task());
 
             Assert.IsInstanceOfType(result, typeof(List<Domain.Task>));
-            CollectionAssert.Equals(result, emptyList);
+            CollectionAssert.AreEqual(result, emptyList);
         }
     }
 }
