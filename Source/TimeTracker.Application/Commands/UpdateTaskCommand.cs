@@ -1,6 +1,7 @@
 ﻿using System;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Domain.BaseClasses;
+using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Application.Commands
 {
@@ -11,7 +12,7 @@ namespace TimeTracker.Application.Commands
     {
         /// <inheritdoc/>
         /// <param name="task">Nullable parameter.</param>
-        public IAsyncResult Run(Domain.Task task)
+        public AsyncOperation Run(Domain.Task task)
         {
             throw new NotImplementedException();
         }
