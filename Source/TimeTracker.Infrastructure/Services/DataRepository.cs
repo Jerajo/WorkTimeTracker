@@ -11,16 +11,16 @@ namespace TimeTracker.Infrastructure.Services
 {
     public class DataRepository<T> : DisposableBase, IDataRepository<T> where T : class, IEntity
     {
-        private readonly WorkTimeTracker _WorkTimeTracker;
+        private readonly WorkTimeTracker _workTimeTracker;
 
         public DataRepository(WorkTimeTracker workTimeTracker)
         {
-            _WorkTimeTracker = workTimeTracker;
+            _workTimeTracker = workTimeTracker;
         }
 
         public IUnitOfWork GetTransaction()
         {
-            return new UnitOfWork(_WorkTimeTracker);
+            return new UnitOfWork(_workTimeTracker);
         }
 
         #region Queries
@@ -29,7 +29,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public T Get(Func<T, bool> query)
         {
-            return _WorkTimeTracker.Set<T>().Find(query);
+            return _workTimeTracker.Set<T>().Find(query);
         }
 
         public Task<T> GetAsync(Func<T, bool> query)
@@ -39,7 +39,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public IQueryable<T> GetAll()
         {
-            return _WorkTimeTracker.Set<T>();
+            return _workTimeTracker.Set<T>();
         }
 
         public Task<IQueryable<T>> GetAllAsync()
@@ -49,7 +49,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public List<T> Query(Func<T, bool> query)
         {
-            return _WorkTimeTracker.Set<T>().Where(query).ToList();
+            return _workTimeTracker.Set<T>().Where(query).ToList();
         }
 
         public Task<List<T>> QueryAsync(Func<T, bool> query)
@@ -60,7 +60,7 @@ namespace TimeTracker.Infrastructure.Services
         public List<TB> QuerySelect<TB>(Expression<Func<T, TB>> selector,
             Func<TB, bool> query)
         {
-            return _WorkTimeTracker.Set<T>()
+            return _workTimeTracker.Set<T>()
                 .Select(selector)
                 .Where(query)
                 .ToList();
@@ -78,7 +78,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public bool Any()
         {
-            return _WorkTimeTracker.Set<T>().Any();
+            return _workTimeTracker.Set<T>().Any();
         }
 
         public Task<bool> AnyAsync()
@@ -96,7 +96,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public void Add(T entity)
         {
-            _WorkTimeTracker.Set<T>().Add(entity);
+            _workTimeTracker.Set<T>().Add(entity);
         }
 
         public AsyncOperation AddAsync(T entity)
@@ -106,7 +106,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public void AddGroup(IEnumerable<T> entities)
         {
-            _WorkTimeTracker.Set<T>().AddRange(entities);
+            _workTimeTracker.Set<T>().AddRange(entities);
         }
 
         public AsyncOperation AddGroupAsync(IEnumerable<T> entities)
@@ -121,7 +121,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public void Delete(T entity)
         {
-            _WorkTimeTracker.Set<T>().Remove(entity);
+            _workTimeTracker.Set<T>().Remove(entity);
         }
 
         public AsyncOperation DeleteAsync(T entity)
@@ -132,7 +132,7 @@ namespace TimeTracker.Infrastructure.Services
         public void DeleteGroup(Func<T, bool> query)
         {
             var entitiesToDelete = Query(query);
-            _WorkTimeTracker.Set<T>().RemoveRange(entitiesToDelete);
+            _workTimeTracker.Set<T>().RemoveRange(entitiesToDelete);
         }
 
         public AsyncOperation DeleteGroupAsync(Func<T, bool> query)
@@ -147,7 +147,7 @@ namespace TimeTracker.Infrastructure.Services
 
         public void Update(T entity)
         {
-            _WorkTimeTracker.Set<T>().Update(entity);
+            _workTimeTracker.Set<T>().Update(entity);
         }
 
         public AsyncOperation UpdateAsync(T entity)
@@ -159,7 +159,7 @@ namespace TimeTracker.Infrastructure.Services
         {
             var entitiesToUpdate = Query(query);
             var updatedEntities = entitiesToUpdate.Select(x => UpdateGenericObject(x, entity));
-            _WorkTimeTracker.Set<T>().UpdateRange(updatedEntities);
+            _workTimeTracker.Set<T>().UpdateRange(updatedEntities);
         }
 
         public AsyncOperation UpdateGroupAsync(T entity, Func<T, bool> query)

@@ -6,28 +6,28 @@ namespace TimeTracker.Infrastructure.Services
 {
     public class UnitOfWork : DisposableBase, IUnitOfWork
     {
-        private readonly WorkTimeTracker _WorkTimeTracker;
+        private readonly WorkTimeTracker _workTimeTracker;
 
         public UnitOfWork(WorkTimeTracker workTimeTracker)
         {
-            _WorkTimeTracker = workTimeTracker;
+            _workTimeTracker = workTimeTracker;
         }
 
         #region Interface Methods
 
         public void Commit()
         {
-            _WorkTimeTracker.SaveChanges();
+            _workTimeTracker.SaveChanges();
         }
 
         public AsyncOperation CommitAsync()
         {
-            return _WorkTimeTracker.SaveChangesAsync();
+            return _workTimeTracker.SaveChangesAsync();
         }
 
         IDataRepository<T> IUnitOfWork.GetRepository<T>()
         {
-            return new DataRepository<T>(_WorkTimeTracker);
+            return new DataRepository<T>(_workTimeTracker);
         }
 
         #endregion
