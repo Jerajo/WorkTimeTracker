@@ -37,7 +37,7 @@ namespace TimeTracker.Application.Commands
 
         /// <inheritdoc/>
         /// <param name="task">Nullable parameter.</param>
-        /// /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ValidationException"/>
         public AsyncOperation Run(TaskDto task)
         {
@@ -45,7 +45,7 @@ namespace TimeTracker.Application.Commands
 
             var validator = _validatorFactory.GetInstance<TaskValidator>();
 
-            validator.ValidateAndThrow(task);
+            validator.ValidateAndThrow(task, $"default,{nameof(TaskDto.Id)}");
 
             var repository = _repositoryFactory.GetRepository<Core.Task>();
 

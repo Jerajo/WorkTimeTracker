@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using FluentAssertions.Execution;
 using FluentValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -15,9 +14,9 @@ using TimeTracker.Application.Queries;
 namespace TimeTracker.Application.UnitTests.Commands
 {
     [TestClass]
-    public class UpdateTaskCommandShould
+    public class DeleteTaskCommandShould
     {
-        private UpdateTaskCommand _sut;
+        private DeleteTaskCommand _sut;
         private CreateTaskCommand _createTaskCommand;
         private GetTasksQuery _getTaskQuery;
         private IMapper _mapper;
@@ -31,7 +30,7 @@ namespace TimeTracker.Application.UnitTests.Commands
             _mapper = AssemblyConfiguration.Kernel.Get<IMapper>();
             _createTaskCommand = commandFactory.GetInstance<CreateTaskCommand>();
             _getTaskQuery = queryFactory.GetInstance<GetTasksQuery>();
-            _sut = commandFactory.GetInstance<UpdateTaskCommand>();
+            _sut = commandFactory.GetInstance<DeleteTaskCommand>();
         }
 
         [TestMethod]
@@ -52,28 +51,13 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             Func<Task> function = () => _sut.Run(tempTask);
 
-            using (new AssertionScope())
-            {
-                function.Should().Throw<ValidationException>()
-                    .And.Errors.Should()
-                    .Contain(x => x.PropertyName == nameof(TaskDto.Id));
-
-                function.Should().Throw<ValidationException>()
-                    .And.Errors.Should()
-                    .Contain(x => x.PropertyName == nameof(TaskDto.Name));
-
-                function.Should().Throw<ValidationException>()
-                    .And.Errors.Should()
-                    .Contain(x => x.PropertyName == nameof(TaskDto.DescriptionId));
-
-                function.Should().Throw<ValidationException>()
-                    .And.Errors.Should()
-                    .Contain(x => x.PropertyName == nameof(TaskDto.GroupId));
-            }
+            function.Should().Throw<ValidationException>()
+                .And.Errors.Should()
+                .Contain(x => x.PropertyName == nameof(TaskDto.Id));
         }
 
         [TestMethod]
-        public async Task UpdateATask()
+        public async Task DeleteATask()
         {
             var tempTask = new TaskDto() { Name = "Test task" };
 
