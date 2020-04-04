@@ -14,6 +14,6 @@ namespace TimeTracker.Core
         /// <inheritdoc/>
         public string Name { get; set; }
         /// <inheritdoc/>
-        public ICollection<Task> Tasks { get; } = new List<Task>();
+        public virtual List<Task> Tasks { get; } = new List<Task>();
     }
 }

@@ -13,6 +13,6 @@ namespace TimeTracker.Core
         /// <inheritdoc/>
         public DateTimeOffset ScheduleDate { get; set; }
         /// <inheritdoc/>
-        public ICollection<TasksSchedule> TasksSchedules { get; } = new List<TasksSchedule>();
+        public virtual List<TasksSchedule> TasksSchedules { get; } = new List<TasksSchedule>();
     }
 }

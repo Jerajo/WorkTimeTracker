@@ -15,14 +15,14 @@ namespace TimeTracker.Core
         /// <inheritdoc/>
         public string Name { get; set; }
         /// <inheritdoc/>
-        public int DescriptionId { get; set; }
+        public int? DescriptionId { get; set; }
         /// <inheritdoc/>
-        public Description Description { get; set; }
+        public virtual Description Description { get; set; }
         /// <inheritdoc/>
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
         /// <inheritdoc/>
-        public Group Group { get; set; }
+        public virtual Group Group { get; set; }
         /// <inheritdoc/>
-        public ICollection<TasksSchedule> TasksSchedules { get; } = new List<TasksSchedule>();
+        public virtual List<TasksSchedule> TasksSchedules { get; } = new List<TasksSchedule>();
     }
 }

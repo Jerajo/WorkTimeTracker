@@ -14,12 +14,12 @@ namespace TimeTracker.Core
         /// <inheritdoc/>
         public TimeSpan? TimeEnd { get; set; }
         /// <inheritdoc/>
-        public int TaskId { get; set; }
-        /// <inheritdoc/>
-        public int ScheduleId { get; set; }
-        /// <inheritdoc/>
-        public virtual Schedule Schedule { get; set; }
+        public int? TaskId { get; set; }
         /// <inheritdoc/>
         public virtual Task Task { get; set; }
+        /// <inheritdoc/>
+        public int? ScheduleId { get; set; }
+        /// <inheritdoc/>
+        public virtual Schedule Schedule { get; set; }
     }
 }
