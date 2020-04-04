@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using TimeTracker.Infrastructure.Services;
+using TimeTracker.Core.Contracts;
+using TimeTracker.Infrastructure;
 using TimeTracker.Tests.Common.Helpers;
 
 namespace TimeTracker.Application.UnitTests
@@ -9,22 +10,23 @@ namespace TimeTracker.Application.UnitTests
     public static class AssemblyConfiguration
     {
         public static IKernel Kernel;
-        private static WorkTimeTracker _WorkTimeTracker;
+        private static IDbContext _dbContext;
 
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
-            Kernel = new StandardKernel(new TestModule());
+            Kernel = new StandardKernel(new TestModule("workTimeTracker_Application"));
 
-            _WorkTimeTracker = Kernel.Get<WorkTimeTracker>();
-            _WorkTimeTracker.Database.EnsureCreated();
+            _dbContext = Kernel.Get<IDbContext>();
+            _dbContext.EnsureCreated();
+            _dbContext.FetchInitialData().Wait();
         }
 
         [AssemblyCleanup]
         public static void AssemblyCleanup()
         {
-            _WorkTimeTracker.Database.EnsureDeleted();
-            _WorkTimeTracker.Dispose();
+            _dbContext.EnsureDeleted();
+            _dbContext.Dispose();
             Kernel.Dispose();
         }
     }
