@@ -14,7 +14,7 @@ namespace TimeTracker.Uwp
     /// </summary>
     sealed partial class App
     {
-        private IKernel _Kernel;
+        private IKernel _kernel;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -32,7 +32,7 @@ namespace TimeTracker.Uwp
         /// </summary>
         private void ConfigApplication()
         {
-            _Kernel = new StandardKernel(new DependenciesConfiguration());
+            _kernel = new StandardKernel(new DependenciesConfiguration());
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace TimeTracker.Uwp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), _kernel);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

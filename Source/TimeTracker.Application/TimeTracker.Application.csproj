@@ -39,6 +39,7 @@
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="1.4.2" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
 

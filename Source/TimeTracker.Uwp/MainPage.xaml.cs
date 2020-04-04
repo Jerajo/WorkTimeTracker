@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Ninject;
+using TimeTracker.Uwp.ViewModels;
+using Windows.UI.Xaml.Controls;
 
 namespace TimeTracker.Uwp
 {
@@ -7,12 +9,21 @@ namespace TimeTracker.Uwp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private readonly IKernel _kernel;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public MainPage()
+        public MainPage(IKernel kernel)
         {
             this.InitializeComponent();
+            this._kernel = kernel;
+            this.Configure();
+        }
+
+        private void Configure()
+        {
+            this.DataContext = _kernel.Get<MainPageViewModel>();
         }
     }
 }
