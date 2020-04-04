@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TimeTracker.Application.Contracts;
@@ -12,7 +13,8 @@ namespace TimeTracker.Application.Queries
     /// <summary>
     /// Get the list of available tasks.
     /// </summary>
-    public class GetTasksQuery : DisposableBase, IQuery<Domain.Task, List<Domain.Task>>
+    public class GetTasksQuery : DisposableBase,
+        IQuery<Func<Core.Task, bool>, List<Domain.Task>>
     {
         private readonly IRepositoryFactory _RepositoryFactory;
         private readonly IMapper _Mapper;
@@ -32,14 +34,14 @@ namespace TimeTracker.Application.Queries
         /// <summary>
         /// Execute the command.
         /// </summary>
-        /// <param name="queryOptions">Search query options.</param>
+        /// <param name="query">Search query options.</param>
         /// <returns>List of available tasks.</returns>
-        public Async.Task<List<Domain.Task>> Run(Domain.Task queryOptions)
+        public Async.Task<List<Domain.Task>> Run(Func<Core.Task, bool> query)
         {
-            Guard.Against.Null(queryOptions, nameof(queryOptions));
+            Guard.Against.Null(query, nameof(query));
 
             var repository = _RepositoryFactory.GetRepository<Core.Task>();
-            var taskEntities = repository.GetAll().ToList();
+            var taskEntities = repository.Query(query).ToList();
 
             var result = _Mapper.Map<List<Domain.Task>>(taskEntities);
 
