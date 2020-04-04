@@ -1,12 +1,13 @@
-﻿using Ninject;
-using TimeTracker.Application.Contracts;
+﻿using FluentValidation;
+using Ninject;
 
 namespace TimeTracker.Application.Factories
 {
+
     /// <summary>
-    /// Create an instance of an async query.
+    /// Create an instance of a validator.
     /// </summary>
-    public class QueryFactory : IQueryFactory
+    public class ValidatorFactory : Contracts.IValidatorFactory
     {
         private readonly IKernel _kernel;
 
@@ -14,13 +15,13 @@ namespace TimeTracker.Application.Factories
         /// Default constructor.
         /// </summary>
         /// <param name="kernel">DI container.</param>
-        public QueryFactory(IKernel kernel)
+        public ValidatorFactory(IKernel kernel)
         {
             _kernel = kernel;
         }
 
         /// <inheritdoc/>
-        public T GetInstance<T>() where T : IQuery
+        public T GetInstance<T>() where T : IValidator
         {
             return _kernel.Get<T>();
         }
