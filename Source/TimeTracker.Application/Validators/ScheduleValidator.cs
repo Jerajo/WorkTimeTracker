@@ -8,6 +8,10 @@ namespace TimeTracker.Application.Validators
     {
         public ScheduleValidator()
         {
+            RuleSet(nameof(TaskDto.Id), () =>
+            {
+                RuleFor(t => t.Id).GreaterThan(0);
+            });
             RuleFor(s => s.ScheduleDate).NotNull();
             RuleFor(s => s.ScheduleDate).LessThan(DateTimeOffset.Now);
         }

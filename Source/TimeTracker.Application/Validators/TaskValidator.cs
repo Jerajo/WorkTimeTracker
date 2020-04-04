@@ -7,6 +7,10 @@ namespace TimeTracker.Application.Validators
     {
         public TaskValidator()
         {
+            RuleSet(nameof(TaskDto.Id), () =>
+            {
+                RuleFor(t => t.Id).GreaterThan(0);
+            });
             RuleFor(t => t.Name).NotEmpty();
             RuleFor(t => t.Name).MaximumLength(500);
             When(t => t.GroupId != null, () =>

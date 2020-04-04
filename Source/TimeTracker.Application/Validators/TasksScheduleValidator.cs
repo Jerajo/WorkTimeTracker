@@ -7,6 +7,10 @@ namespace TimeTracker.Application.Validators
     {
         public TasksScheduleValidator()
         {
+            RuleSet(nameof(TaskDto.Id), () =>
+            {
+                RuleFor(t => t.Id).GreaterThan(0);
+            });
             RuleFor(ts => ts.Duration).NotNull();
             RuleFor(ts => ts.ScheduleId).NotNull();
             RuleFor(ts => ts.ScheduleId).GreaterThan(0);
