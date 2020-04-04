@@ -10,7 +10,7 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Id for the task schedule.
         /// </summary>
-        int ScheduleId { get; set; }
+        int? ScheduleId { get; set; }
         /// <summary>
         /// Related schedule for the task.
         /// </summary>
@@ -18,7 +18,7 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Id for the task.
         /// </summary>
-        int TaskId { get; set; }
+        int? TaskId { get; set; }
         /// <summary>
         /// Related task for the schedule.
         /// </summary>

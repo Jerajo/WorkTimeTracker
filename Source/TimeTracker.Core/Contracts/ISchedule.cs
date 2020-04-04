@@ -15,6 +15,6 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Related tasks of the schedule.
         /// </summary>
-        ICollection<TasksSchedule> TasksSchedules { get; }
+        List<TasksSchedule> TasksSchedules { get; }
     }
 }

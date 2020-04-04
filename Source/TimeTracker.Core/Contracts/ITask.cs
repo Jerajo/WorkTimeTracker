@@ -19,7 +19,7 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Id for the task description.
         /// </summary>
-        int DescriptionId { get; set; }
+        int? DescriptionId { get; set; }
         /// <summary>
         /// Related description for the task.
         /// </summary>
@@ -27,7 +27,7 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Id for the task group.
         /// </summary>
-        int GroupId { get; set; }
+        int? GroupId { get; set; }
         /// <summary>
         /// Related group for the task.
         /// </summary>
@@ -35,6 +35,6 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Relates schedules of the task.
         /// </summary>
-        ICollection<TasksSchedule> TasksSchedules { get; }
+        List<TasksSchedule> TasksSchedules { get; }
     }
 }

@@ -18,6 +18,6 @@ namespace TimeTracker.Core.Contracts
         /// <summary>
         /// Related tasks of the group.
         /// </summary>
-        ICollection<Task> Tasks { get; }
+        List<Task> Tasks { get; }
     }
 }
