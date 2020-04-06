@@ -13,7 +13,7 @@ namespace TimeTracker.Application.Validators
                 RuleFor(t => t.Id).GreaterThan(0);
             });
             RuleFor(s => s.ScheduleDate).NotNull();
-            RuleFor(s => s.ScheduleDate).LessThan(DateTimeOffset.Now);
+            RuleFor(s => s.ScheduleDate).Equal(DateTimeOffset.Now.Date);
         }
     }
 }
