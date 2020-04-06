@@ -23,7 +23,7 @@ namespace TimeTracker.Application.Dtos
         /// <summary>
         /// Template to be use in the Excel document.
         /// </summary>
-        public string DescriptionTemplate { get; set; }
+        public TaskExportTemplateDto Description { get; set; }
         /// <summary>
         /// Id for the task group.
         /// </summary>

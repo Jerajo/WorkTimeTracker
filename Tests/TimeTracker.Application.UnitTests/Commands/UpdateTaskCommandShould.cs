@@ -75,15 +75,15 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task UpdateATask()
         {
-            var tempTask = new TaskDto() { Name = "Test task" };
+            var tempTask = new TaskDto() { Name = nameof(UpdateATask) };
 
             await _createTaskCommand.Run(tempTask);
 
-            var result = await _getTaskQuery.Run(x => x.Name != null);
+            var result = await _getTaskQuery.Run(x => x.Name == tempTask.Name);
 
-            var task = result.FirstOrDefault();
+            var task = result.First();
 
-            task.Name = "Test task updated";
+            task.Name += " updated";
 
             tempTask = _mapper.Map<TaskDto>(task);
 

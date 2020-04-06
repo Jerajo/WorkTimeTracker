@@ -42,12 +42,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public void ValidateModelState()
         {
-            var tempTask = new TaskDto()
-            {
-                Name = "",
-                GroupId = -1,
-                DescriptionId = -1
-            };
+            var tempTask = new TaskDto();
 
             Func<Task> function = () => _sut.Run(tempTask);
 
@@ -59,15 +54,13 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task DeleteATask()
         {
-            var tempTask = new TaskDto() { Name = "Test task" };
+            var tempTask = new TaskDto() { Name = nameof(DeleteATask) };
 
             await _createTaskCommand.Run(tempTask);
 
-            var result = await _getTaskQuery.Run(x => x.Name != null);
+            var result = await _getTaskQuery.Run(x => x.Name == tempTask.Name);
 
-            var task = result.FirstOrDefault();
-
-            task.Name = "Test task updated";
+            var task = result.First();
 
             tempTask = _mapper.Map<TaskDto>(task);
 
