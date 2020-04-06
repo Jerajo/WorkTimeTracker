@@ -2,7 +2,33 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <IntermediateOutputPath>L:\obj\$(AssemblyName)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>G:\bin\Debug\$(AssemblyName)</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>G:\bin\Debug\$(AssemblyName)</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>G:\bin\Release\$(AssemblyName)</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>G:\bin\Release\$(AssemblyName)</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -11,11 +37,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="1.4.2" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TimeTracker.DataAccess\TimeTracker.DataAccess.csproj" />
     <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />
   </ItemGroup>
 

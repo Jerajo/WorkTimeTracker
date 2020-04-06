@@ -123,6 +123,46 @@
             Relates schedules of the task.
             </summary>
         </member>
+        <member name="T:TimeTracker.Domain.Contracts.ITasksSchedule">
+            <summary>
+            Represent a schedule for a task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.ScheduleId">
+            <summary>
+            Id for the task schedule.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.Schedule">
+            <summary>
+            Related schedule for the task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.TaskId">
+            <summary>
+            Id for the task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.Task">
+            <summary>
+            Related task for the schedule.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.TimeEnd">
+            <summary>
+            Completed task time.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.Contracts.ITasksSchedule.TimeStart">
+            <summary>
+            Started work time.
+            </summary>
+        </member>
         <member name="T:TimeTracker.Domain.Group">
             <summary>
             Represents a group of task or a user story.
@@ -181,6 +221,32 @@
             <inheritdoc/>
         </member>
         <member name="P:TimeTracker.Domain.Task.Schedules">
+            <inheritdoc/>
+        </member>
+        <member name="T:TimeTracker.Domain.TasksSchedule">
+            <summary>
+            Represent a schedule for a task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.Id">
+            <inheritdoc/>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.TimeStart">
+            <inheritdoc/>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.TimeEnd">
+            <inheritdoc/>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.TaskId">
+            <inheritdoc/>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.ScheduleId">
+            <inheritdoc/>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.Schedule">
+            <inheritdoc/>
+        </member>
+        <member name="P:TimeTracker.Domain.TasksSchedule.Task">
             <inheritdoc/>
         </member>
         <member name="T:TimeTracker.Domain.ValueObjects.Description">

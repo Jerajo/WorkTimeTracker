@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace TimeTracker.Application.Contracts
 {
@@ -12,8 +13,8 @@ namespace TimeTracker.Application.Contracts
         /// Execute the command.
         /// </summary>
         /// <param name="param">Nullable parameter.</param>
-        /// <returns><code>System.IAsyncResult</code></returns>
-        IAsyncResult Run(T param);
+        /// <returns><code>System.Threading.Tasks.Task</code></returns>
+        Task Run(T param);
     }
 
     /// <summary>
