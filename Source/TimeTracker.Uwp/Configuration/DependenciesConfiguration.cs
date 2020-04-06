@@ -3,7 +3,6 @@ using Ninject;
 using Ninject.Modules;
 using TimeTracker.Application.Commands;
 using TimeTracker.Application.Contracts;
-using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Factories;
 using TimeTracker.Application.Queries;
 using TimeTracker.Core.Contracts;
