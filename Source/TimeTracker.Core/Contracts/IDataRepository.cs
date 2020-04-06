@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Async = System.Threading.Tasks;
 
 namespace TimeTracker.Core.Contracts
@@ -14,13 +13,11 @@ namespace TimeTracker.Core.Contracts
         #region GET
 
         T Get(Func<T, bool> query);
-        Async.Task<T> GetAsync(Func<T, bool> query);
+        Async.Task<T> GetAllAsync(Func<T, bool> query);
         IQueryable<T> GetAll();
         Async.Task<IQueryable<T>> GetAllAsync();
         List<T> Query(Func<T, bool> query);
         Async.Task<List<T>> QueryAsync(Func<T, bool> query);
-        List<TB> QuerySelect<TB>(Expression<Func<T, TB>> selector, Func<TB, bool> query);
-        Async.Task<List<TB>> QuerySelectAsync<TB>(Expression<Func<T, TB>> selector, Func<TB, bool> query);
 
         bool Any();
         Async.Task<bool> AnyAsync();

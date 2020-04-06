@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TimeTracker.Core.BaseClasses;
 using TimeTracker.Core.Contracts;
@@ -29,10 +28,10 @@ namespace TimeTracker.Infrastructure.Services
 
         public T Get(Func<T, bool> query)
         {
-            return _workTimeTracker.Set<T>().Find(query);
+            return _workTimeTracker.Set<T>().FirstOrDefault(query);
         }
 
-        public Task<T> GetAsync(Func<T, bool> query)
+        public Task<T> GetAllAsync(Func<T, bool> query)
         {
             return AsyncOperation.FromResult(Get(query));
         }
@@ -55,21 +54,6 @@ namespace TimeTracker.Infrastructure.Services
         public Task<List<T>> QueryAsync(Func<T, bool> query)
         {
             return AsyncOperation.FromResult(Query(query));
-        }
-
-        public List<TB> QuerySelect<TB>(Expression<Func<T, TB>> selector,
-            Func<TB, bool> query)
-        {
-            return _workTimeTracker.Set<T>()
-                .Select(selector)
-                .Where(query)
-                .ToList();
-        }
-
-        public Task<List<TB>> QuerySelectAsync<TB>(Expression<Func<T, TB>> selector,
-            Func<TB, bool> query)
-        {
-            return AsyncOperation.FromResult(QuerySelect(selector, query));
         }
 
         #endregion
@@ -183,7 +167,7 @@ namespace TimeTracker.Infrastructure.Services
                 if(toUpdateProperties[i].Name == nameof(entityChanges.Id))
                     continue;
                 toUpdateProperties[i].SetValue(entityToUpdate,
-                    changedPropertyInfos[i].GetValue(changedPropertyInfos));
+                    changedPropertyInfos[i].GetValue(entityChanges));
             }
 
             return entityToUpdate;
