@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using Ninject;
 using Ninject.Modules;
 using TimeTracker.Application.Commands;
 using TimeTracker.Application.Contracts;
@@ -94,8 +93,9 @@ namespace TimeTracker.Tests.Common.Helpers
             var mapperConfiguration = CreateConfiguration();
             Bind<MapperConfiguration>().ToConstant(mapperConfiguration).InSingletonScope();
 
-            Bind<IMapper>().ToMethod(ctx =>
-                new Mapper(mapperConfiguration, type => ctx.Kernel.Get(type)));
+            //Bind<IMapper>().ToMethod(ctx =>
+            //    new Mapper(mapperConfiguration, type => ctx.Kernel.Get(type)));
+            Bind<IMapper>().ToMethod(ctx => new Mapper(mapperConfiguration));
         }
 
         #endregion
