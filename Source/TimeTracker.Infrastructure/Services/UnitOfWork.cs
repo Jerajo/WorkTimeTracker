@@ -25,7 +25,7 @@ namespace TimeTracker.Infrastructure.Services
             return _workTimeTracker.SaveChangesAsync();
         }
 
-        IDataRepository<T> IUnitOfWork.GetRepository<T>()
+        public IDataRepository<T> GetRepository<T>() where T : class, IEntity
         {
             return new DataRepository<T>(_workTimeTracker);
         }
