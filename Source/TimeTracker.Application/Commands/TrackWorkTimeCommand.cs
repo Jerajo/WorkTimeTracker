@@ -53,6 +53,8 @@ namespace TimeTracker.Application.Commands
             {
                 var taskEntity = _mapper.Map<Core.TasksSchedule>(taskSchedule);
 
+                taskEntity.TimeStart = TimeSpan.FromSeconds(0); //TODO: implement logic.
+
                 repository.Add(taskEntity);
 
                 return transaction.CommitAsync();
