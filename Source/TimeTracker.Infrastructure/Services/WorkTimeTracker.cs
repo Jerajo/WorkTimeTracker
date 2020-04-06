@@ -25,6 +25,8 @@ namespace TimeTracker.Infrastructure.Services
 
         public virtual DbSet<Schedule> Schedules { get; set; }
 
+        public virtual DbSet<Description> Descriptions { get; set; }
+
         #endregion
 
         #region Configuration
