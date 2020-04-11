@@ -45,7 +45,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task GuardAgainstNull()
         {
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.Run(null));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 Duration = TimeSpan.FromSeconds(-1),
             };
 
-            Func<Task> function = () => _sut.Run(tempTaskSchedule);
+            Func<Task> function = () => _sut.ExecuteAsync(tempTaskSchedule);
 
             using (new AssertionScope())
             {
@@ -81,14 +81,14 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task DeleteWorkTimeTracked()
         {
-            await _createTaskCommand.Run(new TaskDto
+            await _createTaskCommand.ExecuteAsync(new TaskDto
             {
                 Name = nameof(DeleteWorkTimeTracked)
             });
 
             var tasks = await _getTasksQuery.Run(x => x.Name == nameof(DeleteWorkTimeTracked));
 
-            await _createScheduleCommand.Run(new ScheduleDto
+            await _createScheduleCommand.ExecuteAsync(new ScheduleDto
             {
                 ScheduleDate = DateTimeOffset.Now.Date
             });
@@ -103,7 +103,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 ScheduleId = schedule.Id,
             };
 
-            await _trackWorkTimeCommand.Run(tempTaskSchedule);
+            await _trackWorkTimeCommand.ExecuteAsync(tempTaskSchedule);
 
             var result = await _getTasksScheduleQuery.Run(x => x.TaskId == task.Id
                                                             && x.ScheduleId == schedule.Id);
@@ -112,7 +112,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             var timeToDelete = _mapper.Map<TasksScheduleDto>(trackedTime);
 
-            await _sut.Run(timeToDelete);
+            await _sut.ExecuteAsync(timeToDelete);
         }
     }
 }

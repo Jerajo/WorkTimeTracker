@@ -25,7 +25,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task GuardAgainstNull()
         {
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.Run(null));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 ScheduleDate = DateTimeOffset.Now.AddDays(-1).Date,
             };
 
-            Func<Task> function = () => _sut.Run(tempSchedule);
+            Func<Task> function = () => _sut.ExecuteAsync(tempSchedule);
 
             function.Should().Throw<ValidationException>()
                 .And.Errors.Should()
@@ -51,7 +51,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 ScheduleDate = DateTimeOffset.Now.Date,
             };
 
-            await _sut.Run(tempSchedule);
+            await _sut.ExecuteAsync(tempSchedule);
         }
     }
 }

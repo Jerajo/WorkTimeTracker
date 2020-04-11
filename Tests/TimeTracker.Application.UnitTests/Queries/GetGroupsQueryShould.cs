@@ -33,7 +33,12 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async Task ReturnAEmptyListOfGroups()
         {
-            var result = await _sut.Run(x => x.Id < 0);
+            await _createGroupCommand.ExecuteAsync(new GroupDto
+            {
+                Name = nameof(ReturnAListOfGroups),
+            });
+
+            var result = await _sut.Run(x => false);
 
             result.Should().BeAssignableTo<List<Domain.Group>>()
                 .And.BeEmpty();
@@ -42,13 +47,12 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async Task ReturnAListOfGroups()
         {
-            await _createGroupCommand.Run(new GroupDto
+            await _createGroupCommand.ExecuteAsync(new GroupDto
             {
-                Code = "4526",
                 Name = nameof(ReturnAListOfGroups),
             });
 
-            var result = await _sut.Run(x => true);
+            var result = await _sut.Run(x => x.Name == nameof(ReturnAListOfGroups));
 
             result.Should().BeAssignableTo<List<Domain.Group>>()
                 .And.NotBeEmpty();

@@ -42,7 +42,7 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async Task ReturnAListOfSchedules()
         {
-            await _createScheduleCommand.Run(new ScheduleDto
+            await _createScheduleCommand.ExecuteAsync(new ScheduleDto
             {
                 ScheduleDate = DateTime.Now.Date
             });

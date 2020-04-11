@@ -34,7 +34,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task GuardAgainstNull()
         {
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.Run(null));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         {
             var tempGroup = new TaskExportTemplateDto();
 
-            Func<Task> function = () => _sut.Run(tempGroup);
+            Func<Task> function = () => _sut.ExecuteAsync(tempGroup);
 
             using (new AssertionScope())
             {
@@ -61,7 +61,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         {
             var tempTemplate = new TaskExportTemplateDto() { Template = nameof(UpdateATemplate) };
 
-            await _createTemplateCommand.Run(tempTemplate);
+            await _createTemplateCommand.ExecuteAsync(tempTemplate);
 
             var result = await _getTemplateQuery.Run(x => x.Template == tempTemplate.Template);
 
@@ -69,7 +69,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             description.Template += " updated";
 
-            await _sut.Run(description);
+            await _sut.ExecuteAsync(description);
         }
     }
 }
