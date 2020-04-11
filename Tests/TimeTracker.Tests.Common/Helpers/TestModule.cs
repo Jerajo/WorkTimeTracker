@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Ninject.Modules;
+using System.Windows.Input;
 using TimeTracker.Application.Commands;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Factories;

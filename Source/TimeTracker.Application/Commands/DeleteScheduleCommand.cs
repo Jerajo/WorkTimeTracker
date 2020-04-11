@@ -1,12 +1,11 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
 using FluentValidation;
+using Murk.Command;
 using System;
 using System.Threading.Tasks;
-using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Validators;
-using TimeTracker.Core.BaseClasses;
 using TimeTracker.Core.Contracts;
 
 namespace TimeTracker.Application.Commands
@@ -14,7 +13,7 @@ namespace TimeTracker.Application.Commands
     /// <summary>
     /// Delete the selected schedule.
     /// </summary>
-    public class DeleteScheduleCommand : DisposableBase, ICommand<ScheduleDto>
+    public class DeleteScheduleCommand : BaseCommandDisableAbleAsync<ScheduleDto>
     {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly Contracts.IValidatorFactory _validatorFactory;
@@ -38,10 +37,22 @@ namespace TimeTracker.Application.Commands
         /// <inheritdoc/>
         /// <param name="schedule">Nullable parameter.</param>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ValidationException"/>
-        public Task Run(ScheduleDto schedule)
+        public override Task<bool> CanExecuteAsync(ScheduleDto schedule)
         {
             Guard.Against.Null(schedule, nameof(schedule));
+
+            // TODO: Implement logic.
+            return Task.FromResult(true);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="schedule">Nullable parameter.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ValidationException"/>
+        public override Task ExecuteAsync(ScheduleDto schedule)
+        {
+            if (!CanExecute(schedule))
+                return Task.CompletedTask;
 
             var validator = _validatorFactory.GetInstance<ScheduleValidator>();
 

@@ -1,20 +1,19 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
 using FluentValidation;
+using Murk.Command;
 using System;
-using TimeTracker.Application.Contracts;
+using System.Threading.Tasks;
 using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Validators;
-using TimeTracker.Core.BaseClasses;
 using TimeTracker.Core.Contracts;
-using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Application.Commands
 {
     /// <summary>
     /// Delete the selected task.
     /// </summary>
-    public class DeleteTaskCommand : DisposableBase, ICommand<TaskDto>
+    public class DeleteTaskCommand : BaseCommandDisableAbleAsync<TaskDto>
     {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly Contracts.IValidatorFactory _validatorFactory;
@@ -38,10 +37,22 @@ namespace TimeTracker.Application.Commands
         /// <inheritdoc/>
         /// <param name="task">Nullable parameter.</param>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ValidationException"/>
-        public AsyncOperation Run(TaskDto task)
+        public override Task<bool> CanExecuteAsync(TaskDto task)
         {
             Guard.Against.Null(task, nameof(task));
+
+            // TODO: Implement logic.
+            return Task.FromResult(true);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="task">Nullable parameter.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ValidationException"/>
+        public override Task ExecuteAsync(TaskDto task)
+        {
+            if (!CanExecute(task))
+                return Task.CompletedTask;
 
             var validator = _validatorFactory.GetInstance<TaskValidator>();
 

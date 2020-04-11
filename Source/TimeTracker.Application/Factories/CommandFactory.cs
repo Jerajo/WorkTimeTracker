@@ -1,4 +1,5 @@
 ﻿using Ninject;
+using System.Windows.Input;
 using TimeTracker.Application.Contracts;
 
 namespace TimeTracker.Application.Factories

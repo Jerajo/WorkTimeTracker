@@ -1,20 +1,19 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
 using FluentValidation;
+using Murk.Command;
 using System;
-using TimeTracker.Application.Contracts;
+using System.Threading.Tasks;
 using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Validators;
-using TimeTracker.Core.BaseClasses;
 using TimeTracker.Core.Contracts;
-using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Application.Commands
 {
     /// <summary>
     /// Track work time for selected task.
     /// </summary>
-    public class TrackWorkTimeCommand : DisposableBase, ICommand<TasksScheduleDto>
+    public class TrackWorkTimeCommand : BaseCommandDisableAbleAsync<TasksScheduleDto>
     {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly Contracts.IValidatorFactory _validatorFactory;
@@ -38,10 +37,22 @@ namespace TimeTracker.Application.Commands
         /// <inheritdoc/>
         /// <param name="taskSchedule">Nullable parameter.</param>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ValidationException"/>
-        public AsyncOperation Run(TasksScheduleDto taskSchedule)
+        public override Task<bool> CanExecuteAsync(TasksScheduleDto taskSchedule)
         {
             Guard.Against.Null(taskSchedule, nameof(taskSchedule));
+
+            // TODO: Implement logic.
+            return Task.FromResult(true);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="taskSchedule">Nullable parameter.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ValidationException"/>
+        public override Task ExecuteAsync(TasksScheduleDto taskSchedule)
+        {
+            if (!CanExecute(taskSchedule))
+                return Task.CompletedTask;
 
             var validator = _validatorFactory.GetInstance<TasksScheduleValidator>();
 
