@@ -2,7 +2,7 @@
 using TimeTracker.Application.Dtos;
 using TimeTracker.Core.ValueObjects;
 
-namespace TimeTracker.Uwp.Configuration
+namespace TimeTracker.Xamarin.Configuration
 {
     /// <summary>
     /// Holds all mapper configuration.

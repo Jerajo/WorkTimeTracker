@@ -1,29 +1,23 @@
-﻿using Ninject;
-using TimeTracker.Uwp.ViewModels;
-using Windows.UI.Xaml.Controls;
+﻿using Prism;
+using Prism.Ioc;
 
-namespace TimeTracker.Uwp
+namespace WorkTimeTracker.UWP
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
-        private readonly IKernel _kernel;
-
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public MainPage(IKernel kernel)
+        public MainPage()
         {
             this.InitializeComponent();
-            this._kernel = kernel;
-            this.Configure();
-        }
 
-        private void Configure()
+            LoadApplication(new TimeTracker.Xamarin.App(new UwpInitializer()));
+        }
+    }
+
+    public class UwpInitializer : IPlatformInitializer
+    {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            this.DataContext = _kernel.Get<MainPageViewModel>();
+            // Register any platform specific implementations
         }
     }
 }

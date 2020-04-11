@@ -1,59 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{56117584-9D28-4745-9E5A-A4EE7A302613}</ProjectGuid>
+    <ProjectGuid>{40CCD5D2-8953-42F9-89D5-EE0F172B464B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TimeTracker.Uwp</RootNamespace>
-    <AssemblyName>TimeTracker.Uwp</AssemblyName>
+    <RootNamespace>WorkTimeTracker.UWP</RootNamespace>
+    <AssemblyName>WorkTimeTracker.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>G:\bin\x86\Debug\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>G:\bin\x86\Release\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <PackageCertificateKeyFile>WorkTimeTracker.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>G:\bin\ARM\Debug\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
@@ -63,10 +31,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <OutputPath>G:\bin\ARM\Release\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
@@ -77,42 +41,8 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>G:\bin\ARM64\Debug\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>ARM64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
-    <OutputPath>G:\bin\ARM64\Release\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>ARM64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>G:\bin\x64\Debug\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
@@ -120,41 +50,53 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
-    <Optimize>false</Optimize>
-    <DocumentationFile>bin\x64\Debug\TimeTracker.Uwp.XML</DocumentationFile>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>G:\bin\x64\Release\$(AssemblyName)\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)\</IntermediateOutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <IntermediateOutputPath>L:\obj\$(AssemblyName)</IntermediateOutputPath>
+    <OutputPath>G:\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\DependenciesConfiguration.cs" />
-    <Compile Include="Configuration\MapperProfiles.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -162,7 +104,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -183,79 +124,21 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper">
-      <Version>9.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection">
-      <Version>7.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="FluentValidation">
-      <Version>8.6.2</Version>
-    </PackageReference>
-    <PackageReference Include="Fody">
-      <Version>6.1.1</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
-      <Version>2.9.8</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>3.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers">
-      <Version>3.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>3.1.3</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-      <Version>3.1.3</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
-    </PackageReference>
-    <PackageReference Include="Ninject">
-      <Version>3.3.4</Version>
-    </PackageReference>
-    <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.7</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TimeTracker.Application\TimeTracker.Application.csproj">
-      <Project>{d9981be2-4c97-48fb-a576-98d6707e6b7f}</Project>
-      <Name>TimeTracker.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj">
-      <Project>{7d004a62-c2e3-4111-a6a9-1541ad59a1bc}</Project>
-      <Name>TimeTracker.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj">
-      <Project>{1a3f6c6e-a85c-407d-a602-336248f05416}</Project>
-      <Name>TimeTracker.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TimeTracker.Infrastructure\TimeTracker.Infrastructure.csproj">
-      <Project>{e7c2ce4f-7529-4855-9b73-d176636c340c}</Project>
-      <Name>TimeTracker.Infrastructure</Name>
+    <ProjectReference Include="..\TimeTracker.Xamarin\TimeTracker.Xamarin.csproj">
+      <Project>{3aa98a34-5b0c-4b6b-b8f5-a33c5e7c71f9}</Project>
+      <Name>TimeTracker.Xamarin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Icons\" />
+    <None Include="WorkTimeTracker.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
