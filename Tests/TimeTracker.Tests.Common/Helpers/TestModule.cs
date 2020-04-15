@@ -10,7 +10,7 @@ using TimeTracker.Application.Queries;
 using TimeTracker.Application.Validators;
 using TimeTracker.Core.Contracts;
 using TimeTracker.Core.ValueObjects;
-using TimeTracker.Infrastructure.Services;
+using TimeTracker.EF6.Services;
 using IValidatorFactory = TimeTracker.Application.Contracts.IValidatorFactory;
 
 namespace TimeTracker.Tests.Common.Helpers

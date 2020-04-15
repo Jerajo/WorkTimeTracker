@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using TimeTracker.Infrastructure.Services;
+using TimeTracker.EF6.Services;
 using TimeTracker.Tests.Common.Helpers;
 
 namespace TimeTracker.Infrastructure.IntegrationTests
