@@ -2,9 +2,9 @@
 
 namespace TimeTracker.Xamarin.Layout
 {
-    public partial class MainPage : ContentPage
+    public partial class MainView : ContentPage
     {
-        public MainPage()
+        public MainView()
         {
             InitializeComponent();
         }
