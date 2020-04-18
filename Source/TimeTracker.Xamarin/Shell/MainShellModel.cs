@@ -1,20 +1,32 @@
 ﻿using Prism.Navigation;
 using System;
 using System.Collections.Generic;
-using TimeTracker.Xamarin.Contract;
+using TimeTracker.Application.Contracts;
+using TimeTracker.Application.Queries;
+using TimeTracker.Xamarin.Contracts;
 using Xamarin.Forms;
 using AsyncOperation = System.Threading.Tasks.Task;
+using ICommandFactory = TimeTracker.Xamarin.Contracts.ICommandFactory;
 
-namespace TimeTracker.Xamarin.Layout
+namespace TimeTracker.Xamarin.Shell
 {
-    public class MainViewModel : ViewModelBase
+    public class MainShellModel : ViewModelBase
     {
-        public MainViewModel(INavigationService navigationService)
-            : base(navigationService)
+        public MainShellModel(INavigationService navigationService,
+            ICommandFactory commandFactory,
+            IQueryFactory queryFactory)
+            : base(navigationService, commandFactory, queryFactory)
         {
             Title = "Main Page";
+
+            //GetTasks = commandFactory.Make<TaskDto, UpdateTaskCommand>();
+            GetTasks = queryFactory.GetInstance<GetTasksQuery>();
+
+            var tasks = GetTasks.Run(x => true);
             ChangeColor();
         }
+
+        public GetTasksQuery GetTasks { get; }
 
         public int Count { get; set; }
 
