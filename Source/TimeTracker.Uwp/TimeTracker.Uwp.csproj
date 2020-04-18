@@ -124,19 +124,38 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+      <Version>3.1.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.10" />
+    <PackageReference Include="Prism.DryIoc.Forms">
+      <Version>7.2.0.1422</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj">
+      <Project>{7D004A62-C2E3-4111-A6A9-1541AD59A1BC}</Project>
+      <Name>TimeTracker.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TimeTracker.EF6\TimeTracker.EF6.csproj">
+      <Project>{C1BC8361-D23A-44FD-A34D-3F3929B297AD}</Project>
+      <Name>TimeTracker.EF6</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TimeTracker.Xamarin\TimeTracker.Xamarin.csproj">
       <Project>{3aa98a34-5b0c-4b6b-b8f5-a33c5e7c71f9}</Project>
       <Name>TimeTracker.Xamarin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Fonts\FontAwesome5Brands.otf" />
+    <Content Include="Assets\Fonts\FontAwesome5Regular.otf" />
+    <Content Include="Assets\Fonts\FontAwesome5Solid.otf" />
     <None Include="WorkTimeTracker.UWP_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

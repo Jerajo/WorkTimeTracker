@@ -1,7 +1,7 @@
-﻿using Prism;
+﻿using Ninject;
+using Prism;
 using Prism.Ioc;
-using TimeTracker.Xamarin.Layout;
-using Xamarin.Forms;
+using TimeTracker.Xamarin.Configuration;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -9,26 +9,41 @@ namespace TimeTracker.Xamarin
 {
     public partial class App
     {
-        /*
-         * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
-         * This imposes a limitation in which the App class must have a default constructor.
-         * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
-         */
-        public App() : this(null) { }
+        private readonly IKernel _kernel;
 
-        public App(IPlatformInitializer initializer) : base(initializer) { }
+        public App() : this(null, null) {}
+
+        public App(IPlatformInitializer platformInitializer, IKernel kernel) : base(platformInitializer)
+        {
+            _kernel = kernel;
+            Boosts();
+        }
+
+        private void Boosts()
+        {
+            Initialize();
+            OnInitialized();
+        }
+
+        protected override void Initialize()
+        {
+            if (_kernel is null) return;
+            base.Initialize();
+        }
 
         protected override async void OnInitialized()
         {
+            if (_kernel is null) return;
             InitializeComponent();
-
-            await NavigationService.NavigateAsync("MainView");
+            await NavigationService.NavigateAsync("MainShell");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainView, MainViewModel>();
+            if (_kernel is null) return;
+            containerRegistry.RegisterNavigation()
+                .RegisterContainer(_kernel)
+                .RegisterTypes();
         }
     }
 }
