@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using TimeTracker.Infrastructure.Services;
+using TimeTracker.EF6.Services;
 
 namespace TimeTracker.Infrastructure.IntegrationTests.Services
 {

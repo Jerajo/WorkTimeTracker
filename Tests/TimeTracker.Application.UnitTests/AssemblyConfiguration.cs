@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using TimeTracker.Core.Contracts;
-using TimeTracker.Infrastructure;
 using TimeTracker.Tests.Common.Helpers;
 
 namespace TimeTracker.Application.UnitTests
@@ -15,7 +15,10 @@ namespace TimeTracker.Application.UnitTests
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
-            Kernel = new StandardKernel(new TestModule("workTimeTracker_Application"));
+            Kernel = new StandardKernel(new TestModule(options => options
+                .UseInMemoryDatabase("Application_Unit_Tests")
+                .UseLazyLoadingProxies()
+                .Options));
 
             _dbContext = Kernel.Get<IDbContext>();
             _dbContext.EnsureCreated();

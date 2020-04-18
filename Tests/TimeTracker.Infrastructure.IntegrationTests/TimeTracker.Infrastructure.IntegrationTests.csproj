@@ -10,26 +10,8 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <IntermediateOutputPath>L:\obj\$(AssemblyName)</IntermediateOutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Debug\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Debug\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Release\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Release\$(AssemblyName)</OutputPath>
+    <OutputPath>G:\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,18 +26,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\TimeTracker.Infrastructure\TimeTracker.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Source\TimeTracker.EF6\TimeTracker.EF6.csproj" />
     <ProjectReference Include="..\TimeTracker.Tests.Common\TimeTracker.Tests.Common.csproj" />
   </ItemGroup>
 

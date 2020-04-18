@@ -10,26 +10,8 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <IntermediateOutputPath>L:\obj\$(AssemblyName)</IntermediateOutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Debug\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Debug\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Release\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>G:\bin\Release\$(AssemblyName)</OutputPath>
+    <OutputPath>G:\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Source\TimeTracker.Application\TimeTracker.Application.csproj" />
+    <ProjectReference Include="..\..\Source\TimeTracker.EF6\TimeTracker.EF6.csproj" />
     <ProjectReference Include="..\TimeTracker.Tests.Common\TimeTracker.Tests.Common.csproj" />
   </ItemGroup>
 

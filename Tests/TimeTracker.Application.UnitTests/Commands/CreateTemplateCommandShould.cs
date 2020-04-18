@@ -25,7 +25,7 @@ namespace TimeTracker.Application.UnitTests.Commands
         [TestMethod]
         public async Task GuardAgainstNull()
         {
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.Run(null));
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 Template = ""
             };
 
-            Func<Task> function = () => _sut.Run(tempTemplate);
+            Func<Task> function = () => _sut.ExecuteAsync(tempTemplate);
 
             function.Should().Throw<ValidationException>()
                 .And.Errors.Should()
@@ -51,7 +51,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 Template = nameof(CreateNewTemplate),
             };
 
-            await _sut.Run(tempTemplate);
+            await _sut.ExecuteAsync(tempTemplate);
         }
     }
 }

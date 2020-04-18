@@ -2,6 +2,8 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Ninject.Modules;
+using System;
+using System.Windows.Input;
 using TimeTracker.Application.Commands;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Factories;
@@ -9,7 +11,7 @@ using TimeTracker.Application.Queries;
 using TimeTracker.Application.Validators;
 using TimeTracker.Core.Contracts;
 using TimeTracker.Core.ValueObjects;
-using TimeTracker.Infrastructure.Services;
+using TimeTracker.EF6.Services;
 using IValidatorFactory = TimeTracker.Application.Contracts.IValidatorFactory;
 
 namespace TimeTracker.Tests.Common.Helpers
@@ -19,15 +21,16 @@ namespace TimeTracker.Tests.Common.Helpers
     /// </summary>
     public class TestModule : NinjectModule
     {
-        private readonly string _databaseName;
+        private readonly DbContextOptions<WorkTimeTracker> _options;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="databaseName">The name of the assembly test database.</param>
-        public TestModule(string databaseName = null)
+        public TestModule(Func<DbContextOptionsBuilder<WorkTimeTracker>,
+            DbContextOptions<WorkTimeTracker>> options = null)
         {
-            _databaseName = databaseName;
+            _options = options?.Invoke(new DbContextOptionsBuilder<WorkTimeTracker>());
         }
 
         #region Congiguration
@@ -69,20 +72,9 @@ namespace TimeTracker.Tests.Common.Helpers
             Bind<ICommandFactory>().To<CommandFactory>();
 
             // --------------- // DB CONTEXT // --------------- //
-            if (!string.IsNullOrEmpty(_databaseName))
-            {
-                var options = new DbContextOptionsBuilder<WorkTimeTracker>()
-                    .UseInMemoryDatabase(_databaseName)
-                    .UseLazyLoadingProxies()
-                    .Options;
-                Bind<IDbContext>().To<WorkTimeTracker>().WithConstructorArgument(options);
-                Bind<WorkTimeTracker>().ToConstructor(_ => new WorkTimeTracker(options));
-            }
-            else
-            {
-                Bind<IDbContext>().To<WorkTimeTracker>();
-                Bind<WorkTimeTracker>().ToConstructor(_ => new WorkTimeTracker());
-            }
+            Bind<IDbContext>().To<WorkTimeTracker>().WithConstructorArgument(_options);
+            Bind<WorkTimeTracker>().ToConstructor(_ => new WorkTimeTracker(_options));
+
 
             // --------------- // REPOSITORY AND UNIT OF WORK // --------------- //
             Bind<IRepositoryFactory>().To<RepositoryFactory>();

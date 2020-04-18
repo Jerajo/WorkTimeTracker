@@ -1,20 +1,19 @@
-﻿using System;
-using Ardalis.GuardClauses;
+﻿using Ardalis.GuardClauses;
 using AutoMapper;
 using FluentValidation;
-using TimeTracker.Application.Contracts;
+using Murk.Command;
+using System;
+using System.Threading.Tasks;
 using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Validators;
-using TimeTracker.Core.BaseClasses;
 using TimeTracker.Core.Contracts;
-using AsyncOperation = System.Threading.Tasks.Task;
 
 namespace TimeTracker.Application.Commands
 {
     /// <summary>
     /// Delete the selected group.
     /// </summary>
-    public class DeleteGroupCommand : DisposableBase, ICommand<GroupDto>
+    public class DeleteGroupCommand : BaseCommandDisableAbleAsync<GroupDto>
     {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly Contracts.IValidatorFactory _validatorFactory;
@@ -38,10 +37,22 @@ namespace TimeTracker.Application.Commands
         /// <inheritdoc/>
         /// <param name="group">Nullable parameter.</param>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ValidationException"/>
-        public AsyncOperation Run(GroupDto group)
+        public override Task<bool> CanExecuteAsync(GroupDto group)
         {
             Guard.Against.Null(group, nameof(group));
+
+            // TODO: Implement logic.
+            return Task.FromResult(true);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="group">Nullable parameter.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ValidationException"/>
+        public override Task ExecuteAsync(GroupDto group)
+        {
+            if (!CanExecute(group))
+                return Task.CompletedTask;
 
             var validator = _validatorFactory.GetInstance<GroupValidator>();
 

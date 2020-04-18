@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TimeTracker.Core.Contracts;
 using TimeTracker.Core.ValueObjects;
-using TimeTracker.Infrastructure.Services;
+using TimeTracker.EF6.Services;
 
 namespace TimeTracker.Infrastructure.IntegrationTests.Services
 {

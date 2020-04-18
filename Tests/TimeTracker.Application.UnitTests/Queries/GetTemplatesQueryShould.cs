@@ -42,7 +42,7 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async Task ReturnAListOfTemplates()
         {
-            await _createScheduleCommand.Run(new TaskExportTemplateDto
+            await _createScheduleCommand.ExecuteAsync(new TaskExportTemplateDto
             {
                 Template = nameof(ReturnAListOfTemplates)
             });

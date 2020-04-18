@@ -45,7 +45,9 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async Task ReturnAEmptyListOfTasksSchedule()
         {
-            var result = await _sut.Run(x => x.Id < 0);
+            await CreateTrackAsync();
+
+            var result = await _sut.Run(x => false);
 
             result.Should().BeAssignableTo<List<Domain.TasksSchedule>>()
                 .And.BeEmpty();
@@ -54,14 +56,24 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async Task ReturnAListOfTasksSchedule()
         {
-            await _createTaskCommand.Run(new TaskDto
+            var scheduleId = await CreateTrackAsync();
+
+            var result = await _sut.Run(x => x.ScheduleId == scheduleId);
+
+            result.Should().BeAssignableTo<List<Domain.TasksSchedule>>()
+                .And.NotBeEmpty();
+        }
+
+        private async Task<int> CreateTrackAsync()
+        {
+            await _createTaskCommand.ExecuteAsync(new TaskDto
             {
                 Name = nameof(ReturnAListOfTasksSchedule)
             });
 
             var tasks = await _getTaskQuery.Run(x => x.Name == nameof(ReturnAListOfTasksSchedule));
 
-            await _createScheduleCommand.Run(new ScheduleDto
+            await _createScheduleCommand.ExecuteAsync(new ScheduleDto
             {
                 ScheduleDate = DateTimeOffset.Now.Date
             });
@@ -69,17 +81,14 @@ namespace TimeTracker.Application.UnitTests.Queries
             var task = tasks.First();
             var schedule = await _getCurrentScheduleQuery.Run();
 
-            await _trackWorkTimeCommand.Run(new TasksScheduleDto
+            await _trackWorkTimeCommand.ExecuteAsync(new TasksScheduleDto
             {
                 Duration = TimeSpan.Zero,
                 TaskId = task.Id,
                 ScheduleId = schedule.Id
             });
 
-            var result = await _sut.Run(x => x.ScheduleId == schedule.Id);
-
-            result.Should().BeAssignableTo<List<Domain.TasksSchedule>>()
-                .And.NotBeEmpty();
+            return schedule.Id;
         }
     }
 }

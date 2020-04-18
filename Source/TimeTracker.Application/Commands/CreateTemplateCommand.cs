@@ -1,12 +1,11 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
 using FluentValidation;
+using Murk.Command;
 using System;
 using System.Threading.Tasks;
-using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Validators;
-using TimeTracker.Core.BaseClasses;
 using TimeTracker.Core.Contracts;
 using TimeTracker.Core.ValueObjects;
 
@@ -15,7 +14,7 @@ namespace TimeTracker.Application.Commands
     /// <summary>
     /// Create a new template for exporting task to Excel document.
     /// </summary>
-    public class CreateTemplateCommand : DisposableBase, ICommand<TaskExportTemplateDto>
+    public class CreateTemplateCommand : BaseCommandDisableAbleAsync<TaskExportTemplateDto>
     {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly Contracts.IValidatorFactory _validatorFactory;
@@ -39,10 +38,22 @@ namespace TimeTracker.Application.Commands
         /// <inheritdoc/>
         /// <param name="template">Nullable parameter.</param>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ValidationException"/>
-        public Task Run(TaskExportTemplateDto template)
+        public override Task<bool> CanExecuteAsync(TaskExportTemplateDto template)
         {
             Guard.Against.Null(template, nameof(template));
+
+            // TODO: Implement logic.
+            return Task.FromResult(true);
+        }
+
+        /// <inheritdoc/>
+        /// <param name="template">Nullable parameter.</param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ValidationException"/>
+        public override Task ExecuteAsync(TaskExportTemplateDto template)
+        {
+            if (!CanExecute(template))
+                return Task.CompletedTask;
 
             var validator = _validatorFactory.GetInstance<TemplateValidator>();
 

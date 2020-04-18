@@ -34,7 +34,13 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async AsyncOperation ReturnAEmptyListOfTasks()
         {
-            var result = await _sut.Run(x => x.Id < 0);
+            await _createTaskCommand.ExecuteAsync(new TaskDto
+            {
+                Name = nameof(ReturnAListOfTasks),
+                DescriptionId = 1
+            });
+
+            var result = await _sut.Run(x => false);
 
             result.Should().BeAssignableTo<List<Task>>()
                 .And.BeEmpty();
@@ -43,9 +49,8 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public async AsyncOperation ReturnAListOfTasks()
         {
-            await _createTaskCommand.Run(new TaskDto
+            await _createTaskCommand.ExecuteAsync(new TaskDto
             {
-                Code = "4526",
                 Name = nameof(ReturnAListOfTasks),
                 DescriptionId = 1
             });
