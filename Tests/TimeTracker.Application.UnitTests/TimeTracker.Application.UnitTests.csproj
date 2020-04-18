@@ -9,7 +9,7 @@
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <IntermediateOutputPath>L:\obj\$(AssemblyName)</IntermediateOutputPath>
+    <IntermediateOutputPath>G:\obj\$(AssemblyName)</IntermediateOutputPath>
     <OutputPath>G:\bin\$(Configuration)\$(Platform)\$(AssemblyName)</OutputPath>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>

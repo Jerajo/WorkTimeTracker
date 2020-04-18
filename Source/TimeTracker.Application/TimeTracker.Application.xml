@@ -9,83 +9,336 @@
             Create a new task.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.CreateGroupCommand.Run(TimeTracker.Domain.Group)">
+        <member name="M:TimeTracker.Application.Commands.CreateGroupCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateGroupCommand.CanExecuteAsync(TimeTracker.Application.Dtos.GroupDto)">
             <inheritdoc/>
             <param name="group">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateGroupCommand.ExecuteAsync(TimeTracker.Application.Dtos.GroupDto)">
+            <inheritdoc/>
+            <param name="group">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.CreateScheduleCommand">
+            <summary>
+            Create a schedule for the current day.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateScheduleCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateScheduleCommand.CanExecuteAsync(TimeTracker.Application.Dtos.ScheduleDto)">
+            <inheritdoc/>
+            <param name="schedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateScheduleCommand.ExecuteAsync(TimeTracker.Application.Dtos.ScheduleDto)">
+            <inheritdoc/>
+            <param name="schedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Commands.CreateTaskCommand">
             <summary>
             Create a new task.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.CreateTaskCommand.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Commands.CreateTaskCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateTaskCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TaskDto)">
             <inheritdoc/>
             <param name="task">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateTaskCommand.ExecuteAsync(TimeTracker.Application.Dtos.TaskDto)">
+            <inheritdoc/>
+            <param name="task">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.CreateTemplateCommand">
+            <summary>
+            Create a new template for exporting task to Excel document.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateTemplateCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateTemplateCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TaskExportTemplateDto)">
+            <inheritdoc/>
+            <param name="template">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.CreateTemplateCommand.ExecuteAsync(TimeTracker.Application.Dtos.TaskExportTemplateDto)">
+            <inheritdoc/>
+            <param name="template">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Commands.DeleteGroupCommand">
             <summary>
             Delete the selected group.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.DeleteGroupCommand.Run(TimeTracker.Domain.Group)">
+        <member name="M:TimeTracker.Application.Commands.DeleteGroupCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteGroupCommand.CanExecuteAsync(TimeTracker.Application.Dtos.GroupDto)">
             <inheritdoc/>
             <param name="group">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteGroupCommand.ExecuteAsync(TimeTracker.Application.Dtos.GroupDto)">
+            <inheritdoc/>
+            <param name="group">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.DeleteScheduleCommand">
+            <summary>
+            Delete the selected schedule.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteScheduleCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteScheduleCommand.CanExecuteAsync(TimeTracker.Application.Dtos.ScheduleDto)">
+            <inheritdoc/>
+            <param name="schedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteScheduleCommand.ExecuteAsync(TimeTracker.Application.Dtos.ScheduleDto)">
+            <inheritdoc/>
+            <param name="schedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Commands.DeleteTaskCommand">
             <summary>
             Delete the selected task.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.DeleteTaskCommand.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Commands.DeleteTaskCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteTaskCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TaskDto)">
             <inheritdoc/>
             <param name="task">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteTaskCommand.ExecuteAsync(TimeTracker.Application.Dtos.TaskDto)">
+            <inheritdoc/>
+            <param name="task">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.DeleteTemplateCommand">
+            <summary>
+            Delete the selected description.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteTemplateCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteTemplateCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TaskExportTemplateDto)">
+            <inheritdoc/>
+            <param name="template">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteTemplateCommand.ExecuteAsync(TimeTracker.Application.Dtos.TaskExportTemplateDto)">
+            <inheritdoc/>
+            <param name="template">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.DeleteWorkTimeTrackedCommand">
+            <summary>
+            Delete work time tracked for selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteWorkTimeTrackedCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteWorkTimeTrackedCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TasksScheduleDto)">
+            <inheritdoc/>
+            <param name="taskSchedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.DeleteWorkTimeTrackedCommand.ExecuteAsync(TimeTracker.Application.Dtos.TasksScheduleDto)">
+            <inheritdoc/>
+            <param name="taskSchedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Commands.StopWorkTimeTrackingCommand">
+            <summary>
+            Stop tracking work time for selected task.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.StopWorkTimeTrackingCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.StopWorkTimeTrackingCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TasksScheduleDto)">
+            <inheritdoc/>
+            <param name="taskSchedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.StopWorkTimeTrackingCommand.ExecuteAsync(TimeTracker.Application.Dtos.TasksScheduleDto)">
+            <inheritdoc/>
+            <param name="taskSchedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Commands.TrackWorkTimeCommand">
             <summary>
             Track work time for selected task.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.TrackWorkTimeCommand.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Commands.TrackWorkTimeCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
             <summary>
-            Execute the command.
+            Default constructor.
             </summary>
-            <param name="selectedTask">Selected task.</param>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.TrackWorkTimeCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TasksScheduleDto)">
+            <inheritdoc/>
+            <param name="taskSchedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.TrackWorkTimeCommand.ExecuteAsync(TimeTracker.Application.Dtos.TasksScheduleDto)">
+            <inheritdoc/>
+            <param name="taskSchedule">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Commands.UpdateGroupCommand">
             <summary>
             Update the selected group.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.UpdateGroupCommand.Run(TimeTracker.Domain.Group)">
+        <member name="M:TimeTracker.Application.Commands.UpdateGroupCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateGroupCommand.CanExecuteAsync(TimeTracker.Application.Dtos.GroupDto)">
             <inheritdoc/>
             <param name="group">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateGroupCommand.ExecuteAsync(TimeTracker.Application.Dtos.GroupDto)">
+            <inheritdoc/>
+            <param name="group">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Commands.UpdateTaskCommand">
             <summary>
             Update the selected task.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Commands.UpdateTaskCommand.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Commands.UpdateTaskCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateTaskCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TaskDto)">
             <inheritdoc/>
             <param name="task">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="T:TimeTracker.Application.Contracts.ICommand`1">
-            <summary>
-            Represents a async command.
-            </summary>
-            <typeparam name="T">Parameter type.</typeparam>
+        <member name="M:TimeTracker.Application.Commands.UpdateTaskCommand.ExecuteAsync(TimeTracker.Application.Dtos.TaskDto)">
+            <inheritdoc/>
+            <param name="task">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
-        <member name="M:TimeTracker.Application.Contracts.ICommand`1.Run(`0)">
+        <member name="T:TimeTracker.Application.Commands.UpdateTemplateCommand">
             <summary>
-            Execute the command.
+            Update the selected template for exporting task to Excel document.
             </summary>
-            <param name="param">Nullable parameter.</param>
-            <returns><code>System.IAsyncResult</code></returns>
         </member>
-        <member name="T:TimeTracker.Application.Contracts.ICommand">
+        <member name="M:TimeTracker.Application.Commands.UpdateTemplateCommand.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,TimeTracker.Application.Contracts.IValidatorFactory,AutoMapper.IMapper)">
             <summary>
-            Represents a command object.
+            Default constructor.
             </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="validatorFactory">Validate models.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateTemplateCommand.CanExecuteAsync(TimeTracker.Application.Dtos.TaskExportTemplateDto)">
+            <inheritdoc/>
+            <param name="template">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Commands.UpdateTemplateCommand.ExecuteAsync(TimeTracker.Application.Dtos.TaskExportTemplateDto)">
+            <inheritdoc/>
+            <param name="template">Nullable parameter.</param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:FluentValidation.ValidationException"/>
         </member>
         <member name="T:TimeTracker.Application.Contracts.ICommandFactory">
             <summary>
@@ -128,6 +381,122 @@
             </summary>
             <typeparam name="T">Query type.</typeparam>
         </member>
+        <member name="T:TimeTracker.Application.Contracts.IValidatorFactory">
+            <summary>
+            Create an instance of a validator.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Contracts.IValidatorFactory.GetInstance``1">
+            <summary>
+            Get an instance of a validator.
+            </summary>
+            <typeparam name="T">Validator type.</typeparam>
+        </member>
+        <member name="T:TimeTracker.Application.Dtos.GroupDto">
+            <summary>
+            Represents a group of task or a user story.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.GroupDto.Code">
+            <summary>
+            Code use in to identify the user story.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.GroupDto.Name">
+            <summary>
+            Name of the group.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.GroupDto.Tasks">
+            <summary>
+            Related tasks of the group.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Dtos.ScheduleDto">
+            <summary>
+            Represents a day of work.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.ScheduleDto.ScheduleDate">
+            <summary>
+            Day of work.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.ScheduleDto.TasksSchedules">
+            <summary>
+            Related tasks of the schedule.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Dtos.TaskDto">
+            <summary>
+            Represents a task of work.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.Code">
+            <summary>
+            Code use in to identify the user story.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.Name">
+            <summary>
+            Name of the group.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.DescriptionId">
+            <summary>
+            Id for the task description.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.Description">
+            <summary>
+            Template to be use in the Excel document.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.GroupId">
+            <summary>
+            Id for the task group.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.Group">
+            <summary>
+            Related group for the task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskDto.TasksSchedules">
+            <summary>
+            Relates schedules of the task.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Dtos.TaskExportTemplateDto">
+            <summary>
+            Represents the template to be use when the schedule is exported.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TaskExportTemplateDto.Template">
+            <summary>
+            Template to be use in the Excel document.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Application.Dtos.TasksScheduleDto">
+            <summary>
+            Represent a schedule for a task.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TasksScheduleDto.Duration">
+            <summary>
+            Working duration time.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TasksScheduleDto.ScheduleId">
+            <summary>
+            Id for the task schedule.
+            </summary>
+        </member>
+        <member name="P:TimeTracker.Application.Dtos.TasksScheduleDto.TaskId">
+            <summary>
+            Id for the task.
+            </summary>
+        </member>
         <member name="T:TimeTracker.Application.Factories.CommandFactory">
             <summary>
             Create an instance of an async command..
@@ -156,36 +525,132 @@
         <member name="M:TimeTracker.Application.Factories.QueryFactory.GetInstance``1">
             <inheritdoc/>
         </member>
+        <member name="T:TimeTracker.Application.Factories.ValidatorFactory">
+            <summary>
+            Create an instance of a validator.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.ValidatorFactory.#ctor(Ninject.IKernel)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="kernel">DI container.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Factories.ValidatorFactory.GetInstance``1">
+            <inheritdoc/>
+        </member>
+        <member name="T:TimeTracker.Application.Queries.GetCurrentScheduleQuery">
+            <summary>
+            Get the current day schedule.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetCurrentScheduleQuery.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetCurrentScheduleQuery.Run(System.Object)">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="param">Search query options.</param>
+            <returns>Selected Schedule.</returns>
+        </member>
         <member name="T:TimeTracker.Application.Queries.GetGroupsQuery">
             <summary>
             Get the list of available groups.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Queries.GetGroupsQuery.Run(TimeTracker.Domain.Group)">
+        <member name="M:TimeTracker.Application.Queries.GetGroupsQuery.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetGroupsQuery.Run(System.Func{TimeTracker.Core.Group,System.Boolean})">
             <summary>
             Execute the command.
             </summary>
-            <param name="queryOptions">Search query options.</param>
+            <param name="query">Search query options.</param>
             <returns>List of available groups.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="T:TimeTracker.Application.Queries.GetSchedulesQuery">
+            <summary>
+            Get the list of available schedules.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetSchedulesQuery.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetSchedulesQuery.Run(System.Func{TimeTracker.Core.Schedule,System.Boolean})">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="query">Search query options.</param>
+            <returns>List of available groups.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
         </member>
         <member name="T:TimeTracker.Application.Queries.GetTasksQuery">
             <summary>
             Get the list of available tasks.
             </summary>
         </member>
-        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.#ctor(TimeTracker.DataAccess.Contracts.IDataRepository,AutoMapper.IMapper)">
+        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,AutoMapper.IMapper)">
             <summary>
             Default constructor.
             </summary>
-            <param name="dataRepository">Handles data base operations.</param>
+            <param name="repositoryFactory">Handles data base operations.</param>
             <param name="mapper">Map objects.</param>
         </member>
-        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.Run(TimeTracker.Domain.Task)">
+        <member name="M:TimeTracker.Application.Queries.GetTasksQuery.Run(System.Func{TimeTracker.Core.Task,System.Boolean})">
             <summary>
             Execute the command.
             </summary>
-            <param name="queryOptions">Search query options.</param>
+            <param name="query">Search query options.</param>
             <returns>List of available tasks.</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetTasksScheduleQuery.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetTasksScheduleQuery.Run(System.Func{TimeTracker.Core.TasksSchedule,System.Boolean})">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="query">Search query options.</param>
+            <returns>List of available tasksSchedules.</returns>
+        </member>
+        <member name="T:TimeTracker.Application.Queries.GetTemplatesQuery">
+            <summary>
+            Get the list of available templates.
+            </summary>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetTemplatesQuery.#ctor(TimeTracker.Core.Contracts.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="repositoryFactory">Handles data base operations.</param>
+            <param name="mapper">Map objects.</param>
+        </member>
+        <member name="M:TimeTracker.Application.Queries.GetTemplatesQuery.Run(System.Func{TimeTracker.Core.ValueObjects.Description,System.Boolean})">
+            <summary>
+            Execute the command.
+            </summary>
+            <param name="query">Search query options.</param>
+            <returns>List of available groups.</returns>
+            <exception cref="T:System.ArgumentNullException"/>
         </member>
     </members>
 </doc>
