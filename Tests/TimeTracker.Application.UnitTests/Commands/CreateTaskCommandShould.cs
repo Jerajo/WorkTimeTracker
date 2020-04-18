@@ -1,53 +1,68 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using FluentAssertions.Execution;
+using FluentValidation;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using TimeTracker.Application.Commands;
-using TimeTracker.Tests.Common.Configuration;
+using TimeTracker.Application.Dtos;
+using TimeTracker.Application.Factories;
 
 namespace TimeTracker.Application.UnitTests.Commands
 {
-    class CreateTaskCommandShould
+    [TestClass]
+    public class CreateTaskCommandShould
     {
-        private CreateTaskCommand _Sut;
+        private CreateTaskCommand _sut;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            var factory = AssemblyConfiguration.CFactory;
-            _Sut = factory.GetInstance<CreateTaskCommand>();
+            var factory = AssemblyConfiguration.Kernel.Get<CommandFactory>();
+            _sut = factory.GetInstance<CreateTaskCommand>();
+        }
+
+        [TestMethod]
+        public async Task GuardAgainstNull()
+        {
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
         public void ValidateModelState()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _Sut.Run(new Domain.Task()));
+            var tempTask = new TaskDto()
+            {
+                Name = "",
+                GroupId = -1,
+                DescriptionId = -1
+            };
+
+            Func<Task> function = () => _sut.ExecuteAsync(tempTask);
+
+            using (new AssertionScope())
+            {
+                function.Should().Throw<ValidationException>()
+                    .And.Errors.Should()
+                    .Contain(x => x.PropertyName == nameof(TaskDto.Name));
+
+                function.Should().Throw<ValidationException>()
+                    .And.Errors.Should()
+                    .Contain(x => x.PropertyName == nameof(TaskDto.DescriptionId));
+
+                function.Should().Throw<ValidationException>()
+                    .And.Errors.Should()
+                    .Contain(x => x.PropertyName == nameof(TaskDto.GroupId));
+            }
         }
 
         [TestMethod]
-        public void ValidateUserStoryExits()
+        public async Task CreateNewTask()
         {
-            var tempTask = new Domain.Task()
-            {
-                Code = "100",
-                Name = "Test task",
-                DescriptionId = 1,
-                GroupId = -1
-            };
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _Sut.Run(tempTask));
-        }
+            var tempTask = new TaskDto() { Name = "Test task" };
 
-        [TestMethod]
-        public void CreateNewTask()
-        {
-            var tempTask = new Domain.Task()
-            {
-                Code = "100",
-                Name = "Test task",
-                DescriptionId = 1,
-                GroupId = 1 // optional data.
-            };
-            Assert.ThrowsException<ArgumentNullException>(() => _Sut.Run(tempTask));
+            await _sut.ExecuteAsync(tempTask);
         }
     }
 }

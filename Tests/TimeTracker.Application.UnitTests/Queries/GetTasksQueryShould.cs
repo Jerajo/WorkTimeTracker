@@ -1,45 +1,64 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using TimeTracker.Application.Commands;
+using TimeTracker.Application.Dtos;
 using TimeTracker.Application.Queries;
-using TimeTracker.Tests.Common.Configuration;
+using TimeTracker.Domain;
+using AsyncOperation = System.Threading.Tasks.Task;
 
-namespace TimeTracker.Application.UnitTests
+namespace TimeTracker.Application.UnitTests.Queries
 {
     [TestClass]
     public class GetTasksQueryShould
     {
-        private GetTasksQuery _Sut;
+        private CreateTaskCommand _createTaskCommand;
+        private GetTasksQuery _sut;
 
         [TestInitialize]
         public void TextInitialize()
         {
-            var factory = AssemblyConfiguration.QFactory;
-            _Sut = factory.GetInstance<GetTasksQuery>();
+            var kernel = AssemblyConfiguration.Kernel;
+            _createTaskCommand = kernel.Get<CreateTaskCommand>();
+            _sut = kernel.Get<GetTasksQuery>();
         }
 
         [TestMethod]
-        public void GualdAgainstNullArguments()
+        public void GuardAgainstNullArguments()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _Sut.Run(null));
+            Assert.ThrowsException<ArgumentNullException>(() => _sut.Run(null));
         }
 
         [TestMethod]
-        public void ReturnEmptyListOrAListOfTasks()
+        public async AsyncOperation ReturnAEmptyListOfTasks()
         {
-            List<Domain.Task> emptyList = new List<Domain.Task>();
-            var task_run = _Sut.Run(new Domain.Task()
+            await _createTaskCommand.ExecuteAsync(new TaskDto
             {
-                Id = 1,
-                Code = "100",
-                Name = "Task test"
+                Name = nameof(ReturnAListOfTasks),
+                DescriptionId = 1
             });
-            
-            var result = task_run.Result;
 
-            Assert.IsInstanceOfType(result, typeof(List<Domain.Task>));
-            CollectionAssert.Equals(result, emptyList);
+            var result = await _sut.Run(x => false);
+
+            result.Should().BeAssignableTo<List<Task>>()
+                .And.BeEmpty();
+        }
+
+        [TestMethod]
+        public async AsyncOperation ReturnAListOfTasks()
+        {
+            await _createTaskCommand.ExecuteAsync(new TaskDto
+            {
+                Name = nameof(ReturnAListOfTasks),
+                DescriptionId = 1
+            });
+
+            var result = await _sut.Run(x => true);
+
+            result.Should().BeAssignableTo<List<Task>>()
+                .And.NotBeEmpty();
         }
     }
 }

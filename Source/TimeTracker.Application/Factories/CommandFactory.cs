@@ -1,4 +1,5 @@
 ﻿using Ninject;
+using System.Windows.Input;
 using TimeTracker.Application.Contracts;
 
 namespace TimeTracker.Application.Factories
@@ -8,7 +9,7 @@ namespace TimeTracker.Application.Factories
     /// </summary>
     public class CommandFactory : ICommandFactory
     {
-        private readonly IKernel _Kernel;
+        private readonly IKernel _kernel;
 
         /// <summary>
         /// Default constructor.
@@ -16,13 +17,13 @@ namespace TimeTracker.Application.Factories
         /// <param name="kernel">DI container.</param>
         public CommandFactory(IKernel kernel)
         {
-            _Kernel = kernel;
+            _kernel = kernel;
         }
 
         /// <inheritdoc/>
         public T GetInstance<T>() where T : ICommand
         {
-            return _Kernel.Get<T>();
+            return _kernel.Get<T>();
         }
     }
 }

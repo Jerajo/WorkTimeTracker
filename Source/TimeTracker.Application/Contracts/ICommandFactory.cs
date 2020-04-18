@@ -1,4 +1,7 @@
-﻿namespace TimeTracker.Application.Contracts
+﻿
+using System.Windows.Input;
+
+namespace TimeTracker.Application.Contracts
 {
     /// <summary>
     /// Create an instance of an async command..

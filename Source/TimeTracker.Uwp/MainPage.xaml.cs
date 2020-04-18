@@ -1,18 +1,45 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Microsoft.EntityFrameworkCore;
+using Ninject;
+using Prism;
+using Prism.Ioc;
+using System.Reflection;
+using TimeTracker.Core.Contracts;
+using TimeTracker.Xamarin.Configuration;
+using Windows.Storage;
 
-namespace TimeTracker.Uwp
+namespace WorkTimeTracker.UWP
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
+        private readonly IKernel _kernel;
+
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            var assemblyName = typeof(MainPage).GetTypeInfo().Assembly.GetName().Name;
+            var connectionString = $"Data Source={ApplicationData.Current.LocalFolder.Path}/WorkTimeTracker.db";
+            _kernel = new StandardKernel(new NinjectDiModule(options => options
+                .UseSqlite(connectionString, sql => sql.MigrationsAssembly(assemblyName))
+                .UseLazyLoadingProxies()
+                .Options));
+            //Debug.Fail(ApplicationData.Current.LocalFolder.Path);
+            var dbContext = _kernel.Get<IDbContext>();
+            if (!dbContext.CanConnect())
+            {
+                dbContext.EnsureCreated().Wait();
+                dbContext.FetchInitialData().Wait();
+            }
+
+            LoadApplication(new TimeTracker.Xamarin.App(new UwpInitializer(), _kernel));
+        }
+    }
+
+    public class UwpInitializer : IPlatformInitializer
+    {
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            // Register any platform specific implementations
         }
     }
 }
