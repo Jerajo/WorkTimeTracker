@@ -4,15 +4,12 @@ using System.Threading.Tasks;
 using TimeTracker.Core;
 using TimeTracker.Core.Contracts;
 using TimeTracker.Core.ValueObjects;
-using AsyncOperation = System.Threading.Tasks.Task;
 using Task = TimeTracker.Core.Task;
 
 namespace TimeTracker.EF6.Services
 {
     public class WorkTimeTracker : DbContext, IDbContext
     {
-        public WorkTimeTracker() { }
-
         public WorkTimeTracker(DbContextOptions<WorkTimeTracker> options) : base(options) { }
 
         #region Entities
@@ -30,18 +27,6 @@ namespace TimeTracker.EF6.Services
         #endregion
 
         #region Configuration
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var option = optionsBuilder.Options;
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlite("Data Source=WorkTimeTracker.db");
-                optionsBuilder.UseLazyLoadingProxies();
-            }
-
-            base.OnConfiguring(optionsBuilder);
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,14 +66,19 @@ namespace TimeTracker.EF6.Services
 
         #region Interface Methods
 
+        public bool CanConnect()
+        {
+            return Database.CanConnect();
+        }
+
         public Task<bool> EnsureCreated()
         {
-            return AsyncOperation.FromResult(Database.EnsureCreated());
+            return Database.EnsureCreatedAsync();
         }
 
         public Task<bool> EnsureDeleted()
         {
-            return AsyncOperation.FromResult(Database.EnsureDeleted());
+            return Database.EnsureDeletedAsync();
         }
 
         public Task<int> FetchInitialData()

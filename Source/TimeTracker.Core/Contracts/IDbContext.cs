@@ -14,6 +14,8 @@ namespace TimeTracker.Core.Contracts
         /// </summary>
         /// <returns>Count of affected rows.</returns>
         int SaveChanges();
+        bool CanConnect();
+
         /// <summary>
         /// Save all uncommitted changes asynchronously.
         /// </summary>
