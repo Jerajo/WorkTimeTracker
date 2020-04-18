@@ -56,6 +56,7 @@
     <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj" />
     <ProjectReference Include="..\TimeTracker.Domain\TimeTracker.Domain.csproj" />
     <ProjectReference Include="..\TimeTracker.EF6\TimeTracker.EF6.csproj" />
+    <ProjectReference Include="..\Xamarin.Forms.PowerControls\Xamarin.Forms.PowerControls.csproj" />
   </ItemGroup>
 
   <ItemGroup>
