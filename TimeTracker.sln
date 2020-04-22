@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29905.134
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.Application", "Source\TimeTracker.Application\TimeTracker.Application.csproj", "{D9981BE2-4C97-48FB-A576-98D6707E6B7F}"
 EndProject
@@ -18,11 +18,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCEF6E50-EAE3-4CAE-A379-03F8BC14CE72}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.filenesting.json = .filenesting.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.Application.UnitTests", "Tests\TimeTracker.Application.UnitTests\TimeTracker.Application.UnitTests.csproj", "{6017ECA9-D06A-4E4D-9875-B781F980CAA2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Precentation", "Precentation", "{BB7DC064-D317-438A-B4A1-59BC7E1F199D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BB7DC064-D317-438A-B4A1-59BC7E1F199D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{01DEBF4B-67E9-4AAC-89FA-E299416150C5}"
 EndProject
@@ -42,7 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.UWP", "Source\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.EF6", "Source\TimeTracker.EF6\TimeTracker.EF6.csproj", "{C1BC8361-D23A-44FD-A34D-3F3929B297AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Forms.PowerControls", "Source\Xamarin.Forms.PowerControls\Xamarin.Forms.PowerControls.csproj", "{1E1CBC7A-DBAB-4678-B199-70F236ABB917}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xamarin.Forms.PowerControls", "Source\Xamarin.Forms.PowerControls\Xamarin.Forms.PowerControls.csproj", "{1E1CBC7A-DBAB-4678-B199-70F236ABB917}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -298,8 +299,8 @@ Global
 		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|ARM64.Build.0 = Debug|Any CPU
 		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|x64.Build.0 = Debug|Any CPU
-		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|x86.Build.0 = Debug|Any CPU
+		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|x86.ActiveCfg = Debug|x86
+		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Debug|x86.Build.0 = Debug|x86
 		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E1CBC7A-DBAB-4678-B199-70F236ABB917}.Release|ARM.ActiveCfg = Release|Any CPU

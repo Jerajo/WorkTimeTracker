@@ -13,28 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Asserts\Icons\logo(1).svg" />
-    <None Remove="Asserts\Icons\logo.svg" />
-    <None Remove="Asserts\Icons\Media-Pause-01.svg" />
-    <None Remove="Asserts\Icons\Plus.svg" />
-    <None Remove="Asserts\Icons\Stop-Clock.svg" />
-    <None Remove="Asserts\Icons\Stop-Media.svg" />
-    <None Remove="Asserts\Icons\Tasks.svg" />
-    <None Remove="Asserts\Icons\Trash-can-02.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Asserts\Icons\logo(1).svg" />
-    <Content Include="Asserts\Icons\logo.svg" />
-    <Content Include="Asserts\Icons\Media-Pause-01.svg" />
-    <Content Include="Asserts\Icons\Plus.svg" />
-    <Content Include="Asserts\Icons\Stop-Clock.svg" />
-    <Content Include="Asserts\Icons\Stop-Media.svg" />
-    <Content Include="Asserts\Icons\Tasks.svg" />
-    <Content Include="Asserts\Icons\Trash-can-02.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.3" />
@@ -48,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Layout\Header\" />
+    <Folder Include="Layout\Tracker\" />
     <Folder Include="Styles\" />
   </ItemGroup>
 
@@ -60,9 +40,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Shell\MainShell.xaml.cs">
-      <DependentUpon>MainShell.xaml</DependentUpon>
-    </Compile>
+    <EmbeddedResource Update="Domains\Group\GroupCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Domains\Schedule\ScheduleCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Domains\Task\TaskCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Layout\MainLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Domains\Schedule\SchedulesRegion.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Domains\Task\TasksRegion.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

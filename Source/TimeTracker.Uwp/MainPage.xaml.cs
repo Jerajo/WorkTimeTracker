@@ -19,11 +19,11 @@ namespace WorkTimeTracker.UWP
 
             var assemblyName = typeof(MainPage).GetTypeInfo().Assembly.GetName().Name;
             var connectionString = $"Data Source={ApplicationData.Current.LocalFolder.Path}/WorkTimeTracker.db";
-            _kernel = new StandardKernel(new NinjectDiModule(options => options
+            _kernel = new StandardKernel(new PersistenceModule(options => options
                 .UseSqlite(connectionString, sql => sql.MigrationsAssembly(assemblyName))
                 .UseLazyLoadingProxies()
                 .Options));
-            //Debug.Fail(ApplicationData.Current.LocalFolder.Path);
+
             var dbContext = _kernel.Get<IDbContext>();
             if (!dbContext.CanConnect())
             {

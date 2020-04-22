@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TimeTracker.Xamarin.Layout.MainLayout"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:icons="clr-namespace:Xamarin.Forms.PowerControls.Resources.Fonts;assembly=Xamarin.Forms.PowerControls"
+	xmlns:menu="clr-namespace:Xamarin.Forms.PowerControls.Menus;assembly=Xamarin.Forms.PowerControls"
+	xmlns:prism="http://prismlibrary.com"
+	Title="Main Page">
+
+	<Grid RowSpacing="0">
+		<!--#region COLUMNS AND ROWS-->
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<!--#endregion-->
+
+		<!--#region HEADER-->
+		<Grid ColumnSpacing="0">
+			<!--#region COLUMNS AND ROWS-->
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<!--#endregion-->
+
+			<!--#region LOGO-->
+			<Label
+				FontFamily="{StaticResource FontAwesomeRegularIcons}"
+				FontSize="44"
+				Text="{x:Static icons:FontAwesomeRegular.Angry}" />
+			<!--#endregion-->
+
+			<!--#region SEARCH BAR-->
+			<Label
+				Grid.Column="1"
+				Text="{Binding Message}"
+				TextColor="{Binding FontColor}" />
+			<!--#endregion-->
+		</Grid>
+		<!--#endregion-->
+
+		<Grid Grid.Row="1" ColumnSpacing="0">
+			<!--#region COLUMNS AND ROWS-->
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<!--#endregion-->
+
+			<!--#region LATERAL MENU-->
+			<ContentView BindingContext="{Binding NavigationMenu}">
+				<menu:NavigationMenu
+					IsLastItemFooter="True"
+					ItemsSource="{Binding Tabs, Mode=OneTime}"
+					SelectedItem="{Binding SelectedTab, Mode=TwoWay}" />
+			</ContentView>
+			<!--#endregion-->
+
+			<!--#region MAIN CONTENT-->
+			<Grid Grid.Column="1" RowSpacing="0">
+				<!--#region COLUMNS AND ROWS-->
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<!--#endregion-->
+
+				<!--#region MAIN SHELL-->
+				<ContentPresenter
+					x:Name="MainContent"
+					x:FieldModifier="public"
+					BackgroundColor="Fuchsia" />
+				<!--#endregion-->
+
+				<!--#region QUICK TRACKER-->
+				<Grid Grid.Row="1" BackgroundColor="YellowGreen">
+					<Label Text="Soy la parte de abajo" />
+				</Grid>
+				<!--#endregion-->
+			</Grid>
+			<!--#endregion-->
+		</Grid>
+	</Grid>
+</ContentPage>
