@@ -2,4 +2,11 @@
 	x:Class="WorkTimeTracker.UWP.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:local="using:WorkTimeTracker.UWP" />
+	xmlns:local="using:WorkTimeTracker.UWP">
+	<Application.Resources>
+		<ResourceDictionary>
+			<SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="{ThemeResource SystemListAccentHighColor}" />
+			<SolidColorBrush x:Key="ButtonForegroundDisabled" Color="{ThemeResource SystemBaseHighColor}" />
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>
