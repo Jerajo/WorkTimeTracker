@@ -31,7 +31,7 @@ namespace WorkTimeTracker.Droid
             var assemblyName = typeof(MainActivity).GetTypeInfo().Assembly.FullName;
             var connectionString = $"Data Source={ApplicationInfo.DataDir}/WorkTimeTracker.db";
 
-            _kernel = new StandardKernel(new NinjectDiModule(options => options
+            _kernel = new StandardKernel(new PersistenceModule(options => options
                 .UseSqlite(connectionString, sql => sql.MigrationsAssembly(assemblyName))
                 .UseLazyLoadingProxies()
                 .Options));
