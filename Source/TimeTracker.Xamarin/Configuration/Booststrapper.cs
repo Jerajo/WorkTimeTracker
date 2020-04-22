@@ -2,7 +2,13 @@
 using Prism.Ioc;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Factories;
-using TimeTracker.Xamarin.Shell;
+using TimeTracker.Xamarin.Contracts;
+using TimeTracker.Xamarin.Domains.Group;
+using TimeTracker.Xamarin.Domains.Schedule;
+using TimeTracker.Xamarin.Domains.Task;
+using TimeTracker.Xamarin.Layout;
+using TimeTracker.Xamarin.Resources;
+using TimeTracker.Xamarin.Services;
 
 namespace TimeTracker.Xamarin.Configuration
 {
@@ -10,7 +16,16 @@ namespace TimeTracker.Xamarin.Configuration
     {
         public static IContainerRegistry RegisterNavigation(this IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<MainShell, MainShellModel>();
+            containerRegistry.Register<IRegionNavigationService, RegionNavigationService>();
+            containerRegistry.RegisterForNavigation<MainLayout, MainLayoutModel>();
+
+            containerRegistry.RegisterRegion<GroupCell, GroupCellModel>(Regions.GroupCell);
+            containerRegistry.RegisterRegion<TaskCell, TaskCellModel>(Regions.TaskCell);
+            containerRegistry.RegisterRegion<ScheduleCell, ScheduleCellModel>(Regions.ScheduleCell);
+
+            containerRegistry.RegisterRegion<TasksRegion, TasksRegionModel>(Regions.Tasks);
+            containerRegistry.RegisterRegion<SchedulesRegion, SchedulesRegionModel>(Regions.Schedules);
+
             return containerRegistry;
         }
 
@@ -18,6 +33,7 @@ namespace TimeTracker.Xamarin.Configuration
         {
             containerRegistry.Register<Contracts.ICommandFactory, Services.CommandFactory>();
             containerRegistry.Register<IQueryFactory, QueryFactory>();
+            containerRegistry.Register<IRegionNavigationService, RegionNavigationService>();
             return containerRegistry;
         }
 
