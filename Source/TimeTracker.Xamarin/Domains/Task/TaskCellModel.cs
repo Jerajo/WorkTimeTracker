@@ -1,6 +1,8 @@
-﻿namespace TimeTracker.Xamarin.Domains.Task
+﻿using Xamarin.Forms.PowerControls.Contracts;
+
+namespace TimeTracker.Xamarin.Domains.Task
 {
-    public class TaskCellModel
+    public class TaskCellModel : BindableBase
     {
     }
 }
