@@ -14,20 +14,13 @@ namespace TimeTracker.Xamarin.Services
 {
     public class RegionNavigationService : IRegionNavigationService
     {
-        #region Atributes
-
         private readonly IApplicationProvider _applicationProvider;
-        private readonly global::Xamarin.Forms.Application _currentApplication;
         private readonly IContainer _containerProvider;
 
-        #endregion
-
         public RegionNavigationService(IApplicationProvider applicationProvider,
-            global::Xamarin.Forms.Application currentApplication,
             IContainer containerProvider)
         {
             _applicationProvider = applicationProvider;
-            _currentApplication = currentApplication;
             _containerProvider = containerProvider;
         }
 
@@ -38,6 +31,8 @@ namespace TimeTracker.Xamarin.Services
         public static Dictionary<string, View> PagesContainer { get; } = new Dictionary<string, View>();
 
         #endregion
+
+        #region Interface Methods
 
         public NavigationResult NavigateBack(INavigationParameters parameters) =>
             PeekPreviousRegion(parameters).Result;
@@ -50,6 +45,10 @@ namespace TimeTracker.Xamarin.Services
 
         public Task<NavigationResult> NavigateToAsync(string path, INavigationParameters parameters) =>
             PushRegion(path, parameters);
+
+        #endregion
+
+        #region Auxiliary Methods
 
         private async Task<NavigationResult> PushRegion(string path, INavigationParameters parameters)
         {
@@ -127,7 +126,8 @@ namespace TimeTracker.Xamarin.Services
 
                 if (NavigationHistory.Count == 0)
                 {
-                    _currentApplication.Quit();
+                    //TODO: exit the application.
+                    //_applicationProvider..Quit();
                     result.Success = true;
                     return result;
                 }
@@ -179,5 +179,7 @@ namespace TimeTracker.Xamarin.Services
 
             return queryParameters;
         }
+
+        #endregion
     }
 }

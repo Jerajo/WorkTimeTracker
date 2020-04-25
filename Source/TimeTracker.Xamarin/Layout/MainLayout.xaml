@@ -17,7 +17,7 @@
 		<!--#endregion-->
 
 		<!--#region HEADER-->
-		<Grid ColumnSpacing="0">
+		<Grid BackgroundColor="#313131" ColumnSpacing="0">
 			<!--#region COLUMNS AND ROWS-->
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
@@ -33,10 +33,12 @@
 			<!--#endregion-->
 
 			<!--#region SEARCH BAR-->
-			<Label
+			<SearchBar
 				Grid.Column="1"
+				Margin="50,0"
 				Text="{Binding Message}"
-				TextColor="{Binding FontColor}" />
+				TextColor="{Binding FontColor}"
+				VerticalOptions="Center" />
 			<!--#endregion-->
 		</Grid>
 		<!--#endregion-->
@@ -50,11 +52,11 @@
 			<!--#endregion-->
 
 			<!--#region LATERAL MENU-->
-			<ContentView BindingContext="{Binding NavigationMenu}">
+			<ContentView BackgroundColor="#696969" BindingContext="{Binding NavigationMenu}">
 				<menu:NavigationMenu
 					IsLastItemFooter="True"
-					ItemsSource="{Binding Tabs, Mode=OneTime}"
-					SelectedItem="{Binding SelectedTab, Mode=TwoWay}" />
+					ItemsSource="{Binding Tabs, Mode=OneWay}"
+					SelectedItem="{Binding SelectedTab, Mode=OneWayToSource}" />
 			</ContentView>
 			<!--#endregion-->
 
@@ -68,10 +70,7 @@
 				<!--#endregion-->
 
 				<!--#region MAIN SHELL-->
-				<ContentPresenter
-					x:Name="MainContent"
-					x:FieldModifier="public"
-					BackgroundColor="Fuchsia" />
+				<ContentPresenter x:Name="MainContent" x:FieldModifier="public" />
 				<!--#endregion-->
 
 				<!--#region QUICK TRACKER-->
