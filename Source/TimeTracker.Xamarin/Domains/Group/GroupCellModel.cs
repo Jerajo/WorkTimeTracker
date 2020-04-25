@@ -1,16 +1,23 @@
-﻿using TimeTracker.Application.Contracts;
-using TimeTracker.Xamarin.Contracts;
-using ICommandFactory = TimeTracker.Xamarin.Contracts.ICommandFactory;
+﻿using System;
+using Xamarin.Forms.PowerControls.Contracts;
 
 namespace TimeTracker.Xamarin.Domains.Group
 {
-    public class GroupCellModel : RegionModelBase
+    /// <summary>
+    /// Represents a group of task or a user story.
+    /// </summary>
+    public class GroupCellModel : BindableBase
     {
-        public GroupCellModel(IRegionNavigationService navigationService,
-            ICommandFactory commandFactory,
-            IQueryFactory queryFactory)
-            : base(navigationService, commandFactory, queryFactory)
-        {
-        }
+        /// <summary>
+        /// Code use in to identify the user story.
+        /// </summary>
+        public string Code { get; set; }
+        /// <summary>
+        /// Name of the group.
+        /// </summary>
+        public string Name { get; set; }
+        public TimeSpan ProjectedTime { get; set; }
+        public TimeSpan ActualTime { get; set; }
+        public bool Billable { get; set; }
     }
 }
