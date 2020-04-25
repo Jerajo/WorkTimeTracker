@@ -6,12 +6,14 @@ using System.Reflection;
 using TimeTracker.Core.Contracts;
 using TimeTracker.Xamarin.Configuration;
 using Windows.Storage;
+using Windows.UI.ViewManagement;
 
 namespace WorkTimeTracker.UWP
 {
     public sealed partial class MainPage
     {
         private readonly IKernel _kernel;
+        private readonly UISettings _uiSettings;
 
         public MainPage()
         {
@@ -32,6 +34,17 @@ namespace WorkTimeTracker.UWP
             }
 
             LoadApplication(new TimeTracker.Xamarin.App(new UwpInitializer(), _kernel));
+
+            _uiSettings = new UISettings();
+            _uiSettings.ColorValuesChanged += ColorValuesChanged;
+        }
+
+        private void ColorValuesChanged(UISettings sender, object args)
+        {
+            Xamarin.Essentials.MainThread.BeginInvokeOnMainThread(() =>
+            {
+                TimeTracker.Xamarin.App.ApplyTheme();
+            });
         }
     }
 
