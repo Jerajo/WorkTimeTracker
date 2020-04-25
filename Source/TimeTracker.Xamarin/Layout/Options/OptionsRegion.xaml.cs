@@ -1,11 +1,11 @@
 ﻿using Xamarin.Forms.Xaml;
 
-namespace TimeTracker.Xamarin.Domains.Group
+namespace TimeTracker.Xamarin.Layout.Options
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GroupCell
+    public partial class OptionsRegion
     {
-        public GroupCell()
+        public OptionsRegion()
         {
             InitializeComponent();
         }

@@ -7,6 +7,7 @@ using TimeTracker.Xamarin.Domains.Group;
 using TimeTracker.Xamarin.Domains.Schedule;
 using TimeTracker.Xamarin.Domains.Task;
 using TimeTracker.Xamarin.Layout;
+using TimeTracker.Xamarin.Layout.Options;
 using TimeTracker.Xamarin.Resources;
 using TimeTracker.Xamarin.Services;
 
@@ -25,6 +26,7 @@ namespace TimeTracker.Xamarin.Configuration
 
             containerRegistry.RegisterRegion<TasksRegion, TasksRegionModel>(Regions.Tasks);
             containerRegistry.RegisterRegion<SchedulesRegion, SchedulesRegionModel>(Regions.Schedules);
+            containerRegistry.RegisterRegion<OptionsRegion, OptionsRegionModel>(Regions.Options);
 
             return containerRegistry;
         }
@@ -34,6 +36,7 @@ namespace TimeTracker.Xamarin.Configuration
             containerRegistry.Register<Contracts.ICommandFactory, Services.CommandFactory>();
             containerRegistry.Register<IQueryFactory, QueryFactory>();
             containerRegistry.Register<IRegionNavigationService, RegionNavigationService>();
+            containerRegistry.Register<IDialogService, DialogService>();
             return containerRegistry;
         }
 

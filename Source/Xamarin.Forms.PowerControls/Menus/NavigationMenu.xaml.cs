@@ -64,7 +64,7 @@ namespace Xamarin.Forms.PowerControls.Menus
         }
 
         public static readonly BindableProperty SelectedItemProperty =
-            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(NavigationMenu), true);
+            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(NavigationMenu));
 
         public object ItemsSource
         {

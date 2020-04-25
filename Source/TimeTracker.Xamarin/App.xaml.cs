@@ -1,8 +1,10 @@
 ﻿using Ninject;
 using Prism;
 using Prism.Ioc;
+using System.Threading.Tasks;
 using TimeTracker.Xamarin.Configuration;
 using TimeTracker.Xamarin.Contracts;
+using Xamarin.Essentials;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -18,12 +20,6 @@ namespace TimeTracker.Xamarin
         {
             Kernel = kernel;
             Boosts();
-        }
-
-        private void Boosts()
-        {
-            Initialize();
-            OnInitialized();
         }
 
         protected override void Initialize()
@@ -51,6 +47,27 @@ namespace TimeTracker.Xamarin
                 .RegisterContainer(Kernel)
                 .RegisterTypes()
                 .RegisterInstance<global::Xamarin.Forms.Application>(this);
+        }
+
+        private void Boosts()
+        {
+            Initialize();
+            OnInitialized();
+        }
+
+        public static Task ApplyTheme()
+        {
+            if (AppInfo.RequestedTheme == AppTheme.Dark)
+            {
+                // Change to dark theme
+                // e.g. App.Current.Resources = new YourDarkTheme();
+            }
+            else
+            {
+                // Change to light theme
+                // e.g. App.Current.Resources = new YourLightTheme();
+            }
+            return Task.CompletedTask;
         }
     }
 }

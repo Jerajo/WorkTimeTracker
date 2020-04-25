@@ -1,14 +1,71 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ViewCell
+<SwipeView
 	x:Class="TimeTracker.Xamarin.Domains.Task.TaskCell"
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:icons="clr-namespace:Xamarin.Forms.PowerControls.Resources.Fonts;assembly=Xamarin.Forms.PowerControls"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
-	<ViewCell.View>
-		<StackLayout>
-			<Label Text="Hello Xamarin.Forms!" />
+	<!--#region Left Items-->
+	<SwipeView.LeftItems>
+		<SwipeItems>
+			<SwipeItem BackgroundColor="Red" Text="Eliminar" />
+		</SwipeItems>
+	</SwipeView.LeftItems>
+	<!--#endregion-->
+
+	<!--#region Content-->
+	<Grid
+		Padding="8"
+		BackgroundColor="Gray"
+		ColumnSpacing="0">
+		<!--#region COLUMNS AND ROWS-->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<!--#endregion-->
+
+		<Label
+			Margin="8,0"
+			FontFamily="{StaticResource FontAwesomeSolidIcons}"
+			Text="{x:Static icons:FontAwesomeSolid.ArrowAltCircleUp}"
+			VerticalOptions="Center" />
+
+		<StackLayout Grid.Column="1" Spacing="0">
+			<Label
+				Margin="8,0"
+				Text="2649"
+				VerticalOptions="Center" />
+			<BoxView
+				Margin="8,0"
+				BackgroundColor="White"
+				WidthRequest="2" />
 		</StackLayout>
-	</ViewCell.View>
-</ViewCell>
+
+		<Label
+			Grid.Column="2"
+			Margin="8,0"
+			LineBreakMode="HeadTruncation"
+			Text="Soy un grupo de ejemplo con un texto lo bastante largo como para ocultarme."
+			VerticalOptions="Center" />
+
+		<Label
+			Grid.Column="3"
+			Margin="8,0"
+			Text="02:35:40"
+			VerticalOptions="Center" />
+	</Grid>
+	<!--#endregion-->
+
+	<!--#region Right Items-->
+	<SwipeView.RightItems>
+		<SwipeItems>
+			<SwipeItem BackgroundColor="LawnGreen" Text="Editar" />
+		</SwipeItems>
+	</SwipeView.RightItems>
+	<!--#endregion-->
+</SwipeView>
