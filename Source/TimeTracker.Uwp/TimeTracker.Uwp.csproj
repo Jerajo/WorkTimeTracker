@@ -133,7 +133,10 @@
     <PackageReference Include="Prism.DryIoc.Forms">
       <Version>7.2.0.1422</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.5.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.657" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TimeTracker.Core\TimeTracker.Core.csproj">
@@ -148,6 +151,10 @@
       <Project>{3aa98a34-5b0c-4b6b-b8f5-a33c5e7c71f9}</Project>
       <Name>TimeTracker.Xamarin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xamarin.Forms.PowerControls\Xamarin.Forms.PowerControls.csproj">
+      <Project>{1e1cbc7a-dbab-4678-b199-70f236abb917}</Project>
+      <Name>Xamarin.Forms.PowerControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Fonts\FontAwesome5Brands.otf" />
@@ -155,7 +162,6 @@
     <Content Include="Assets\Fonts\FontAwesome5Solid.otf" />
     <None Include="WorkTimeTracker.UWP_TemporaryKey.pfx" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

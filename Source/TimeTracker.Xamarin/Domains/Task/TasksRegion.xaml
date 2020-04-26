@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+	x:Class="TimeTracker.Xamarin.Domains.Task.TasksRegion"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:local="clr-namespace:TimeTracker.Xamarin.Domains.Group;assembly=TimeTracker.Xamarin"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+	<ContentView.Content>
+		<ScrollView
+			Padding="8,0"
+			HorizontalScrollBarVisibility="Never"
+			VerticalScrollBarVisibility="Always">
+			<StackLayout>
+				<local:GroupCell Margin="8,4" />
+				<local:GroupCell Margin="8,4" />
+				<local:GroupCell Margin="8,4" />
+			</StackLayout>
+		</ScrollView>
+	</ContentView.Content>
+</ContentView>

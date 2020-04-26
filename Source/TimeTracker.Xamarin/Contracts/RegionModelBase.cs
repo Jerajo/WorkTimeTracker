@@ -1,23 +1,22 @@
-﻿using Prism.Mvvm;
+﻿using DryIoc;
+using Prism.Mvvm;
 using Prism.Navigation;
 using TimeTracker.Application.Contracts;
 
 namespace TimeTracker.Xamarin.Contracts
 {
-    public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
+    public class RegionModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
     {
-        public ViewModelBase(INavigationService navigationService,
-            ICommandFactory commandFactory,
-            IQueryFactory queryFactory)
+        public RegionModelBase(IContainer container)
         {
-            NavigationService = navigationService;
-            CommandFactory = commandFactory;
-            QueryFactory = queryFactory;
+            NavigationService = container.Resolve<IRegionNavigationService>();
+            CommandFactory = container.Resolve<ICommandFactory>(); ;
+            QueryFactory = container.Resolve<IQueryFactory>(); ;
         }
 
         #region Properties
 
-        protected INavigationService NavigationService { get; }
+        protected IRegionNavigationService NavigationService { get; }
         protected ICommandFactory CommandFactory { get; }
         public IQueryFactory QueryFactory { get; }
         public string Title { get; set; }

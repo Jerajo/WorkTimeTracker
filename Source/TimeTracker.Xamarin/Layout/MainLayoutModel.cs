@@ -1,32 +1,34 @@
-﻿using Prism.Navigation;
+﻿using DryIoc;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Queries;
-using TimeTracker.Xamarin.Contracts;
+using TimeTracker.Xamarin.Layout.NavigationMenu;
 using Xamarin.Forms;
 using AsyncOperation = System.Threading.Tasks.Task;
 using ICommandFactory = TimeTracker.Xamarin.Contracts.ICommandFactory;
 
-namespace TimeTracker.Xamarin.Shell
+namespace TimeTracker.Xamarin.Layout
 {
-    public class MainShellModel : ViewModelBase
+    public class MainLayoutModel : BindableBase
     {
-        public MainShellModel(INavigationService navigationService,
-            ICommandFactory commandFactory,
-            IQueryFactory queryFactory)
-            : base(navigationService, commandFactory, queryFactory)
+        public MainLayoutModel(ICommandFactory commandFactory,
+            IQueryFactory queryFactory,
+            IContainer container)
         {
-            Title = "Main Page";
-
             //GetTasks = commandFactory.Make<TaskDto, UpdateTaskCommand>();
             GetTasks = queryFactory.GetInstance<GetTasksQuery>();
 
             var tasks = GetTasks.Run(x => true);
+            NavigationMenu = container.Resolve<DeskTopNavigationMenuModel>();
+
             ChangeColor();
         }
 
         public GetTasksQuery GetTasks { get; }
+
+        public DeskTopNavigationMenuModel NavigationMenu { get; }
 
         public int Count { get; set; }
 
@@ -48,7 +50,7 @@ namespace TimeTracker.Xamarin.Shell
             {
                 await AsyncOperation.Delay(1000);
                 var mod = Count % 5;
-                FontColor = Colors[Math.Abs(Count - (Count - (4 - (Count % 5))))];
+                FontColor = Colors[Math.Abs(Count - (Count - (4 - Count % 5)))];
                 Message = $"Color ha cambiado {Count} beses.";
             } while (Count++ < 50);
         }

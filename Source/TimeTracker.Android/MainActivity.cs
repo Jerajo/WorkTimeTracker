@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using Microsoft.EntityFrameworkCore;
 using Ninject;
 using Prism;
@@ -16,7 +17,9 @@ namespace WorkTimeTracker.Droid
         Icon = "@mipmap/ic_launcher",
         Theme = "@style/MainTheme",
         MainLauncher = true,
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+        ConfigurationChanges = ConfigChanges.ScreenSize |
+                               ConfigChanges.Orientation |
+                               ConfigChanges.UiMode)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private IKernel _kernel;
@@ -27,11 +30,12 @@ namespace WorkTimeTracker.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            App.ApplyTheme();
 
             var assemblyName = typeof(MainActivity).GetTypeInfo().Assembly.FullName;
             var connectionString = $"Data Source={ApplicationInfo.DataDir}/WorkTimeTracker.db";
 
-            _kernel = new StandardKernel(new NinjectDiModule(options => options
+            _kernel = new StandardKernel(new PersistenceModule(options => options
                 .UseSqlite(connectionString, sql => sql.MigrationsAssembly(assemblyName))
                 .UseLazyLoadingProxies()
                 .Options));
@@ -43,8 +47,21 @@ namespace WorkTimeTracker.Droid
                 dbContext.FetchInitialData().Wait();
             }
 
+            Xamarin.Essentials.Platform.Init(this, bundle);
+            Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer(), _kernel));
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode,
+            string[] permissions,
+            [GeneratedEnum] Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode,
+                permissions,
+                grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
