@@ -34,6 +34,7 @@ namespace TimeTracker.Xamarin.Layout.Notifications
         private void Card_Tapped(object sender, System.EventArgs e)
         {
             RevertCommand?.Execute(CommandParameter);
+            IsDismissed = true;
         }
 
         private void SetStyle()
