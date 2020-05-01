@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TimeTracker.Application.Dtos;
 using TimeTracker.Core.ValueObjects;
+using TimeTracker.Xamarin.Domains.Group;
 
 namespace TimeTracker.Xamarin.Configuration
 {
@@ -21,6 +22,8 @@ namespace TimeTracker.Xamarin.Configuration
             CreateMap<GroupDto, Core.Group>();
             CreateMap<Core.Group, Domain.Group>();
             CreateMap<Domain.Group, Core.Group>();
+            CreateMap<Domain.Group, GroupCellModel>();
+            CreateMap<GroupCellModel, GroupDto>();
 
             // --------- // TASK // --------- //
             CreateMap<Core.Task, TaskDto>();

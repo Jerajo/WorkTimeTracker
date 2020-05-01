@@ -2,6 +2,7 @@
 using Prism.Commands;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TimeTracker.Application.Queries;
 using TimeTracker.Core.Resources;
 using TimeTracker.Xamarin.Contracts;
 using TimeTracker.Xamarin.Domains.Group;
@@ -21,7 +22,11 @@ namespace TimeTracker.Xamarin.Domains.Task
             EditGroupCommand = new DelegateCommand<GroupCellModel>(EditGroup);
             DeleteGroupCommand = new DelegateCommand<GroupCellModel>(DeleteGroup);
             RevertCommand = new DelegateCommand<GroupCellModel>(RevertDeletedGroup);
+            LoadGroupsCommand = QueryFactory.GetInstance<GetGroupsQuery>();
 
+            //TODO: load groups that are not deleted from db. (x => !x.IsDeleted)
+            //var groups = LoadGroupsCommand.Run(x => true);
+            //Groups = new ObservableCollection<GroupCellModel>(Mapper.Map<List<GroupCellModel>>(groups));
             Groups = new ObservableCollection<GroupCellModel>
             {
                 new GroupCellModel("Authentication", "2417"),
@@ -34,6 +39,7 @@ namespace TimeTracker.Xamarin.Domains.Task
 
         #region Properties
 
+        public GetGroupsQuery LoadGroupsCommand { get; }
         public ICommand AddGroupCommand { get; }
         public ICommand EditGroupCommand { get; }
         public ICommand DeleteGroupCommand { get; }

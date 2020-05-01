@@ -93,6 +93,7 @@ namespace TimeTracker.Xamarin.Services
 
                 GetContentPresenter().Content = nextRegion;
 
+                await PageUtilities.OnInitializedAsync(currentRegion, parameters);
                 PageUtilities.OnNavigatedFrom(currentRegion, parameters);
                 PageUtilities.OnNavigatedTo(nextRegion, parameters);
 

@@ -1,8 +1,5 @@
-﻿using DryIoc;
-using Ninject;
+﻿using Ninject;
 using Prism.Ioc;
-using TimeTracker.Application.Contracts;
-using TimeTracker.Application.Factories;
 using TimeTracker.Xamarin.Contracts;
 using TimeTracker.Xamarin.Domains.Group;
 using TimeTracker.Xamarin.Domains.Schedule;
@@ -35,7 +32,6 @@ namespace TimeTracker.Xamarin.Configuration
         public static IContainerRegistry RegisterTypes(this IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<Contracts.ICommandFactory, Services.CommandFactory>();
-            containerRegistry.Register<IQueryFactory, QueryFactory>();
             containerRegistry.Register<IRegionNavigationService, RegionNavigationService>();
             containerRegistry.Register<IDialogService, DialogService>();
             return containerRegistry;

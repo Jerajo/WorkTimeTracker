@@ -1,4 +1,6 @@
-﻿using DryIoc;
+﻿using AutoMapper;
+using DryIoc;
+using Ninject;
 using Prism.Common;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -14,18 +16,25 @@ namespace TimeTracker.Xamarin.Contracts
     {
         public RegionModelBase(IContainer container)
         {
+            Kernel = container.Resolve<IKernel>();
             NavigationService = container.Resolve<IRegionNavigationService>();
             CommandFactory = container.Resolve<ICommandFactory>();
-            QueryFactory = container.Resolve<IQueryFactory>();
+
             ApplicationProvider = container.Resolve<IApplicationProvider>();
             MainPage = (MainLayout)ApplicationProvider.MainPage;
+
+            QueryFactory = Kernel.Get<IQueryFactory>();
+            Mapper = Kernel.Get<IMapper>();
         }
+
 
         #region Properties
 
+        protected IKernel Kernel { get; }
         protected IRegionNavigationService NavigationService { get; }
         protected ICommandFactory CommandFactory { get; }
         protected IQueryFactory QueryFactory { get; }
+        protected IMapper Mapper { get; }
         protected IApplicationProvider ApplicationProvider { get; }
         protected MainLayout MainPage { get; }
         public string Title { get; set; }
