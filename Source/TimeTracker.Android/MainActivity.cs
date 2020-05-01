@@ -6,8 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Ninject;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.Licensing;
 using System.Reflection;
 using TimeTracker.Core.Contracts;
+using TimeTracker.Core.Resources;
 using TimeTracker.Xamarin;
 using TimeTracker.Xamarin.Configuration;
 
@@ -28,6 +30,7 @@ namespace WorkTimeTracker.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            SyncfusionLicenseProvider.RegisterLicense(Licenses.Syncfusion);
 
             base.OnCreate(bundle);
             App.ApplyTheme();
@@ -50,6 +53,8 @@ namespace WorkTimeTracker.Droid
             Xamarin.Essentials.Platform.Init(this, bundle);
             Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
+
             LoadApplication(new App(new AndroidInitializer(), _kernel));
         }
 

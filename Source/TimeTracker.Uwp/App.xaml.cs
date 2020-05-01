@@ -1,4 +1,15 @@
-﻿using System;
+﻿using Syncfusion.Licensing;
+using Syncfusion.SfDataGrid.XForms;
+using Syncfusion.XForms.UWP.Accordion;
+using Syncfusion.XForms.UWP.Border;
+using Syncfusion.XForms.UWP.Buttons;
+using Syncfusion.XForms.UWP.Cards;
+using Syncfusion.XForms.UWP.PopupLayout;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using TimeTracker.Core.Resources;
+using TouchTracking.Forms.UWP;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -18,6 +29,8 @@ namespace WorkTimeTracker.UWP
         /// </summary>
         public App()
         {
+            SyncfusionLicenseProvider.RegisterLicense(Licenses.Syncfusion);
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -44,8 +57,28 @@ namespace WorkTimeTracker.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                List<Assembly> assembliesToInclude = new List<Assembly>
+                {
+                    // Touch tracking
+                    typeof(TouchEffect).GetTypeInfo().Assembly,
+                    // Syncfusion cards
+                    typeof(SfCardViewRenderer).GetTypeInfo().Assembly,
+                    // Syncfusion buttons
+                    typeof(SfRadioButtonRenderer).GetTypeInfo().Assembly,
+                    typeof(SfButtonRenderer).GetTypeInfo().Assembly,
+                    typeof(SfBorderRenderer).GetTypeInfo().Assembly,
+                    typeof(SfCheckBoxRenderer).GetTypeInfo().Assembly,
+                    typeof(SfSegmentedControlRenderer).GetTypeInfo().Assembly,
+                    // Syncfusion Accordion
+                    typeof(SfAccordionRenderer).GetTypeInfo().Assembly,
+                    // Syncfusion Popup
+                    typeof(SfPopupLayoutRenderer).GetTypeInfo().Assembly,
+                    // Syncfusion Excel
+                    typeof(SfDataGrid).GetTypeInfo().Assembly,
+                };
+
                 Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
-                Xamarin.Forms.Forms.Init(e);
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
