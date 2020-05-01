@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid
+	x:Class="TimeTracker.Xamarin.Layout.Shared.LiveEditor"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Padding="8,0"
+	VerticalOptions="Center"
+	mc:Ignorable="d">
+	<!--#region COLUMNS AND ROWS-->
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="2*" />
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="8*" />
+	</Grid.ColumnDefinitions>
+	<!--#endregion-->
+
+	<Entry
+		x:Name="CodeEntry"
+		Placeholder="Código"
+		Text="{Binding Code}"
+		Unfocused="Entry_Unfocused"
+		VerticalOptions="Center" />
+	<BoxView
+		Grid.Column="1"
+		BackgroundColor="White"
+		WidthRequest="2" />
+	<Entry
+		Grid.Column="2"
+		Placeholder="Descripción del grupo"
+		Text="{Binding Name}"
+		Unfocused="Entry_Unfocused"
+		VerticalOptions="Center" />
+</Grid>
