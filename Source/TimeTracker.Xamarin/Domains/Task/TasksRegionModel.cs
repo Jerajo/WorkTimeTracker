@@ -5,12 +5,14 @@ using System.Windows.Input;
 using TimeTracker.Core.Resources;
 using TimeTracker.Xamarin.Contracts;
 using TimeTracker.Xamarin.Domains.Group;
+using TimeTracker.Xamarin.Layout.Notifications;
 
 namespace TimeTracker.Xamarin.Domains.Task
 {
     public class TasksRegionModel : RegionModelBase
     {
         private int _count = 0;
+        private int _previousIndex = 0;
 
         public TasksRegionModel(IContainer container) : base(container)
         {
@@ -18,6 +20,7 @@ namespace TimeTracker.Xamarin.Domains.Task
             AddGroupCommand = new DelegateCommand(AddGroup);
             EditGroupCommand = new DelegateCommand<GroupCellModel>(EditGroup);
             DeleteGroupCommand = new DelegateCommand<GroupCellModel>(DeleteGroup);
+            RevertCommand = new DelegateCommand<GroupCellModel>(RevertDeletedGroup);
 
             Groups = new ObservableCollection<GroupCellModel>
             {
@@ -29,24 +32,51 @@ namespace TimeTracker.Xamarin.Domains.Task
             };
         }
 
+        #region Properties
+
         public ICommand AddGroupCommand { get; }
         public ICommand EditGroupCommand { get; }
         public ICommand DeleteGroupCommand { get; }
+        public ICommand RevertCommand { get; }
         public ObservableCollection<GroupCellModel> Groups { get; }
+
+        #endregion
+
+        #region Auxiliary Methods
 
         private void AddGroup()
         {
             Groups.Add(new GroupCellModel("Nuevo grupo", $"{++_count}"));
-        }
-
-        private void DeleteGroup(GroupCellModel model)
-        {
-            Groups.Remove(model);
+            //TODO: implement persistence logic
+            PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
         }
 
         private void EditGroup(GroupCellModel model)
         {
             model.Name = $"grupo editado {++_count}";
+            //TODO: implement persistence logic
+            PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
         }
+
+        private async void DeleteGroup(GroupCellModel model)
+        {
+            _previousIndex = Groups.IndexOf(model);
+            Groups.Remove(model);
+            model.ActionCanceled = false;
+            PushRevertNotification(RevertCommand, model);
+            await System.Threading.Tasks.Task.Delay(5000);
+            if (model.ActionCanceled)
+                return;
+            //TODO: implement persistence logic
+            PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+        }
+
+        private void RevertDeletedGroup(GroupCellModel model)
+        {
+            model.ActionCanceled = true;
+            Groups.Insert(_previousIndex, model);
+        }
+
+        #endregion
     }
 }

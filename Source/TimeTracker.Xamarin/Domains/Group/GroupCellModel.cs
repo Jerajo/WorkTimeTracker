@@ -15,6 +15,7 @@ namespace TimeTracker.Xamarin.Domains.Group
             Code = code;
         }
 
+        public int Index { get; set; }
         public int Id { get; set; }
         /// <summary>
         /// Code use in to identify the user story.
@@ -27,5 +28,6 @@ namespace TimeTracker.Xamarin.Domains.Group
         public TimeSpan ProjectedTime { get; set; }
         public TimeSpan ActualTime { get; set; }
         public bool Billable { get; set; }
+        public bool ActionCanceled { get; set; }
     }
 }

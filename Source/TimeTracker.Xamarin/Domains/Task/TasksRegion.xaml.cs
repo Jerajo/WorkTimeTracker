@@ -115,7 +115,11 @@ namespace TimeTracker.Xamarin.Domains.Task
             {
                 var view = new GroupCell(item, @this.DeleteCommand);
                 view.OnEdited += @this.GroupCell_Edited;
-                @this.ItemsContainer.Children.Insert(0, view);
+
+                if (item is GroupCellModel model && model.Index > 0)
+                    @this.ItemsContainer.Children.Insert(model.Index, view);
+                else
+                    @this.ItemsContainer.Children.Insert(0, view);
             }
         }
 
@@ -127,6 +131,7 @@ namespace TimeTracker.Xamarin.Domains.Task
                     .First(x => x.BindingContext.Equals(item)) is GroupCell view))
                     continue;
 
+                ((GroupCellModel)item).Index = ItemsContainer.Children.IndexOf(view);
                 view.OnEdited -= GroupCell_Edited;
                 ItemsContainer.Children.Remove(view);
             }
