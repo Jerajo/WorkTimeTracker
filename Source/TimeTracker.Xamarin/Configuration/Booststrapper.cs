@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using DryIoc;
+using Ninject;
 using Prism.Ioc;
 using TimeTracker.Application.Contracts;
 using TimeTracker.Application.Factories;

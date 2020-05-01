@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms.PowerControls.Buttons;
+using Xamarin.Forms.PowerControls.Resources;
 using Xamarin.Forms.Xaml;
 
 namespace Xamarin.Forms.PowerControls.Menus
@@ -18,6 +18,8 @@ namespace Xamarin.Forms.PowerControls.Menus
             _tapGestureRecognizer = new TapGestureRecognizer();
             _tapGestureRecognizer.Tapped += OnItemSelected;
         }
+
+        ~NavigationMenu() => ClearCollection();
 
         #region Properties
 
@@ -76,31 +78,26 @@ namespace Xamarin.Forms.PowerControls.Menus
             BindableProperty.Create(nameof(ItemsSource),
                 typeof(object),
                 typeof(NavigationMenu),
-                new ObservableCollection<NavigationButtonModel>(),
+                null,
                 BindingMode.OneTime,
-                propertyChanging: ItemsSourceProperty_PropertyChanging);
+                propertyChanging: ItemsSource_PropertyChanging);
 
         #endregion
 
         #region Events
 
-        private static void ItemsSourceProperty_PropertyChanging(Forms.BindableObject bindable,
+        private static void ItemsSource_PropertyChanging(Forms.BindableObject bindable,
             object oldValue,
             object newValue)
         {
-            if (!(oldValue is IList oldCollection))
-                throw new InvalidCastException($"Can't cast type {oldValue.GetType().FullName}" +
-                                               $"into {typeof(ObservableCollection<object>).FullName}.");
+            if (oldValue != null)
+                throw Exceptions.Get.ReadOnlyProperty();
 
             if (!(newValue is IList newCollection))
-                throw new InvalidCastException($"Can't cast type {newValue.GetType().FullName}" +
-                                               $"into {typeof(ObservableCollection<object>).FullName}.");
+                throw Exceptions.Get.InvalidCastException(newValue.GetType(), typeof(IList));
 
             if (!(bindable is NavigationMenu @this))
                 return;
-
-            if (oldCollection.Count > 0)
-                ClearCollection(@this, oldCollection);
 
             if (@this.IsLastItemFooter)
                 SetFooter(@this, newCollection);
@@ -117,18 +114,17 @@ namespace Xamarin.Forms.PowerControls.Menus
 
         #region Auxiliary Methods
 
-        private static void ClearCollection(NavigationMenu  @this,
-            IList oldCollection)
+        private void ClearCollection()
         {
-            foreach (var item in @this.ItemsContainer.Children)
+            foreach (var item in ItemsContainer.Children)
             {
                 if (item is Button button)
-                    button.Clicked -= @this.OnItemSelected;
+                    button.Clicked -= OnItemSelected;
                 else if (item is View view)
-                    view.GestureRecognizers.Remove(@this._tapGestureRecognizer);
+                    view.GestureRecognizers.Remove(_tapGestureRecognizer);
             }
-            @this.ItemsContainer.Children.Clear();
-            oldCollection.Clear();
+            ItemsContainer.Children.Clear();
+            ((IList)ItemsSource)?.Clear();
         }
 
         private static void UpdateCollection(NavigationMenu @this,
