@@ -19,6 +19,8 @@ namespace WorkTimeTracker.UWP
         {
             InitializeComponent();
 
+            Syncfusion.XForms.UWP.PopupLayout.SfPopupLayoutRenderer.Init();
+
             var assemblyName = typeof(MainPage).GetTypeInfo().Assembly.GetName().Name;
             var connectionString = $"Data Source={ApplicationData.Current.LocalFolder.Path}/WorkTimeTracker.db";
             _kernel = new StandardKernel(new PersistenceModule(options => options

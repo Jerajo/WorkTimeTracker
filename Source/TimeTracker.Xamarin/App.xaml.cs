@@ -1,7 +1,9 @@
 ﻿using Ninject;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.Licensing;
 using System.Threading.Tasks;
+using TimeTracker.Core.Resources;
 using TimeTracker.Xamarin.Configuration;
 using TimeTracker.Xamarin.Contracts;
 using Xamarin.Essentials;
@@ -31,6 +33,8 @@ namespace TimeTracker.Xamarin
         protected override async void OnInitialized()
         {
             if (Kernel is null) return;
+            SyncfusionLicenseProvider.RegisterLicense(Licenses.Syncfusion);
+
             InitializeComponent();
 
             await NavigationService.NavigateAsync("MainLayout");

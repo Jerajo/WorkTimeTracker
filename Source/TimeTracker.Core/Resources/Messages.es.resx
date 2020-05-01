@@ -144,4 +144,19 @@
   <data name="DialogCancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ExceptionCasting" xml:space="preserve">
+    <value>No se puede convertir el tipo {0} en {1}.</value>
+  </data>
+  <data name="RegionTitleOptions" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="RegionTitleTask" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
+  <data name="RegionTitleTrack" xml:space="preserve">
+    <value>Historial</value>
+  </data>
+  <data name="NotificationMessageRevert" xml:space="preserve">
+    <value>Toque para revertir los cambios.</value>
+  </data>
 </root>

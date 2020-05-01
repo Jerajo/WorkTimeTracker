@@ -8,14 +8,13 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 	<ContentView.Content>
-		<ScrollView
-			Padding="8,0"
-			HorizontalScrollBarVisibility="Never"
-			VerticalScrollBarVisibility="Always">
-			<StackLayout>
-				<local:GroupCell Margin="8,4" />
-				<local:GroupCell Margin="8,4" />
-				<local:GroupCell Margin="8,4" />
+		<ScrollView HorizontalScrollBarVisibility="Never">
+			<StackLayout Padding="8,8,8,50" Spacing="8">
+				<Button
+					BackgroundColor="LawnGreen"
+					Command="{Binding AddGroupCommand}"
+					Text="Agregar" />
+				<StackLayout x:Name="ItemsContainer" Spacing="8" />
 			</StackLayout>
 		</ScrollView>
 	</ContentView.Content>

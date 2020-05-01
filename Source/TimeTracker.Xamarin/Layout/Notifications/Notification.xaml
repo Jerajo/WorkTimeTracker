@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<cards:SfCardView
+	x:Class="TimeTracker.Xamarin.Layout.Notifications.Notification"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	BorderWidth="0"
+	FadeOutOnSwiping="true"
+	SwipeToDismiss="true"
+	mc:Ignorable="d">
+	<cards:SfCardView.GestureRecognizers>
+		<TapGestureRecognizer Tapped="Card_Tapped" />
+	</cards:SfCardView.GestureRecognizers>
+	<Grid Padding="8" ColumnSpacing="8">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="200" />
+		</Grid.ColumnDefinitions>
+		<Label
+			x:Name="IconLabel"
+			Margin="8"
+			FontFamily="{StaticResource FontAwesomeSolidIcons}"
+			FontSize="33"
+			VerticalOptions="Center" />
+		<BoxView
+			Grid.Column="1"
+			BackgroundColor="{Binding TextColor, Source={x:Reference IconLabel}}"
+			WidthRequest="2" />
+		<Label
+			x:Name="MessageLabel"
+			Grid.Column="2"
+			LineBreakMode="CharacterWrap"
+			VerticalOptions="Center" />
+	</Grid>
+</cards:SfCardView>

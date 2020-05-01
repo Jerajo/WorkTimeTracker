@@ -97,6 +97,15 @@ namespace TimeTracker.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t cast type {0} into {1}..
+        /// </summary>
+        public static string ExceptionCasting {
+            get {
+                return ResourceManager.GetString("ExceptionCasting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field is required..
         /// </summary>
         public static string FieldRequired {
@@ -133,11 +142,47 @@ namespace TimeTracker.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Touch to reverse the changes..
+        /// </summary>
+        public static string NotificationMessageRevert {
+            get {
+                return ResourceManager.GetString("NotificationMessageRevert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The &quot;{0}&quot; property of &quot;{1}&quot; is required..
         /// </summary>
         public static string PropertyRequired {
             get {
                 return ResourceManager.GetString("PropertyRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string RegionTitleOptions {
+            get {
+                return ResourceManager.GetString("RegionTitleOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string RegionTitleTask {
+            get {
+                return ResourceManager.GetString("RegionTitleTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record.
+        /// </summary>
+        public static string RegionTitleTrack {
+            get {
+                return ResourceManager.GetString("RegionTitleTrack", resourceCulture);
             }
         }
     }

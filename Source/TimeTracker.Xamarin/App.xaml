@@ -6,7 +6,7 @@
 	xmlns:prism="http://prismlibrary.com">
 	<Application.Resources>
 		<!--#region TEXT-->
-		<x:String x:Key="Title">Main Shell Res</x:String>
+		<x:String x:Key="Title">TODO</x:String>
 		<!--#endregion-->
 
 		<!--#region Font Icons-->

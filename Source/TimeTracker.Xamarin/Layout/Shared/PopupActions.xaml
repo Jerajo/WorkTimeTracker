@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+	x:Class="TimeTracker.Xamarin.Layout.Shared.PopupActions"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:icons="clr-namespace:Xamarin.Forms.PowerControls.Resources.Fonts;assembly=Xamarin.Forms.PowerControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+	mc:Ignorable="d">
+	<sfPopup:SfPopupLayout x:Name="Popup">
+		<sfPopup:SfPopupLayout.PopupView>
+			<sfPopup:PopupView
+				AnimationMode="Fade"
+				AutoSizeMode="Height"
+				BackgroundColor="Gray"
+				ShowFooter="False"
+				ShowHeader="False"
+				WidthRequest="120">
+				<sfPopup:PopupView.PopupStyle>
+					<sfPopup:PopupStyle
+						BorderThickness="0"
+						CornerRadius="5"
+						OverlayOpacity="0" />
+				</sfPopup:PopupView.PopupStyle>
+				<sfPopup:PopupView.ContentTemplate>
+					<DataTemplate>
+						<StackLayout
+							x:Name="LayoutContent"
+							Padding="8"
+							Spacing="8"
+							VerticalOptions="Center">
+							<buttons:SfButton
+								x:Name="EditButton"
+								Margin="0"
+								BackgroundColor="Transparent"
+								Clicked="EditButton_Clicked"
+								ShowIcon="True"
+								Text="Edit"
+								TextColor="LawnGreen"
+								VerticalTextAlignment="Start">
+								<buttons:SfButton.ImageSource>
+									<FontImageSource
+										FontFamily="{StaticResource FontAwesomeSolidIcons}"
+										Glyph="{x:Static icons:FontAwesomeSolid.Edit}"
+										Color="{Binding TextColor, Source={x:Reference EditButton}}" />
+								</buttons:SfButton.ImageSource>
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup x:Name="CommonStates">
+										<VisualState x:Name="Normal">
+											<VisualState.Setters>
+												<Setter Property="BorderColor" Value="Transparent" />
+											</VisualState.Setters>
+										</VisualState>
+										<VisualState x:Name="Pressed">
+											<VisualState.Setters>
+												<Setter Property="BorderColor" Value="LawnGreen" />
+											</VisualState.Setters>
+										</VisualState>
+										<VisualState x:Name="MouseOver">
+											<VisualState.Setters>
+												<Setter Property="BorderColor" Value="LawnGreen" />
+											</VisualState.Setters>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+							</buttons:SfButton>
+							<buttons:SfButton
+								x:Name="DeleteButton"
+								Margin="0"
+								BackgroundColor="Transparent"
+								Clicked="DeleteButton_Clicked"
+								ShowIcon="True"
+								Text="Delete"
+								TextColor="Red"
+								VerticalTextAlignment="Start">
+								<buttons:SfButton.ImageSource>
+									<FontImageSource
+										FontFamily="{StaticResource FontAwesomeSolidIcons}"
+										Glyph="{x:Static icons:FontAwesomeSolid.TrashAlt}"
+										Color="{Binding TextColor, Source={x:Reference DeleteButton}}" />
+								</buttons:SfButton.ImageSource>
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup x:Name="CommonStates">
+										<VisualState x:Name="Normal">
+											<VisualState.Setters>
+												<Setter Property="BorderColor" Value="Transparent" />
+											</VisualState.Setters>
+										</VisualState>
+										<VisualState x:Name="Pressed">
+											<VisualState.Setters>
+												<Setter Property="BorderColor" Value="Red" />
+											</VisualState.Setters>
+										</VisualState>
+										<VisualState x:Name="MouseOver">
+											<VisualState.Setters>
+												<Setter Property="BorderColor" Value="Red" />
+											</VisualState.Setters>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+							</buttons:SfButton>
+						</StackLayout>
+					</DataTemplate>
+				</sfPopup:PopupView.ContentTemplate>
+			</sfPopup:PopupView>
+		</sfPopup:SfPopupLayout.PopupView>
+	</sfPopup:SfPopupLayout>
+</ContentView>

@@ -8,6 +8,14 @@ namespace TimeTracker.Xamarin.Domains.Group
     /// </summary>
     public class GroupCellModel : BindableBase
     {
+        public GroupCellModel() {}
+        public GroupCellModel(string name, string code = null)
+        {
+            Name = name;
+            Code = code;
+        }
+
+        public int Id { get; set; }
         /// <summary>
         /// Code use in to identify the user story.
         /// </summary>
