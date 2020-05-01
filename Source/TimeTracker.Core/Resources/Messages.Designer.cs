@@ -151,6 +151,15 @@ namespace TimeTracker.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data saved correctly..
+        /// </summary>
+        public static string NotificationMessageSaveChanges {
+            get {
+                return ResourceManager.GetString("NotificationMessageSaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The &quot;{0}&quot; property of &quot;{1}&quot; is required..
         /// </summary>
         public static string PropertyRequired {

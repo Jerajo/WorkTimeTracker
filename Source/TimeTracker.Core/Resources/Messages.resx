@@ -159,4 +159,7 @@
   <data name="NotificationMessageRevert" xml:space="preserve">
     <value>Touch to reverse the changes.</value>
   </data>
+  <data name="NotificationMessageSaveChanges" xml:space="preserve">
+    <value>Data saved correctly.</value>
+  </data>
 </root>
