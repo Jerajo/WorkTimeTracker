@@ -4,9 +4,9 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:icons="clr-namespace:Xamarin.Forms.PowerControls.Resources.Fonts;assembly=Xamarin.Forms.PowerControls"
+	xmlns:local="clr-namespace:TimeTracker.Xamarin.Layout.Notifications"
 	xmlns:menu="clr-namespace:Xamarin.Forms.PowerControls.Menus;assembly=Xamarin.Forms.PowerControls"
-	xmlns:prism="http://prismlibrary.com"
-	Title="Main Page">
+	Title="{DynamicResource Title}">
 
 	<Grid RowSpacing="0">
 		<!--#region COLUMNS AND ROWS-->
@@ -71,6 +71,11 @@
 
 				<!--#region MAIN SHELL-->
 				<ContentPresenter x:Name="MainContent" x:FieldModifier="public" />
+				<local:NotificationContainer
+					x:Name="Notifications"
+					Grid.Row="0"
+					HorizontalOptions="End"
+					VerticalOptions="End" />
 				<!--#endregion-->
 
 				<!--#region QUICK TRACKER-->
