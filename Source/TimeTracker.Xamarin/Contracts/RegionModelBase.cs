@@ -75,7 +75,7 @@ namespace TimeTracker.Xamarin.Contracts
                 RevertCommand = revertCommand,
                 CommandParameter = commandParameter
             };
-            MainPage.PushNotification(notification);
+            MainPage.PushNotification(notification, 5000);
         }
 
         #endregion
