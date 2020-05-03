@@ -13,6 +13,7 @@
 		<ColumnDefinition Width="2*" />
 		<ColumnDefinition Width="Auto" />
 		<ColumnDefinition Width="8*" />
+		<ColumnDefinition Width="Auto" />
 	</Grid.ColumnDefinitions>
 	<!--#endregion-->
 
@@ -32,4 +33,10 @@
 		Text="{Binding Name}"
 		Unfocused="Entry_Unfocused"
 		VerticalOptions="Center" />
+	<Button
+		x:Name="AddButton"
+		Grid.Column="3"
+		BackgroundColor="LawnGreen"
+		IsVisible="False"
+		Text="+" />
 </Grid>

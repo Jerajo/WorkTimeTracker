@@ -1,5 +1,6 @@
 ﻿using DryIoc;
 using Prism.Commands;
+using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TimeTracker.Application.Queries;
@@ -18,48 +19,62 @@ namespace TimeTracker.Xamarin.Domains.Task
         public TasksRegionModel(IContainer container) : base(container)
         {
             Title = Messages.RegionTitleTask;
-            AddGroupCommand = new DelegateCommand(AddGroup);
+            AddGroupCommand = new DelegateCommand<GroupCellModel>(AddGroup);
             EditGroupCommand = new DelegateCommand<GroupCellModel>(EditGroup);
             DeleteGroupCommand = new DelegateCommand<GroupCellModel>(DeleteGroup);
             RevertCommand = new DelegateCommand<GroupCellModel>(RevertDeletedGroup);
             LoadGroupsCommand = QueryFactory.GetInstance<GetGroupsQuery>();
-
-            //TODO: load groups that are not deleted from db. (x => !x.IsDeleted)
-            //var groups = LoadGroupsCommand.Run(x => true);
-            //Groups = new ObservableCollection<GroupCellModel>(Mapper.Map<List<GroupCellModel>>(groups));
-            Groups = new ObservableCollection<GroupCellModel>
-            {
-                new GroupCellModel("Authentication", "2417"),
-                new GroupCellModel("Authorization", "4642"),
-                new GroupCellModel("Create user"),
-                new GroupCellModel("Update user", "8954"),
-                new GroupCellModel("Delete user")
-            };
         }
 
         #region Properties
 
-        public GetGroupsQuery LoadGroupsCommand { get; }
-        public ICommand AddGroupCommand { get; }
-        public ICommand EditGroupCommand { get; }
-        public ICommand DeleteGroupCommand { get; }
+        public bool IsEditing
+        {
+            get;
+            set;
+        }
+
         public ICommand RevertCommand { get; }
-        public ObservableCollection<GroupCellModel> Groups { get; }
+
+        public ICommand AddGroupCommand { get; }
+
+        public ICommand EditGroupCommand { get; }
+
+        public ICommand DeleteGroupCommand { get; }
+
+        public GetGroupsQuery LoadGroupsCommand { get; }
+
+        public ObservableCollection<GroupCellModel> Groups { get; private set; }
+
+        #endregion
+
+        #region Events
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (Groups != null)
+                return;
+
+            //TODO: load groups that are not deleted from db. (x => !x.IsDeleted)
+            var groups = await LoadGroupsCommand.Run(x => true);
+            Groups = Mapper.Map<ObservableCollection<GroupCellModel>>(groups);
+            //Groups = new ObservableCollection<GroupCellModel>(Mapper.Map<List<GroupCellModel>>(groups));
+
+        }
 
         #endregion
 
         #region Auxiliary Methods
 
-        private void AddGroup()
+        private void AddGroup(GroupCellModel model)
         {
-            Groups.Add(new GroupCellModel("Nuevo grupo", $"{++_count}"));
+            Groups.Add(model);
             //TODO: implement persistence logic
             PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
         }
 
         private void EditGroup(GroupCellModel model)
         {
-            model.Name = $"grupo editado {++_count}";
             //TODO: implement persistence logic
             PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
         }

@@ -4,18 +4,28 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-	xmlns:local="clr-namespace:TimeTracker.Xamarin.Domains.Group;assembly=TimeTracker.Xamarin"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 	<ContentView.Content>
 		<ScrollView HorizontalScrollBarVisibility="Never">
-			<StackLayout Padding="8,8,8,50" Spacing="8">
+			<Grid
+				x:Name="ViewContainer"
+				Padding="8,8,8,50"
+				RowSpacing="8">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
 				<Button
+					x:Name="AddGroupButton"
 					BackgroundColor="LawnGreen"
-					Command="{Binding AddGroupCommand}"
+					Clicked="AddGroupButton_Clicked"
 					Text="Agregar" />
-				<StackLayout x:Name="ItemsContainer" Spacing="8" />
-			</StackLayout>
+				<StackLayout
+					x:Name="ItemsContainer"
+					Grid.Row="1"
+					Spacing="8" />
+			</Grid>
 		</ScrollView>
 	</ContentView.Content>
 </ContentView>

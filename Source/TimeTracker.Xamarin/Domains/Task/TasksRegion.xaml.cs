@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using TimeTracker.Xamarin.Domains.Group;
+using TimeTracker.Xamarin.Layout.Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.PowerControls.Resources;
 using Xamarin.Forms.Xaml;
@@ -17,8 +18,11 @@ namespace TimeTracker.Xamarin.Domains.Task
         public TasksRegion()
         {
             InitializeComponent();
-            this.SetBinding(EditCommandProperty, nameof(TasksRegionModel.EditGroupCommand));
-            this.SetBinding(DeleteCommandProperty, nameof(TasksRegionModel.DeleteGroupCommand));
+
+            this.SetBinding(IsEditingProperty, nameof(TasksRegionModel.IsEditing));
+            this.SetBinding(AddGroupCommandProperty, nameof(TasksRegionModel.AddGroupCommand));
+            this.SetBinding(EditGroupCommandProperty, nameof(TasksRegionModel.EditGroupCommand));
+            this.SetBinding(DeleteGroupCommandProperty, nameof(TasksRegionModel.DeleteGroupCommand));
             this.SetBinding(ItemsSourceProperty, nameof(TasksRegionModel.Groups));
         }
 
@@ -26,25 +30,45 @@ namespace TimeTracker.Xamarin.Domains.Task
 
         #region Properties
 
-        public ICommand EditCommand
+        public bool IsEditing
         {
-            get => (ICommand)GetValue(EditCommandProperty);
-            set => SetValue(EditCommandProperty, value);
+            get => (bool)GetValue(IsEditingProperty);
+            set => SetValue(IsEditingProperty, value);
         }
 
-        public static readonly BindableProperty EditCommandProperty =
-            BindableProperty.Create(nameof(EditCommand), typeof(ICommand),
-                typeof(GroupCell), null, BindingMode.OneTime);
+        public static readonly BindableProperty IsEditingProperty =
+            BindableProperty.Create(nameof(IsEditing), typeof(bool),
+                typeof(TasksRegion), false, BindingMode.TwoWay);
 
-        public ICommand DeleteCommand
+        public ICommand AddGroupCommand
         {
-            get => (ICommand)GetValue(DeleteCommandProperty);
-            set => SetValue(DeleteCommandProperty, value);
+            get => (ICommand)GetValue(AddGroupCommandProperty);
+            set => SetValue(AddGroupCommandProperty, value);
         }
 
-        public static readonly BindableProperty DeleteCommandProperty =
-            BindableProperty.Create(nameof(DeleteCommand), typeof(ICommand),
-                typeof(GroupCell), null, BindingMode.OneTime);
+        public static readonly BindableProperty AddGroupCommandProperty =
+            BindableProperty.Create(nameof(AddGroupCommand), typeof(ICommand),
+                typeof(TasksRegion), null, BindingMode.OneTime);
+
+        public ICommand EditGroupCommand
+        {
+            get => (ICommand)GetValue(EditGroupCommandProperty);
+            set => SetValue(EditGroupCommandProperty, value);
+        }
+
+        public static readonly BindableProperty EditGroupCommandProperty =
+            BindableProperty.Create(nameof(EditGroupCommand), typeof(ICommand),
+                typeof(TasksRegion), null, BindingMode.OneTime);
+
+        public ICommand DeleteGroupCommand
+        {
+            get => (ICommand)GetValue(DeleteGroupCommandProperty);
+            set => SetValue(DeleteGroupCommandProperty, value);
+        }
+
+        public static readonly BindableProperty DeleteGroupCommandProperty =
+            BindableProperty.Create(nameof(DeleteGroupCommand), typeof(ICommand),
+                typeof(TasksRegion), null, BindingMode.OneTime);
 
         public ObservableCollection<GroupCellModel> ItemsSource
         {
@@ -57,7 +81,7 @@ namespace TimeTracker.Xamarin.Domains.Task
                 typeof(ObservableCollection<GroupCellModel>),
                 typeof(TasksRegion),
                 null,
-                BindingMode.OneTime,
+                BindingMode.OneWay,
                 propertyChanging: ItemsSource_PropertyChanging);
 
         #endregion
@@ -95,7 +119,32 @@ namespace TimeTracker.Xamarin.Domains.Task
         {
             if (!(sender is GroupCell view))
                 return;
-            EditCommand.Execute(view.BindingContext);
+            EditGroupCommand.Execute(view.BindingContext);
+        }
+
+        private int _count = 0;
+        private void AddGroupButton_Clicked(object sender, EventArgs e)
+        {
+            //AddGroupCommand?.Execute(new GroupCellModel("New group test", $"{_count++}"));
+
+            IsEditing = true;
+            AddGroupButton.IsVisible = false;
+            var view = new LiveEditor(new GroupCellModel(), AddGroupCommand);
+            //view.StopEditing += LiveEditor_StopEditing;
+            ViewContainer.Children.Add(view);
+            view.FocusEntry();
+        }
+
+        private void LiveEditor_StopEditing(object sender, EventArgs e)
+        {
+            if (!(sender is LiveEditor view))
+                return;
+            //AddGroupCommand?.Execute(view.BindingContext);
+            IsEditing = false;
+            view.StopEditing -= LiveEditor_StopEditing;
+            ViewContainer.Children.Remove(view);
+            AddGroupButton.IsVisible = true;
+            GC.Collect();
         }
 
         #endregion
@@ -113,9 +162,8 @@ namespace TimeTracker.Xamarin.Domains.Task
         {
             foreach (var item in newCollection)
             {
-                var view = new GroupCell(item, @this.DeleteCommand);
+                var view = new GroupCell(item, @this.DeleteGroupCommand);
                 view.OnEdited += @this.GroupCell_Edited;
-
                 if (item is GroupCellModel model && model.Index > 0)
                     @this.ItemsContainer.Children.Insert(model.Index, view);
                 else
