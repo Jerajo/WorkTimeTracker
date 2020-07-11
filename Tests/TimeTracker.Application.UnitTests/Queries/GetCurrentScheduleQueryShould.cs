@@ -30,7 +30,7 @@ namespace TimeTracker.Application.UnitTests.Queries
                 ScheduleDate = DateTimeOffset.Now.Date
             });
 
-            var result = await _sut.Run();
+            var result = await _sut.ExecuteAsync();
 
             result.Should().BeAssignableTo<Domain.Schedule>()
                 .And.NotBeNull();

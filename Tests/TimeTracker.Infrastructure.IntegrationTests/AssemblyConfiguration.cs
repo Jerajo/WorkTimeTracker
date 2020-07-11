@@ -21,11 +21,12 @@ namespace TimeTracker.Infrastructure.IntegrationTests
                 .Options));
 
             _dbContext = Kernel.Get<WorkTimeTracker>();
-            if (!_dbContext.Database.CanConnect())
-            {
-                _dbContext.EnsureCreated();
-                _dbContext.FetchInitialData().Wait();
-            }
+            _dbContext.CanConnect();
+            //if (!_dbContext.CanConnect())
+            //{
+            //    _dbContext.EnsureCreated();
+            //    _dbContext.FetchInitialData().Wait();
+            //}
         }
 
         [AssemblyCleanup]

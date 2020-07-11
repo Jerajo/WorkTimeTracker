@@ -27,13 +27,13 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public void GuardAgainstNullArguments()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _sut.Run(null));
+            Assert.ThrowsException<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
         public async Task ReturnAEmptyListOfSchedules()
         {
-            var result = await _sut.Run(x => x.Id < 0);
+            var result = await _sut.ExecuteAsync(x => x.Id < 0);
 
             result.Should().BeAssignableTo<List<Domain.Schedule>>()
                 .And.BeEmpty();
@@ -47,7 +47,7 @@ namespace TimeTracker.Application.UnitTests.Queries
                 ScheduleDate = DateTime.Now.Date
             });
 
-            var result = await _sut.Run(x => true);
+            var result = await _sut.ExecuteAsync(x => true);
 
             result.Should().BeAssignableTo<List<Domain.Schedule>>()
                 .And.NotBeEmpty();

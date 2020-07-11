@@ -79,7 +79,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             await _createTaskCommand.ExecuteAsync(tempTask);
 
-            var result = await _getTaskQuery.Run(x => x.Name == tempTask.Name);
+            var result = await _getTaskQuery.ExecuteAsync(x => x.Name == tempTask.Name);
 
             var task = result.First();
 

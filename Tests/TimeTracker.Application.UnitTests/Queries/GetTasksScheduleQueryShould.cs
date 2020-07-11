@@ -39,7 +39,7 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public void GuardAgainstNullArguments()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _sut.Run(null));
+            Assert.ThrowsException<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace TimeTracker.Application.UnitTests.Queries
         {
             await CreateTrackAsync();
 
-            var result = await _sut.Run(x => false);
+            var result = await _sut.ExecuteAsync(x => false);
 
             result.Should().BeAssignableTo<List<Domain.TasksSchedule>>()
                 .And.BeEmpty();
@@ -58,7 +58,7 @@ namespace TimeTracker.Application.UnitTests.Queries
         {
             var scheduleId = await CreateTrackAsync();
 
-            var result = await _sut.Run(x => x.ScheduleId == scheduleId);
+            var result = await _sut.ExecuteAsync(x => x.ScheduleId == scheduleId);
 
             result.Should().BeAssignableTo<List<Domain.TasksSchedule>>()
                 .And.NotBeEmpty();
@@ -71,7 +71,7 @@ namespace TimeTracker.Application.UnitTests.Queries
                 Name = nameof(ReturnAListOfTasksSchedule)
             });
 
-            var tasks = await _getTaskQuery.Run(x => x.Name == nameof(ReturnAListOfTasksSchedule));
+            var tasks = await _getTaskQuery.ExecuteAsync(x => x.Name == nameof(ReturnAListOfTasksSchedule));
 
             await _createScheduleCommand.ExecuteAsync(new ScheduleDto
             {
@@ -79,7 +79,7 @@ namespace TimeTracker.Application.UnitTests.Queries
             });
 
             var task = tasks.First();
-            var schedule = await _getCurrentScheduleQuery.Run();
+            var schedule = await _getCurrentScheduleQuery.ExecuteAsync();
 
             await _trackWorkTimeCommand.ExecuteAsync(new TasksScheduleDto
             {

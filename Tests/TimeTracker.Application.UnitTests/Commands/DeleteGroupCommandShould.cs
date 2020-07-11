@@ -58,7 +58,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             await _createGroupCommand.ExecuteAsync(tempGroup);
 
-            var result = await _getGroupQuery.Run(x => x.Name == tempGroup.Name);
+            var result = await _getGroupQuery.ExecuteAsync(x => x.Name == tempGroup.Name);
 
             var group = result.First();
 

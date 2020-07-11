@@ -58,7 +58,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             await _createTemplateCommand.ExecuteAsync(tempTemplate);
 
-            var result = await _getTemplateQuery.Run(x => x.Template == tempTemplate.Template);
+            var result = await _getTemplateQuery.ExecuteAsync(x => x.Template == tempTemplate.Template);
 
             var task = result.First();
 

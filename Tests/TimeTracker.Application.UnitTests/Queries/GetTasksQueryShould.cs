@@ -28,7 +28,7 @@ namespace TimeTracker.Application.UnitTests.Queries
         [TestMethod]
         public void GuardAgainstNullArguments()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _sut.Run(null));
+            Assert.ThrowsException<ArgumentNullException>(() => _sut.ExecuteAsync(null));
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace TimeTracker.Application.UnitTests.Queries
                 DescriptionId = 1
             });
 
-            var result = await _sut.Run(x => false);
+            var result = await _sut.ExecuteAsync(x => false);
 
             result.Should().BeAssignableTo<List<Task>>()
                 .And.BeEmpty();
@@ -55,7 +55,7 @@ namespace TimeTracker.Application.UnitTests.Queries
                 DescriptionId = 1
             });
 
-            var result = await _sut.Run(x => true);
+            var result = await _sut.ExecuteAsync(x => true);
 
             result.Should().BeAssignableTo<List<Task>>()
                 .And.NotBeEmpty();

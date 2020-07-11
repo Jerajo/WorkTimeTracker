@@ -86,7 +86,7 @@ namespace TimeTracker.Application.UnitTests.Commands
                 Name = nameof(DeleteWorkTimeTracked)
             });
 
-            var tasks = await _getTasksQuery.Run(x => x.Name == nameof(DeleteWorkTimeTracked));
+            var tasks = await _getTasksQuery.ExecuteAsync(x => x.Name == nameof(DeleteWorkTimeTracked));
 
             await _createScheduleCommand.ExecuteAsync(new ScheduleDto
             {
@@ -94,7 +94,7 @@ namespace TimeTracker.Application.UnitTests.Commands
             });
 
             var task = tasks.First();
-            var schedule = await _getCurrentScheduleQuery.Run();
+            var schedule = await _getCurrentScheduleQuery.ExecuteAsync();
 
             var tempTaskSchedule = new TasksScheduleDto()
             {
@@ -105,7 +105,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             await _trackWorkTimeCommand.ExecuteAsync(tempTaskSchedule);
 
-            var result = await _getTasksScheduleQuery.Run(x => x.TaskId == task.Id
+            var result = await _getTasksScheduleQuery.ExecuteAsync(x => x.TaskId == task.Id
                                                             && x.ScheduleId == schedule.Id);
 
             var trackedTime = result.First();

@@ -61,7 +61,7 @@ namespace TimeTracker.Application.UnitTests.Commands
 
             await _createScheduleCommand.ExecuteAsync(tempSchedule);
 
-            var result = await _getScheduleQuery.Run(x =>
+            var result = await _getScheduleQuery.ExecuteAsync(x =>
                 x.ScheduleDate == tempSchedule.ScheduleDate);
 
             var schedule = result.First();
