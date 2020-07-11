@@ -33,7 +33,7 @@ namespace TimeTracker.Application.Queries
         /// </summary>
         /// <param name="param">Search query options.</param>
         /// <returns>Selected Schedule.</returns>
-        public Task<Domain.Schedule> Run(object param = null)
+        public Task<Domain.Schedule> ExecuteAsync(object param = null)
         {
             var repository = _repositoryFactory.GetRepository<Core.Schedule>();
             var taskEntities = repository.Get(x => x.ScheduleDate.Date == DateTimeOffset.Now.Date);

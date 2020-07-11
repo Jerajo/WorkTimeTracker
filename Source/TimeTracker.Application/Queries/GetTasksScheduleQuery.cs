@@ -33,7 +33,7 @@ namespace TimeTracker.Application.Queries
         /// </summary>
         /// <param name="query">Search query options.</param>
         /// <returns>List of available tasksSchedules.</returns>
-        public Task<List<Domain.TasksSchedule>> Run(Func<Core.TasksSchedule, bool> query)
+        public Task<List<Domain.TasksSchedule>> ExecuteAsync(Func<Core.TasksSchedule, bool> query)
         {
             Guard.Against.Null(query, nameof(query));
 

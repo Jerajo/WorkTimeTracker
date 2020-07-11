@@ -39,7 +39,7 @@ namespace TimeTracker.Application.Queries
         /// <param name="query">Search query options.</param>
         /// <returns>List of available groups.</returns>
         /// <exception cref="ArgumentNullException"/>
-        public Task<List<TaskExportTemplateDto>> Run(Func<Description, bool> query)
+        public Task<List<TaskExportTemplateDto>> ExecuteAsync(Func<Description, bool> query)
         {
             Guard.Against.Null(query, nameof(query));
 

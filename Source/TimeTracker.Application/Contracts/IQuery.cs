@@ -17,7 +17,7 @@ namespace TimeTracker.Application.Contracts
         /// </summary>
         /// <param name="param">Nullable parameter.</param>
         /// <returns><typeparamref name="TResult"/></returns>
-        Task<TResult> Run(TOptions param);
+        Task<TResult> ExecuteAsync(TOptions param);
     }
 
     /// <summary>
