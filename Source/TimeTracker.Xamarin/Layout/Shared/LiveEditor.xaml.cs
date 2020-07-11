@@ -23,18 +23,33 @@ namespace TimeTracker.Xamarin.Layout.Shared
             }
         }
 
+        #region Events
+
         public event EventHandler StopEditing;
 
         private async void Entry_Unfocused(object sender, FocusEventArgs e)
         {
-            await System.Threading.Tasks.Task.Delay(100);
-            if (!Children.Any(x => x.IsFocused)){}
+            await System.Threading.Tasks.Task.Delay(300);
+            if (!Children.Any(x => x.IsFocused))
                 StopEditing?.Invoke(this, EventArgs.Empty);
         }
+
+        public event EventHandler EditionCompleted;
+
+        private void AddButton_Clicked(object sender, EventArgs e)
+        {
+            EditionCompleted?.Invoke(this, EventArgs.Empty);
+        }
+
+        #endregion
+
+        #region Interface Methods
 
         public void FocusEntry()
         {
             CodeEntry.Focus();
         }
+
+        #endregion
     }
 }

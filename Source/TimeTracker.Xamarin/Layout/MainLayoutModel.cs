@@ -20,7 +20,7 @@ namespace TimeTracker.Xamarin.Layout
             //GetTasks = commandFactory.Make<TaskDto, UpdateTaskCommand>();
             GetTasks = queryFactory.GetInstance<GetTasksQuery>();
 
-            var tasks = GetTasks.Run(x => true);
+            var tasks = GetTasks.ExecuteAsync(x => true);
             NavigationMenu = container.Resolve<DeskTopNavigationMenuModel>();
 
             ChangeColor();

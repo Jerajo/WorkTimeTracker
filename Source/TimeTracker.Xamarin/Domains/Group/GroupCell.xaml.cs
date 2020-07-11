@@ -13,14 +13,9 @@ namespace TimeTracker.Xamarin.Domains.Group
     {
         //private readonly List<(Point, Point)> _actionsPositions;
 
-        public GroupCell() : this(null, null) {}
-        public GroupCell(object bindingContext, ICommand deleteCommand)
+        public GroupCell()
         {
             InitializeComponent();
-
-            BindingContext = bindingContext;
-            DeleteCommand = deleteCommand;
-
             //_actionsPositions = new List<(Point, Point)>();
             //var touchEffect = new TouchEffect();
             //touchEffect.TouchAction += Container_TouchTracking;
@@ -29,13 +24,15 @@ namespace TimeTracker.Xamarin.Domains.Group
 
         #region Properties
 
-        public ICommand DeleteCommand { get; }
+        public ICommand EditCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         #endregion
 
         #region Events
 
         public event EventHandler OnEdited;
+        public event EventHandler OnAccordionToggled;
 
         private async void ToggleAccordionButton_Tapped(object sender, System.EventArgs e)
         {
@@ -46,6 +43,7 @@ namespace TimeTracker.Xamarin.Domains.Group
 
             await System.Threading.Tasks.Task.Delay((int)Accordion.AnimationDuration);
             Accordion.BringIntoView(AccordionItem);
+            OnAccordionToggled?.Invoke(this, EventArgs.Empty);
         }
 
         private void SfAccordion_Expanding(object sender, ExpandingAndCollapsingEventArgs e)
@@ -56,33 +54,35 @@ namespace TimeTracker.Xamarin.Domains.Group
 
         private void ActionsMenuButton_Tapped(object sender, EventArgs e)
         {
-            var popupActions = new PopupActions(OnEditSwipe_Invoked, OnDeleteSwipe_Invoked);
+            var popupActions = new PopupActions(ShowEditor, OnDeleteSwiped);
             popupActions.Show(sender as View);
         }
 
-        private void OnDeleteSwipe_Invoked(object sender, EventArgs e)
-        {
-            DeleteCommand.Execute(BindingContext);
-        }
-
-        private void OnEditSwipe_Invoked(object sender, EventArgs e)
-        {
-            HeaderContent.IsVisible = false;
-            var view = new LiveEditor(BindingContext);
-            view.StopEditing += LiveEditor_StopEditing;
-            SwipeViewContainer.Children.Add(view);
-            view.FocusEntry();
-        }
+        private void OnDeleteSwiped() => DeleteCommand.Execute(BindingContext);
 
         private void LiveEditor_StopEditing(object sender, EventArgs e)
         {
             if (!(sender is LiveEditor view))
                 return;
             OnEdited?.Invoke(this, EventArgs.Empty);
+            EditCommand.Execute(BindingContext);
             view.StopEditing -= LiveEditor_StopEditing;
             SwipeViewContainer.Children.Remove(view);
             HeaderContent.IsVisible = true;
             GC.Collect();
+        }
+
+        #endregion
+
+        #region INterface Methods
+
+        public void ShowEditor()
+        {
+            HeaderContent.IsVisible = false;
+            var view = new LiveEditor(BindingContext);
+            view.StopEditing += LiveEditor_StopEditing;
+            SwipeViewContainer.Children.Add(view);
+            view.FocusEntry();
         }
 
         #endregion

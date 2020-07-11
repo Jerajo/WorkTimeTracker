@@ -8,6 +8,7 @@ using TimeTracker.Core.Resources;
 using TimeTracker.Xamarin.Contracts;
 using TimeTracker.Xamarin.Domains.Group;
 using TimeTracker.Xamarin.Layout.Notifications;
+using Xamarin.Forms;
 
 namespace TimeTracker.Xamarin.Domains.Task
 {
@@ -19,11 +20,11 @@ namespace TimeTracker.Xamarin.Domains.Task
         public TasksRegionModel(IContainer container) : base(container)
         {
             Title = Messages.RegionTitleTask;
+
             AddGroupCommand = new DelegateCommand<GroupCellModel>(AddGroup);
             EditGroupCommand = new DelegateCommand<GroupCellModel>(EditGroup);
             DeleteGroupCommand = new DelegateCommand<GroupCellModel>(DeleteGroup);
             RevertCommand = new DelegateCommand<GroupCellModel>(RevertDeletedGroup);
-            LoadGroupsCommand = QueryFactory.GetInstance<GetGroupsQuery>();
         }
 
         #region Properties
@@ -34,6 +35,7 @@ namespace TimeTracker.Xamarin.Domains.Task
             set;
         }
 
+        public bool IsProcessing { get; private set; }
         public ICommand RevertCommand { get; }
 
         public ICommand AddGroupCommand { get; }
@@ -42,24 +44,26 @@ namespace TimeTracker.Xamarin.Domains.Task
 
         public ICommand DeleteGroupCommand { get; }
 
-        public GetGroupsQuery LoadGroupsCommand { get; }
-
         public ObservableCollection<GroupCellModel> Groups { get; private set; }
 
         #endregion
 
         #region Events
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (Groups != null)
                 return;
 
-            //TODO: load groups that are not deleted from db. (x => !x.IsDeleted)
-            var groups = await LoadGroupsCommand.Run(x => true);
-            Groups = Mapper.Map<ObservableCollection<GroupCellModel>>(groups);
-            //Groups = new ObservableCollection<GroupCellModel>(Mapper.Map<List<GroupCellModel>>(groups));
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                IsProcessing = true;
+                var loadGroupsCommand = QueryFactory.GetInstance<GetGroupsQuery>();
+                var groups = await loadGroupsCommand.ExecuteAsync(x => !x.IsDeleted).ConfigureAwait(true);
 
+                Groups = Mapper.Map<ObservableCollection<GroupCellModel>>(groups);
+                IsProcessing = false;
+            });
         }
 
         #endregion
@@ -68,34 +72,62 @@ namespace TimeTracker.Xamarin.Domains.Task
 
         private void AddGroup(GroupCellModel model)
         {
-            Groups.Add(model);
-            //TODO: implement persistence logic
-            PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                IsProcessing = true;
+                Groups.Insert(0, model);
+
+                //TODO: implement persistence logic
+
+                PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+                IsProcessing = false;
+            });
         }
 
         private void EditGroup(GroupCellModel model)
         {
-            //TODO: implement persistence logic
-            PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                IsProcessing = true;
+
+                //TODO: implement persistence logic
+
+                PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+                IsProcessing = false;
+            });
         }
 
-        private async void DeleteGroup(GroupCellModel model)
+        private void DeleteGroup(GroupCellModel model)
         {
             _previousIndex = Groups.IndexOf(model);
-            Groups.Remove(model);
-            model.ActionCanceled = false;
-            PushRevertNotification(RevertCommand, model);
-            await System.Threading.Tasks.Task.Delay(5000);
-            if (model.ActionCanceled)
-                return;
-            //TODO: implement persistence logic
-            PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                IsProcessing = true;
+                Groups.Remove(model);
+
+                PushRevertNotification(RevertCommand, model);
+                //var taskScheduler = TaskScheduler.Current;
+                //System.Threading.Tasks.Task.Run(() => { }).ContinueWith(task => { });
+                System.Threading.Tasks.Task.Delay(5000).ConfigureAwait(true);
+
+                if (model.ActionCanceled)
+                    return;
+
+                //TODO: implement persistence logic
+
+                PushNotification(Messages.NotificationMessageSaveChanges, NotificationType.Info, 3000);
+                IsProcessing = false;
+            });
         }
 
         private void RevertDeletedGroup(GroupCellModel model)
         {
-            model.ActionCanceled = true;
-            Groups.Insert(_previousIndex, model);
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                model.ActionCanceled = true;
+                Groups.Insert(_previousIndex, model);
+            });
         }
 
         #endregion

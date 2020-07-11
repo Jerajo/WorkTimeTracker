@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using Syncfusion.ListView.XForms;
+using System;
 using System.Linq;
 using System.Windows.Input;
 using TimeTracker.Xamarin.Domains.Group;
 using TimeTracker.Xamarin.Layout.Shared;
+using TimeTracker.Xamarin.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.PowerControls.Resources;
 using Xamarin.Forms.Xaml;
 
 namespace TimeTracker.Xamarin.Domains.Task
@@ -23,10 +21,7 @@ namespace TimeTracker.Xamarin.Domains.Task
             this.SetBinding(AddGroupCommandProperty, nameof(TasksRegionModel.AddGroupCommand));
             this.SetBinding(EditGroupCommandProperty, nameof(TasksRegionModel.EditGroupCommand));
             this.SetBinding(DeleteGroupCommandProperty, nameof(TasksRegionModel.DeleteGroupCommand));
-            this.SetBinding(ItemsSourceProperty, nameof(TasksRegionModel.Groups));
         }
-
-        ~TasksRegion() => ClearCollection();
 
         #region Properties
 
@@ -70,120 +65,89 @@ namespace TimeTracker.Xamarin.Domains.Task
             BindableProperty.Create(nameof(DeleteGroupCommand), typeof(ICommand),
                 typeof(TasksRegion), null, BindingMode.OneTime);
 
-        public ObservableCollection<GroupCellModel> ItemsSource
-        {
-            get => (ObservableCollection<GroupCellModel>)GetValue(ItemsSourceProperty);
-            set => SetValue(ItemsSourceProperty, value);
-        }
-
-        public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create(nameof(ItemsSource),
-                typeof(ObservableCollection<GroupCellModel>),
-                typeof(TasksRegion),
-                null,
-                BindingMode.OneWay,
-                propertyChanging: ItemsSource_PropertyChanging);
-
         #endregion
 
         #region Events
 
-        private static void ItemsSource_PropertyChanging(global::Xamarin.Forms.BindableObject bindable,
-            object oldValue,
-            object newValue)
+        protected override void OnBindingContextChanged()
         {
-            if (oldValue != null)
-                throw Exceptions.Get.ReadOnlyProperty();
-
-            if (!(newValue is ObservableCollection<GroupCellModel> newCollection))
-                throw Exceptions.Get.InvalidCastException(newValue.GetType(),
-                    typeof(ObservableCollection<GroupCellModel>));
-
-            if (!(bindable is TasksRegion @this))
+            if (EditGroupCommand is null || DeleteGroupCommand is null)
                 return;
 
-            AddToCollection(@this, newCollection);
-            newCollection.CollectionChanged += @this.ItemsSource_CollectionChanged;
-        }
-
-        private void ItemsSource_CollectionChanged(object sender,
-            NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                AddToCollection(this, e.NewItems);
-            else if (e.Action == NotifyCollectionChangedAction.Remove)
-                RemoveFromCollection(e.OldItems);
-        }
-
-        private void GroupCell_Edited(object sender, EventArgs e)
-        {
-            if (!(sender is GroupCell view))
+            if (GroupsContainer.ItemGenerator is CustomItemGenerator)
                 return;
-            EditGroupCommand.Execute(view.BindingContext);
+
+            GroupsContainer.ItemGenerator = new CustomItemGenerator(GroupsContainer,
+                EditGroupCommand,
+                DeleteGroupCommand);
+
+            base.OnBindingContextChanged();
         }
 
-        private int _count = 0;
         private void AddGroupButton_Clicked(object sender, EventArgs e)
         {
-            //AddGroupCommand?.Execute(new GroupCellModel("New group test", $"{_count++}"));
-
             IsEditing = true;
             AddGroupButton.IsVisible = false;
             var view = new LiveEditor(new GroupCellModel(), AddGroupCommand);
-            //view.StopEditing += LiveEditor_StopEditing;
+            view.EditionCompleted += LiveEditor_EditionCompleted;
             ViewContainer.Children.Add(view);
             view.FocusEntry();
         }
 
-        private void LiveEditor_StopEditing(object sender, EventArgs e)
+        private void LiveEditor_EditionCompleted(object sender, EventArgs e)
         {
             if (!(sender is LiveEditor view))
                 return;
-            //AddGroupCommand?.Execute(view.BindingContext);
             IsEditing = false;
-            view.StopEditing -= LiveEditor_StopEditing;
+            view.StopEditing -= LiveEditor_EditionCompleted;
             ViewContainer.Children.Remove(view);
             AddGroupButton.IsVisible = true;
-            GC.Collect();
+            GroupsContainer.RefreshListViewItem();
+        }
+
+        private void GroupsContainer_SwipeEnded(object sender, Syncfusion.ListView.XForms.SwipeEndedEventArgs e)
+        {
+            var cellItem = GetListViewItem(e.ItemData);
+
+            if (e.SwipeDirection == Syncfusion.ListView.XForms.SwipeDirection.Left)
+            {
+                IsEditing = true;
+                cellItem.ShowEditor();
+                cellItem.OnEdited += GroupCell_Edited;
+            }
+            else if (e.SwipeDirection == Syncfusion.ListView.XForms.SwipeDirection.Right)
+                DeleteGroupCommand.Execute(e.ItemData);
+
+            GroupsContainer.ResetSwipe();
+        }
+
+        private void GroupCell_Edited(object sender, EventArgs e)
+        {
+            if (!(sender is GroupCell groupCell))
+                return;
+
+            groupCell.OnEdited -= GroupCell_Edited;
+            IsEditing = false;
+            GroupsContainer.RefreshListViewItem();
         }
 
         #endregion
 
         #region Auxiliary Methods
 
-        private void ClearCollection()
+        private GroupCell GetListViewItem(object data)
         {
-            ItemsContainer.Children.Clear();
-            ItemsSource.CollectionChanged -= ItemsSource_CollectionChanged;
-            ItemsSource.Clear();
-        }
+            if (!(GroupsContainer.Children[0] is ExtendedScrollView scrollView))
+                return null;
 
-        private static void AddToCollection(TasksRegion @this, IList newCollection)
-        {
-            foreach (var item in newCollection)
-            {
-                var view = new GroupCell(item, @this.DeleteGroupCommand);
-                view.OnEdited += @this.GroupCell_Edited;
-                if (item is GroupCellModel model && model.Index > 0)
-                    @this.ItemsContainer.Children.Insert(model.Index, view);
-                else
-                    @this.ItemsContainer.Children.Insert(0, view);
-            }
-        }
+            if (!(scrollView.Children[0] is VisualContainer visualContainer))
+                return null;
 
-        private void RemoveFromCollection(IList oldCollection)
-        {
-            foreach (var item in oldCollection)
-            {
-                if (!(ItemsContainer.Children
-                    .First(x => x.BindingContext.Equals(item)) is GroupCell view))
-                    continue;
+            var result = visualContainer.Children.Where(x => x.BindingContext.Equals(data) &&
+                                                             x is CustomListViewItem);
+            var view = result.ToList()[0] as ContentView;
 
-                ((GroupCellModel)item).Index = ItemsContainer.Children.IndexOf(view);
-                view.OnEdited -= GroupCell_Edited;
-                ItemsContainer.Children.Remove(view);
-            }
-            GC.Collect();
+            return view?.Content as GroupCell;
         }
 
         #endregion

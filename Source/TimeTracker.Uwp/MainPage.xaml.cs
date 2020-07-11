@@ -19,6 +19,7 @@ namespace WorkTimeTracker.UWP
         {
             InitializeComponent();
 
+            Syncfusion.ListView.XForms.UWP.SfListViewRenderer.Init();
             Syncfusion.XForms.UWP.PopupLayout.SfPopupLayoutRenderer.Init();
 
             var assemblyName = typeof(MainPage).GetTypeInfo().Assembly.GetName().Name;

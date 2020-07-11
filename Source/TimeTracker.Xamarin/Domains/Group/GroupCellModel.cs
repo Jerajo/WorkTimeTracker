@@ -9,6 +9,7 @@ namespace TimeTracker.Xamarin.Domains.Group
     public class GroupCellModel : BindableBase
     {
         public GroupCellModel() {}
+
         public GroupCellModel(string name, string code = null)
         {
             Name = name;
@@ -16,18 +17,31 @@ namespace TimeTracker.Xamarin.Domains.Group
         }
 
         public int Index { get; set; }
-        public int Id { get; set; }
+
         /// <summary>
-        /// Code use in to identify the user story.
+        /// The group id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Code used to identify the user story.
         /// </summary>
         public string Code { get; set; }
+
         /// <summary>
         /// Name of the group.
         /// </summary>
         public string Name { get; set; }
+
         public TimeSpan ProjectedTime { get; set; }
+
         public TimeSpan ActualTime { get; set; }
+
+        /// <summary>
+        /// Indicates weather or not this group of task are billable.
+        /// </summary>
         public bool Billable { get; set; }
+
         public bool ActionCanceled { get; set; }
     }
 }

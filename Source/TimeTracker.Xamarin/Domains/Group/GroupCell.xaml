@@ -23,100 +23,81 @@
 		ItemSpacing="8">
 		<syncfusion:SfAccordion.Items>
 			<syncfusion:AccordionItem x:Name="AccordionItem">
+				<!--#region Content-->
 				<syncfusion:AccordionItem.Header>
-					<SwipeView>
-						<!--#region Left Items-->
-						<SwipeView.LeftItems>
-							<SwipeItems Mode="Execute">
-								<SwipeItem
-									BackgroundColor="Red"
-									Invoked="OnDeleteSwipe_Invoked"
-									Text="Eliminar" />
-							</SwipeItems>
-						</SwipeView.LeftItems>
-						<!--#endregion-->
+					<Grid x:Name="SwipeViewContainer" BackgroundColor="DarkSlateGray">
+						<Grid
+							x:Name="HeaderContent"
+							Padding="8"
+							ColumnSpacing="8">
+							<!--#region COLUMNS AND ROWS-->
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<!--#endregion-->
 
-						<!--#region Right Items-->
-						<SwipeView.RightItems>
-							<SwipeItems Mode="Execute">
-								<SwipeItem
-									BackgroundColor="LawnGreen"
-									Invoked="OnEditSwipe_Invoked"
-									Text="Editar" />
-							</SwipeItems>
-						</SwipeView.RightItems>
-						<!--#endregion-->
+							<Grid Margin="-8">
+								<buttons:SfButton
+									x:Name="ToggleAccordionIcon"
+									BackgroundColor="Transparent"
+									Clicked="ToggleAccordionButton_Tapped"
+									FontFamily="{x:StaticResource FontAwesomeSolidIcons}"
+									Text="{x:Static icons:FontAwesomeSolid.AngleUp}" />
+							</Grid>
 
-						<!--#region Content-->
-						<Grid x:Name="SwipeViewContainer" BackgroundColor="DarkSlateGray">
+							<StackLayout
+								Grid.Column="1"
+								IsVisible="{Binding Code, Converter={helpers:NullToBoolConverter}, Mode=OneWay}"
+								Orientation="Horizontal"
+								Spacing="0">
+								<Label
+									x:Name="CodeLabel"
+									Margin="8,0"
+									Text="{Binding Code}"
+									TextColor="White"
+									VerticalOptions="Center" />
+								<BoxView
+									BackgroundColor="White"
+									HeightRequest="{Binding LineHeight, Source={Reference CodeLabel}}"
+									WidthRequest="2" />
+							</StackLayout>
+
+							<Label
+								x:Name="NameLabel"
+								Grid.Column="2"
+								LineBreakMode="HeadTruncation"
+								Text="{Binding Name}"
+								TextColor="White"
+								VerticalOptions="Center" />
+
+							<Label
+								Grid.Column="3"
+								Margin="0,0,8,0"
+								Text="02:35:40"
+								TextColor="White"
+								VerticalOptions="Center" />
+
 							<Grid
-								x:Name="HeaderContent"
-								Padding="8"
-								ColumnSpacing="8">
-								<!--#region COLUMNS AND ROWS-->
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="Auto" />
-								</Grid.ColumnDefinitions>
-								<!--#endregion-->
-
-								<Grid Margin="-8">
-									<buttons:SfButton
-										x:Name="ToggleAccordionIcon"
-										BackgroundColor="Transparent"
-										Clicked="ToggleAccordionButton_Tapped"
-										FontFamily="{x:StaticResource FontAwesomeSolidIcons}"
-										Text="{x:Static icons:FontAwesomeSolid.AngleUp}" />
-								</Grid>
-
-								<StackLayout
-									Grid.Column="1"
-									IsVisible="{Binding Code, Converter={helpers:NullToBoolConverter}, Mode=OneWay}"
-									Orientation="Horizontal"
-									Spacing="0">
-									<Label
-										Margin="8,0"
-										Text="{Binding Code}"
-										TextColor="White"
-										VerticalOptions="Center" />
-									<BoxView BackgroundColor="White" WidthRequest="2" />
-								</StackLayout>
-
-								<Label
-									Grid.Column="2"
-									LineBreakMode="HeadTruncation"
-									Text="{Binding Name}"
-									TextColor="White"
-									VerticalOptions="Center" />
-
-								<Label
-									Grid.Column="3"
-									Margin="0,0,8,0"
-									Text="02:35:40"
-									TextColor="White"
-									VerticalOptions="Center" />
-
-								<Grid
-									Grid.Column="4"
-									Margin="-8"
-									IsVisible="{OnIdiom Default=False,
-									                    Desktop=True,
-									                    Tablet=True,
-									                    TV=True}">
-									<buttons:SfButton
-										BackgroundColor="Transparent"
-										Clicked="ActionsMenuButton_Tapped"
-										FontFamily="{x:StaticResource FontAwesomeSolidIcons}"
-										Text="{x:Static icons:FontAwesomeSolid.EllipsisH}" />
-								</Grid>
+								Grid.Column="4"
+								Margin="-8"
+								IsVisible="{OnIdiom Default=False,
+								                    Desktop=True,
+								                    Tablet=True,
+								                    TV=True}">
+								<buttons:SfButton
+									BackgroundColor="Transparent"
+									Clicked="ActionsMenuButton_Tapped"
+									FontFamily="{x:StaticResource FontAwesomeSolidIcons}"
+									Text="{x:Static icons:FontAwesomeSolid.EllipsisH}" />
 							</Grid>
 						</Grid>
-						<!--#endregion-->
-					</SwipeView>
+					</Grid>
 				</syncfusion:AccordionItem.Header>
+				<!--#endregion-->
 
 				<!--  TODO: Delete this, and load content with code.  -->
 				<syncfusion:AccordionItem.Content>

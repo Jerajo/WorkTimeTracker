@@ -1,4 +1,5 @@
 ﻿using Syncfusion.Licensing;
+using Syncfusion.ListView.XForms.UWP;
 using Syncfusion.SfDataGrid.XForms;
 using Syncfusion.XForms.UWP.Accordion;
 using Syncfusion.XForms.UWP.Border;
@@ -71,6 +72,8 @@ namespace WorkTimeTracker.UWP
                     typeof(SfSegmentedControlRenderer).GetTypeInfo().Assembly,
                     // Syncfusion Accordion
                     typeof(SfAccordionRenderer).GetTypeInfo().Assembly,
+                    // Syncfusion list view
+                    typeof(SfListViewRenderer).GetTypeInfo().Assembly,
                     // Syncfusion Popup
                     typeof(SfPopupLayoutRenderer).GetTypeInfo().Assembly,
                     // Syncfusion Excel

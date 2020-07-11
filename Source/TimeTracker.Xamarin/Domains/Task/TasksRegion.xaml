@@ -4,28 +4,57 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:local="clr-namespace:TimeTracker.Xamarin.Domains.Group"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
 	mc:Ignorable="d">
-	<ContentView.Content>
-		<ScrollView HorizontalScrollBarVisibility="Never">
-			<Grid
-				x:Name="ViewContainer"
-				Padding="8,8,8,50"
-				RowSpacing="8">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-				<Button
-					x:Name="AddGroupButton"
-					BackgroundColor="LawnGreen"
-					Clicked="AddGroupButton_Clicked"
-					Text="Agregar" />
-				<StackLayout
-					x:Name="ItemsContainer"
-					Grid.Row="1"
-					Spacing="8" />
-			</Grid>
-		</ScrollView>
-	</ContentView.Content>
+	<Grid
+		x:Name="ViewContainer"
+		Padding="4"
+		RowSpacing="8">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Button
+			x:Name="AddGroupButton"
+			Margin="4,8"
+			BackgroundColor="LawnGreen"
+			Clicked="AddGroupButton_Clicked"
+			Text="Agregar" />
+
+		<syncfusion:SfListView
+			x:Name="GroupsContainer"
+			Grid.Row="1"
+			AllowSwiping="True"
+			AutoFitMode="DynamicHeight"
+			IsScrollBarVisible="False"
+			ItemSpacing="4"
+			ItemsSource="{Binding Groups}"
+			SwipeEnded="GroupsContainer_SwipeEnded">
+
+			<syncfusion:SfListView.LeftSwipeTemplate>
+				<DataTemplate x:Name="LeftSwipeTemplate">
+					<Grid BackgroundColor="Red">
+						<Label LineBreakMode="NoWrap" Text="Eliminar" />
+					</Grid>
+				</DataTemplate>
+			</syncfusion:SfListView.LeftSwipeTemplate>
+
+			<syncfusion:SfListView.RightSwipeTemplate>
+				<DataTemplate x:Name="RightSwipeTemplate">
+					<Grid BackgroundColor="LawnGreen">
+						<Label LineBreakMode="NoWrap" Text="Editar" />
+					</Grid>
+				</DataTemplate>
+			</syncfusion:SfListView.RightSwipeTemplate>
+
+			<syncfusion:SfListView.ItemTemplate>
+				<DataTemplate>
+					<local:GroupCell />
+				</DataTemplate>
+			</syncfusion:SfListView.ItemTemplate>
+		</syncfusion:SfListView>
+	</Grid>
 </ContentView>
