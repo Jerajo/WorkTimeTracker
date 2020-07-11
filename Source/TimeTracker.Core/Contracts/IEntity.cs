@@ -9,5 +9,9 @@
         /// Unique identifier.
         /// </summary>
         int Id { get; set; }
+        /// <summary>
+        /// Indicates weather or not the group is deleted.
+        /// </summary>
+        bool IsDeleted { get; set; }
     }
 }

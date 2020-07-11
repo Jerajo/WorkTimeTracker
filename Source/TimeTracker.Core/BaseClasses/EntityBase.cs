@@ -9,5 +9,7 @@ namespace TimeTracker.Core.BaseClasses
     {
         /// <inheritdoc/>
         public int Id { get; set; }
+        /// <inheritdoc/>
+        public bool IsDeleted { get; set; }
     }
 }
