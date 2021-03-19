@@ -1,0 +1,44 @@
+USE master
+GO
+
+DROP DATABASE WorkTimeTracker_DB
+CREATE DATABASE WorkTimeTracker_DB
+GO
+
+USE WorkTimeTracker_DB
+GO
+
+CREATE TABLE UserStory
+(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Code INT NOT NULL,
+	Name VARCHAR(500) NOT NULL,
+	StoryPoints INT NOT NULL
+)
+
+CREATE TABLE Task
+(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Code INT NOT NULL,
+	Name VARCHAR(500) NOT NULL,
+	ProjectedEffort TIME,
+	UserStoryId INT,
+	FOREIGN KEY (UserStoryId) REFERENCES UserStory(Id)
+)
+
+CREATE TABLE Schedule
+(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	Date DATE NOT NULL
+)
+
+CREATE TABLE TimeSchedule	
+(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	TimeStart TIME NOT NULL,
+	TimeEnd TIME NULL,
+	TaskId INT NOT NULL,
+	ScheduleId INT NOT NULL,
+	FOREIGN KEY (TaskId) REFERENCES Task(Id),
+	FOREIGN KEY (ScheduleId) REFERENCES Schedule(Id)
+)

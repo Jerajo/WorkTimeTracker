@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication
+	x:Class="TimeTracker.Xamarin.App"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:prism="http://prismlibrary.com">
+	<Application.Resources>
+		<!--#region TEXT-->
+		<x:String x:Key="Title">TODO</x:String>
+		<!--#endregion-->
+
+		<!--#region Font Icons-->
+		<OnPlatform x:Key="FontAwesomeRegularIcons" x:TypeArguments="x:String">
+			<On Platform="iOS" Value="FontAwesome5Free-Regular" />
+			<On Platform="Android" Value="FontAwesome5Regular.otf#Regular" />
+			<On Platform="UWP" Value="Assets/Fonts/FontAwesome5Regular.otf#Font Awesome 5 Free" />
+		</OnPlatform>
+		<OnPlatform x:Key="FontAwesomeSolidIcons" x:TypeArguments="x:String">
+			<On Platform="iOS" Value="FontAwesome5Free-Solid" />
+			<On Platform="Android" Value="FontAwesome5Solid.otf#Regular" />
+			<On Platform="UWP" Value="Assets/Fonts/FontAwesome5Solid.otf#Font Awesome 5 Free" />
+		</OnPlatform>
+		<OnPlatform x:Key="FontAwesomeBrandIcons" x:TypeArguments="x:String">
+			<On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+			<On Platform="Android" Value="FontAwesome5Brands.otf#Regular" />
+			<On Platform="UWP" Value="Assets/Fonts/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
+		</OnPlatform>
+		<!--#endregion-->
+	</Application.Resources>
+</prism:PrismApplication>

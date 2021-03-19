@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TimeTracker.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:TimeTracker.Domain.Group">
+            <summary>
+            Represents a group of task or a user story.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Domain.Schedule">
+            <summary>
+            Represents a day of work.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Domain.Task">
+            <summary>
+            Represents a task of work.
+            </summary>
+        </member>
+        <member name="T:TimeTracker.Domain.TasksSchedule">
+            <summary>
+            Represent a schedule for a task.
+            </summary>
+        </member>
+    </members>
+</doc>
