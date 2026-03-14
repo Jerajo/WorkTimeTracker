@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="1.5.0" />
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper" Version="16.1.1" />
     <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="Murk.Command.BaseClasses" Version="0.0.2-alpha" />
     <PackageReference Include="Ninject" Version="3.3.4" />
